@@ -1,0 +1,21 @@
+div.bg-dark
+  nav.navbar.navbar-expand-md.bg-dark.navbar-dark.container
+    = link_to(root_path, class: 'navbar-brand') do
+      | Fec
+    button.navbar-toggler [aria-controls="navbarNav"
+                          aria-expanded="false"
+                          aria-label=("Toggle navigation")
+                          data-target="#navbar-list-2"
+                          data-toggle="collapse"
+                          type="button"]
+      span.navbar-toggler-icon
+    #navbar-list-2.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        - if user_signed_in?
+          li.nav-item
+            = link_to "Sign_out", destroy_user_session_path, method: "delete", class: 'nav-link'
+        -else
+          li.nav-item
+            = link_to "Sing_in", new_user_session_path, class: 'nav-link'
+          li.nav-item
+            = link_to "Sing_up", new_user_registration_path, class: 'nav-link'
