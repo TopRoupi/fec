@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Category:
+  = @exercice.category
+p
+  strong Language:
+  = @exercice.language
+p
+  strong Name:
+  = @exercice.name
+p
+  strong Level:
+  = @exercice.level
+p
+  strong Content:
+  = @exercice.content
+p
+  strong Code:
+  = @exercice.code
+p
+  strong Limit time:
+  = @exercice.limit_time
+p
+  strong Limit mem:
+  = @exercice.limit_mem
+
+=> link_to 'Edit', edit_exercice_path(@exercice)
+'|
+=< link_to 'Back', exercices_path

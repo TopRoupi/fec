@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Code:
+  = @submission.code
+p
+  strong User:
+  = @submission.user
+p
+  strong Language:
+  = @submission.language
+p
+  strong Exercice:
+  = @submission.exercice
+
+=> link_to 'Edit', edit_submission_path(@submission)
+'|
+=< link_to 'Back', submissions_path

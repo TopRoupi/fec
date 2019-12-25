@@ -1,0 +1,35 @@
+h1 Listing submissions_tests
+
+table
+  thead
+    tr
+      th Submission
+      th Test
+      th Pass
+      th Time running
+      th Output
+      th Errors
+      th Warnings
+      th Mem peak
+      th
+      th
+      th
+
+  tbody
+    - @submissions_tests.each do |submissions_test|
+      tr
+        td = submissions_test.submission
+        td = submissions_test.test
+        td = submissions_test.pass
+        td = submissions_test.time_running
+        td = submissions_test.output
+        td = submissions_test.errors
+        td = submissions_test.warnings
+        td = submissions_test.mem_peak
+        td = link_to 'Show', submissions_test
+        td = link_to 'Edit', edit_submissions_test_path(submissions_test)
+        td = link_to 'Destroy', submissions_test, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Submissions test', new_submissions_test_path

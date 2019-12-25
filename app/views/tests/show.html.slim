@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Exercice:
+  = @test.exercice
+p
+  strong Input:
+  = @test.input
+p
+  strong Output:
+  = @test.output
+
+=> link_to 'Edit', edit_test_path(@test)
+'|
+=< link_to 'Back', tests_path

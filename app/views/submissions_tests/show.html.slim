@@ -1,0 +1,30 @@
+p#notice = notice
+
+p
+  strong Submission:
+  = @submissions_test.submission
+p
+  strong Test:
+  = @submissions_test.test
+p
+  strong Pass:
+  = @submissions_test.pass
+p
+  strong Time running:
+  = @submissions_test.time_running
+p
+  strong Output:
+  = @submissions_test.output
+p
+  strong Errors:
+  = @submissions_test.errors
+p
+  strong Warnings:
+  = @submissions_test.warnings
+p
+  strong Mem peak:
+  = @submissions_test.mem_peak
+
+=> link_to 'Edit', edit_submissions_test_path(@submissions_test)
+'|
+=< link_to 'Back', submissions_tests_path

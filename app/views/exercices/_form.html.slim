@@ -1,0 +1,33 @@
+= form_for @exercice do |f|
+  - if @exercice.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@exercice.errors.count, "error")} prohibited this exercice from being saved:"
+      ul
+        - @exercice.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :category
+    = f.text_field :category
+  .field
+    = f.label :language
+    = f.text_field :language
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :level
+    = f.text_field :level
+  .field
+    = f.label :content
+    = f.text_field :content
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :limit_time
+    = f.text_field :limit_time
+  .field
+    = f.label :limit_mem
+    = f.text_field :limit_mem
+  .actions = f.submit

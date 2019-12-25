@@ -10,10 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_21_114512) do
+ActiveRecord::Schema.define(version: 2019_12_24_144342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exercices", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "language_id", null: false
+    t.string "name"
+    t.decimal "level"
+    t.string "content"
+    t.string "code"
+    t.decimal "limit_time"
+    t.decimal "limit_mem"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["category_id"], name: "index_exercices_on_category_id"
+    t.index ["language_id"], name: "index_exercices_on_language_id"
+  end
+
+  create_table "languages", force: :cascade do |t|
+    t.string "name"
+    t.decimal "cod"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.string "code"
+    t.bigint "user_id", null: false
+    t.bigint "language_id", null: false
+    t.bigint "exercice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_submissions_on_exercice_id"
+    t.index ["language_id"], name: "index_submissions_on_language_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
+  end
+
+  create_table "submissions_tests", force: :cascade do |t|
+    t.bigint "submission_id", null: false
+    t.bigint "test_id", null: false
+    t.boolean "pass"
+    t.decimal "time_running"
+    t.string "output"
+    t.string "errors"
+    t.string "warnings"
+    t.decimal "mem_peak"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["submission_id"], name: "index_submissions_tests_on_submission_id"
+    t.index ["test_id"], name: "index_submissions_tests_on_test_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.bigint "exercice_id", null: false
+    t.string "input"
+    t.string "output"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_tests_on_exercice_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +92,12 @@ ActiveRecord::Schema.define(version: 2019_12_21_114512) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "exercices", "categories"
+  add_foreign_key "exercices", "languages"
+  add_foreign_key "submissions", "exercices"
+  add_foreign_key "submissions", "languages"
+  add_foreign_key "submissions", "users"
+  add_foreign_key "submissions_tests", "submissions"
+  add_foreign_key "submissions_tests", "tests"
+  add_foreign_key "tests", "exercices"
 end
