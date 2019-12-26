@@ -4,19 +4,26 @@
 
 online judge
 
+
 # live-demo
 
 https://fec-online-judge.herokuapp.com/
 
+
 # REQUIREMENTS
+
 
 * Ruby version
 
-  ```2.6.3```
+  ```
+  2.6.3
+  ```
 
 * System dependencies
 
-  ```Postgresql 11.5```
+  ```
+  Postgresql 11.5
+  ```
 
 * Configuration
 

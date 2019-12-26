@@ -1,7 +1,27 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# frozen_string_literal: true
+
+Language.create(name: 'c#', cod: 1)
+Language.create(name: 'Java', cod: 4)
+Language.create(name: 'Python', cod: 5)
+Language.create(name: 'C', cod: 6)
+Language.create(name: 'C++', cod: 7)
+Language.create(name: 'Php', cod: 8)
+Language.create(name: 'Haskell', cod: 11)
+Language.create(name: 'Ruby', cod: 12)
+Language.create(name: 'Lua', cod: 14)
+Language.create(name: 'Javascript', cod: 17)
+Language.create(name: 'Prolog', cod: 19)
+Language.create(name: 'Go', cod: 20)
+Language.create(name: 'Scala', cod: 21)
+Language.create(name: 'Node.js', cod: 23)
+Language.create(name: 'Python3', cod: 24)
+Language.create(name: 'Elixir', cod: 41)
+Language.create(name: 'Ocaml', cod: 42)
+
+Category.create(name: 'iniciante')
+Category.create(name: 'strings')
+Category.create(name: 'matemática')
+Category.create(name: 'grafos')
+Category.create(name: 'paradigmas')
+Category.create(name: 'geometria computacional')
+Category.create(name: 'estruturas e bibliotecas')

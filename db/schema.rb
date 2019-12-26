@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_24_144342) do
+ActiveRecord::Schema.define(version: 2019_12_25_114529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -25,11 +56,10 @@ ActiveRecord::Schema.define(version: 2019_12_24_144342) do
     t.bigint "category_id", null: false
     t.bigint "language_id", null: false
     t.string "name"
-    t.decimal "level"
-    t.string "content"
-    t.string "code"
-    t.decimal "limit_time"
-    t.decimal "limit_mem"
+    t.integer "level"
+    t.text "code"
+    t.float "limit_time"
+    t.float "limit_mem"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_exercices_on_category_id"
@@ -38,13 +68,13 @@ ActiveRecord::Schema.define(version: 2019_12_24_144342) do
 
   create_table "languages", force: :cascade do |t|
     t.string "name"
-    t.decimal "cod"
+    t.integer "cod"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.string "code"
+    t.text "code"
     t.bigint "user_id", null: false
     t.bigint "language_id", null: false
     t.bigint "exercice_id", null: false
@@ -59,11 +89,11 @@ ActiveRecord::Schema.define(version: 2019_12_24_144342) do
     t.bigint "submission_id", null: false
     t.bigint "test_id", null: false
     t.boolean "pass"
-    t.decimal "time_running"
+    t.integer "time_running"
     t.string "output"
     t.string "errors"
     t.string "warnings"
-    t.decimal "mem_peak"
+    t.float "mem_peak"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["submission_id"], name: "index_submissions_tests_on_submission_id"
@@ -92,6 +122,7 @@ ActiveRecord::Schema.define(version: 2019_12_24_144342) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "exercices", "categories"
   add_foreign_key "exercices", "languages"
   add_foreign_key "submissions", "exercices"

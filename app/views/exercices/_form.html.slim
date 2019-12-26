@@ -8,26 +8,26 @@
 
   .field
     = f.label :category
-    = f.text_field :category
+    = f.collection_select(:category_id, Category.all, :id, :name, prompt: true)
   .field
     = f.label :language
-    = f.text_field :language
+    = f.collection_select(:language_id, Language.all, :id, :name, prompt: true)
   .field
     = f.label :name
     = f.text_field :name
   .field
     = f.label :level
-    = f.text_field :level
+    = f.number_field :level
   .field
     = f.label :content
-    = f.text_field :content
+    = f.rich_text_area :content
   .field
     = f.label :code
-    = f.text_field :code
+    = f.text_area :code
   .field
     = f.label :limit_time
-    = f.text_field :limit_time
+    = f.number_field :limit_time
   .field
     = f.label :limit_mem
-    = f.text_field :limit_mem
+    = f.number_field :limit_mem
   .actions = f.submit

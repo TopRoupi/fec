@@ -17,7 +17,7 @@
     = f.check_box :pass
   .field
     = f.label :time_running
-    = f.text_field :time_running
+    = f.number_field :time_running
   .field
     = f.label :output
     = f.text_field :output
@@ -29,5 +29,5 @@
     = f.text_field :warnings
   .field
     = f.label :mem_peak
-    = f.text_field :mem_peak
+    = f.number_field :mem_peak
   .actions = f.submit

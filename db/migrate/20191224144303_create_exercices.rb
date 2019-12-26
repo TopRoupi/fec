@@ -4,11 +4,10 @@ class CreateExercices < ActiveRecord::Migration[6.0]
       t.references :category, null: false, foreign_key: true
       t.references :language, null: false, foreign_key: true
       t.string :name
-      t.numeric :level
-      t.string :content
-      t.string :code
-      t.numeric :limit_time
-      t.numeric :limit_mem
+      t.integer :level
+      t.text :code
+      t.float :limit_time
+      t.float :limit_mem
 
       t.timestamps
     end

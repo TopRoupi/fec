@@ -2,7 +2,7 @@ class CreateLanguages < ActiveRecord::Migration[6.0]
   def change
     create_table :languages do |t|
       t.string :name
-      t.numeric :cod
+      t.integer :cod
 
       t.timestamps
     end
