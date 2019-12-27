@@ -1,33 +1,29 @@
-= form_for @exercice do |f|
-  - if @exercice.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@exercice.errors.count, "error")} prohibited this exercice from being saved:"
-      ul
-        - @exercice.errors.full_messages.each do |message|
-          li = message
+= javascript_pack_tag "nested_form", 'data-turbolinks-track': 'reload'
 
-  .field
-    = f.label :category
-    = f.collection_select(:category_id, Category.all, :id, :name, prompt: true)
-  .field
-    = f.label :language
-    = f.collection_select(:language_id, Language.all, :id, :name, prompt: true)
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :level
-    = f.number_field :level
+= simple_nested_form_for @exercice do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  = f.association :category, collection: Category.all
+  = f.association :language, collection: Language.all
+  = f.input :name
+  = f.input :level
+
+  // wating https://github.com/plataformatec/simple_form/pull/1646
   .field
     = f.label :content
     = f.rich_text_area :content
-  .field
-    = f.label :code
-    = f.text_area :code
-  .field
-    = f.label :limit_time
-    = f.number_field :limit_time
-  .field
-    = f.label :limit_mem
-    = f.number_field :limit_mem
-  .actions = f.submit
+
+  = f.input :limit_time
+  = f.input :limit_mem
+  = f.input :code
+
+  = f.fields_for :tests do |ff|
+    = ff.input :input
+    = ff.input :output
+    = ff.input :visible
+    = ff.link_to_remove "Remove this test"
+
+  = f.link_to_add "Add a test", :tests
+
+  = f.submit

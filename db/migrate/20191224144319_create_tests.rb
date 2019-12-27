@@ -4,6 +4,7 @@ class CreateTests < ActiveRecord::Migration[6.0]
       t.references :exercice, null: false, foreign_key: true
       t.text :input
       t.text :output
+      t.boolean :visible
 
       t.timestamps
     end

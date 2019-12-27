@@ -4,7 +4,7 @@ class CreateSubmissionsTests < ActiveRecord::Migration[6.0]
       t.references :submission, null: false, foreign_key: true
       t.references :test, null: false, foreign_key: true
       t.boolean :pass
-      t.integer :time_running
+      t.float :time_running
       t.text :output
       t.text :errors
       t.text :warnings

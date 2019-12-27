@@ -5,10 +5,14 @@ ruby '2.6.3'
 
 gem 'devise'
 
-gem 'slim-rails'
-
 # needed for render images of the exercices content rich text
 gem 'image_processing'
+
+gem 'simple_form'
+
+gem 'slim-rails'
+
+gem 'nested_form'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :submissions_tests
   resources :submissions
-  resources :tests
   resources :exercices
   resources :languages
   resources :categories

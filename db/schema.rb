@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_25_114529) do
+ActiveRecord::Schema.define(version: 2019_12_27_162358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,10 +89,10 @@ ActiveRecord::Schema.define(version: 2019_12_25_114529) do
     t.bigint "submission_id", null: false
     t.bigint "test_id", null: false
     t.boolean "pass"
-    t.integer "time_running"
-    t.string "output"
-    t.string "errors"
-    t.string "warnings"
+    t.float "time_running"
+    t.text "output"
+    t.text "errors"
+    t.text "warnings"
     t.float "mem_peak"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -102,8 +102,9 @@ ActiveRecord::Schema.define(version: 2019_12_25_114529) do
 
   create_table "tests", force: :cascade do |t|
     t.bigint "exercice_id", null: false
-    t.string "input"
-    t.string "output"
+    t.text "input"
+    t.text "output"
+    t.boolean "visible"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["exercice_id"], name: "index_tests_on_exercice_id"
