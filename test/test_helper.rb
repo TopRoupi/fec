@@ -4,10 +4,8 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
-  # fixtures :all
   include FactoryBot::Syntax::Methods
   include Devise::Test::IntegrationHelpers
-  FactoryBot.find_definitions
 end
 
 class ActionController::TestCase

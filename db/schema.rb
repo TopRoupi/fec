@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_12_27_162358) do
     t.bigint "language_id", null: false
     t.string "name"
     t.integer "level"
+    t.text "content"
     t.text "code"
     t.float "limit_time"
     t.float "limit_mem"

@@ -4,9 +4,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-require("trix")
-require("@rails/actiontext")
-
 import '../stylesheets/application'
 import 'bootstrap'
 import "controllers"

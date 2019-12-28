@@ -1,4 +1,4 @@
-= javascript_pack_tag "nested_form", 'data-turbolinks-track': 'reload'
+.controller data-controller="exercice"
 
 = simple_nested_form_for @exercice do |f|
   = f.error_notification
@@ -8,12 +8,7 @@
   = f.association :language, collection: Language.all
   = f.input :name
   = f.input :level
-
-  // wating https://github.com/plataformatec/simple_form/pull/1646
-  .field
-    = f.label :content
-    = f.rich_text_area :content
-
+  = f.input :content
   = f.input :limit_time
   = f.input :limit_mem
   = f.input :code

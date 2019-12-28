@@ -5,8 +5,8 @@ ruby '2.6.3'
 
 gem 'devise'
 
-# needed for render images of the exercices content rich text
-gem 'image_processing'
+# parse markdown
+gem 'redcarpet'
 
 gem 'simple_form'
 
