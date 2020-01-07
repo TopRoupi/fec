@@ -62,24 +62,24 @@ class ExercicesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_exercice
-      @exercice = Exercice.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def exercice_params
-      params.require(:exercice).permit(:category_id,
-                                       :language_id,
-                                       :name,
-                                       :level,
-                                       :content,
-                                       :code,
-                                       :limit_time,
-                                       :limit_mem,
-                                       tests_attributes: %I[id
-                                                            output
-                                                            input
-                                                            _destroy])
-    end
+  def set_exercice
+    @exercice = Exercice.find(params[:id])
+  end
+
+  def exercice_params
+    params.require(:exercice).permit(:category_id,
+                                     :language_id,
+                                     :name,
+                                     :level,
+                                     :content,
+                                     :code,
+                                     :limit_time,
+                                     :limit_mem,
+                                     tests_attributes: %I[id
+                                                          output
+                                                          input
+                                                          visible
+                                                          _destroy])
+  end
 end
