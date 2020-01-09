@@ -15,6 +15,16 @@ class ExercicesController < ApplicationController
   # GET /exercices/new
   def new
     @exercice = Exercice.new
+    @exercice.content = "parágrafo para explicar o problema\n\n"\
+                        "### Entrada\n\n"\
+                        "parágrafo para explicar as entradas\n\n"\
+                        "### Saída\n\n"\
+                        "parágrafo para explicar as saídas\n\n"\
+                        "| Exemplos de Entrada | Exemplos de Saída |\n"\
+                        "| :- | :- |\n"\
+                        "| valor1 | resultado1 |\n"\
+                        "| valor2 | resultado2 |\n"\
+                        "| valor3 | resultado3 |\n"
   end
 
   # GET /exercices/1/edit

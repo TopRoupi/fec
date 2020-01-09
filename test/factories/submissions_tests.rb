@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :submissions_test do
-    submission { nil }
-    test { nil }
-    pass { false }
-    time_running { 1.5 }
-    output { "MyText" }
-    errors { "MyText" }
-    warnings { "MyText" }
-    mem_peak { 1.5 }
+    association :submission
+    association :test
+    pass { true }
+    time_running { 0.5 }
+    output { "X = 5\n" }
+    errors { '' }
+    warnings { '' }
+    mem_peak { 0.2 }
   end
 end

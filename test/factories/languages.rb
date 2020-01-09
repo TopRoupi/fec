@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :language do
-    name { "MyString" }
-    cod { "" }
+    name { 'Python' }
+    cod { '5' }
   end
 end

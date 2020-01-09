@@ -2,20 +2,20 @@ require 'test_helper'
 
 class LanguagesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @language = languages(:one)
+    @language = create(:language)
   end
 
-  test "should get index" do
+  test 'should get index' do
     get languages_url
     assert_response :success
   end
 
-  test "should get new" do
+  test 'should get new' do
     get new_language_url
     assert_response :success
   end
 
-  test "should create language" do
+  test 'should create language' do
     assert_difference('Language.count') do
       post languages_url, params: { language: { cod: @language.cod, name: @language.name } }
     end
@@ -23,22 +23,22 @@ class LanguagesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to language_url(Language.last)
   end
 
-  test "should show language" do
+  test 'should show language' do
     get language_url(@language)
     assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get edit_language_url(@language)
     assert_response :success
   end
 
-  test "should update language" do
+  test 'should update language' do
     patch language_url(@language), params: { language: { cod: @language.cod, name: @language.name } }
     assert_redirected_to language_url(@language)
   end
 
-  test "should destroy language" do
+  test 'should destroy language' do
     assert_difference('Language.count', -1) do
       delete language_url(@language)
     end
