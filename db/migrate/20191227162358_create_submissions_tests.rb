@@ -6,8 +6,8 @@ class CreateSubmissionsTests < ActiveRecord::Migration[6.0]
       t.boolean :pass
       t.float :time_running
       t.text :output
-      t.text :errors
-      t.text :warnings
+      t.text :code_errors
+      t.text :code_warnings
       t.float :mem_peak
 
       t.timestamps

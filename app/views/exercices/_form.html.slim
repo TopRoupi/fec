@@ -1,24 +1,29 @@
-.controller data-controller="exercice"
+div data-controller="exercices"
+  = simple_nested_form_for @exercice do |f|
+    = f.error_notification
+    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-= simple_nested_form_for @exercice do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+    / yes
+    - (Language.all).each do |lang|
+      div id="lang#{lang.id}" style=("display: none")
+        = lang.cod
 
-  = f.association :category, collection: Category.all
-  = f.association :language, collection: Language.all
-  = f.input :name
-  = f.input :level
-  = f.input :content
-  = f.input :limit_time
-  = f.input :limit_mem
-  = f.input :code
+    = f.association :category, collection: Category.all
+    = f.association :language, collection: Language.all, input_html: {:'data-target' => 'exercices.lang'}
+    = f.input :name
+    = f.input :level
+    = f.input :content
+    = f.input :limit_time
+    = f.input :limit_mem
+    = f.input :code, input_html: {:'data-target' => 'exercices.code'}
 
-  = f.fields_for :tests do |ff|
-    = ff.input :input
-    = ff.input :output
-    = ff.input :visible
-    = ff.link_to_remove "Remove this test"
+    = f.fields_for :tests do |ff|
+      = ff.input :input
+      = ff.input :output
+      = ff.input :visible
+      = ff.link_to_remove "Remove this test"
+      input type="button" value="gerar saída" data-action="click->exercices#generate_test_output"
 
-  = f.link_to_add "Add a test", :tests
+    = f.link_to_add "Add a test", :tests
 
-  = f.submit
+    = f.submit

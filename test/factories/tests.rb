@@ -3,5 +3,6 @@ FactoryBot.define do
     association :exercice
     input { "3\n2\n" }
     output { "X = 5\n" }
+    visible { true }
   end
 end

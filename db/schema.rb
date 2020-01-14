@@ -61,8 +61,8 @@ ActiveRecord::Schema.define(version: 2019_12_27_162358) do
     t.boolean "pass"
     t.float "time_running"
     t.text "output"
-    t.text "errors"
-    t.text "warnings"
+    t.text "code_errors"
+    t.text "code_warnings"
     t.float "mem_peak"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

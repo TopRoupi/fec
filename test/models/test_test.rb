@@ -20,12 +20,4 @@ class TestTest < ActiveSupport::TestCase
     @test.valid?
     refute_empty @test.errors[:output]
   end
-
-  # visible validations
-
-  test 'invalid without visible' do
-    @test.visible = nil
-    @test.valid?
-    refute_empty @test.errors[:visible]
-  end
 end

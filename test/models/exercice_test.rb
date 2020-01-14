@@ -65,12 +65,18 @@ class ExerciceTest < ActiveSupport::TestCase
     refute_empty @exercice.errors[:limit_time]
   end
 
-  test 'valid if limit_time is between 0 and 5' do
-    (0..5).each do |i|
+  test 'valid if limit_time is between 1 and 5' do
+    (1..5).each do |i|
       @exercice.limit_time = i
       @exercice.valid?
       assert_empty @exercice.errors[:limit_time]
     end
+  end
+
+  test 'invalid if limit_time is equals to 0' do
+    @exercice.limit_time = 0
+    @exercice.valid?
+    refute_empty @exercice.errors[:limit_time]
   end
 
   test 'invalid if limit_time is less than 0' do
@@ -93,12 +99,16 @@ class ExerciceTest < ActiveSupport::TestCase
     refute_empty @exercice.errors[:limit_mem]
   end
 
-  test 'valid if limit_mem is between 0 and 2.5' do
-    (0..2.5).step(0.5).each do |i|
-      @exercice.limit_mem = i
-      @exercice.valid?
-      assert_empty @exercice.errors[:limit_mem]
-    end
+  test 'valid if limit_mem is less or equals to 1250' do
+    @exercice.limit_mem = 1250
+    @exercice.valid?
+    assert_empty @exercice.errors[:limit_mem]
+  end
+
+  test 'invalid if limit_mem is equals to 0' do
+    @exercice.limit_mem = 0
+    @exercice.valid?
+    refute_empty @exercice.errors[:limit_mem]
   end
 
   test 'invalid if limit_mem is less than 0' do
@@ -107,8 +117,8 @@ class ExerciceTest < ActiveSupport::TestCase
     refute_empty @exercice.errors[:limit_mem]
   end
 
-  test 'invalid if limit_mem is greater than 2.5' do
-    @exercice.limit_mem = 3
+  test 'invalid if limit_mem is greater than 1250' do
+    @exercice.limit_mem = 1251
     @exercice.valid?
     refute_empty @exercice.errors[:limit_mem]
   end

@@ -10,7 +10,7 @@ Category.create(name: 'estruturas e bibliotecas')
 
 Language.create(name: 'c#', cod: 1)
 Language.create(name: 'Java', cod: 4)
-Language.create(name: 'Python', cod: 5)
+Language.create(name: 'Python 3', cod: 24)
 Language.create(name: 'C', cod: 6)
 Language.create(name: 'C++', cod: 7)
 Language.create(name: 'Php', cod: 8)
