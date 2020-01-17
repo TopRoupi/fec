@@ -1,7 +1,7 @@
 class Exercice < ApplicationRecord
   belongs_to :category
   belongs_to :language
-  has_many :tests
+  has_many :tests, dependent: :delete_all
   accepts_nested_attributes_for :tests,
                                 reject_if: :all_blank,
                                 allow_destroy: true

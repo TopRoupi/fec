@@ -78,6 +78,11 @@ class ExercicesController < ApplicationController
   end
 
   def exercice_params
+    if params.require(:exercice).key? 'tests_attributes'
+      params.require(:exercice)['tests_attributes'].each do |test|
+        test[1]['output'].gsub!(/\r\n?/, "\n")
+      end
+    end
     params.require(:exercice).permit(:category_id,
                                      :language_id,
                                      :name,

@@ -28,9 +28,9 @@ FactoryBot.define do
               "| -10<br>4 | X = -6 |\n"
             }
     code {
-            "n1 = int(input())
-            n2 = int(input())
-            print('X =', n1 + n2)}"
+            "n1 = int(input())\n"\
+            "n2 = int(input())\n"\
+            "print('X =', n1 + n2)"
           }
     limit_time { 1.5 }
     limit_mem { 500 }

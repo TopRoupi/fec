@@ -9,16 +9,12 @@ export default class extends Controller {
     var lang = document.getElementById(`lang${this.langTarget.value}`).innerHTML
     var code = this.codeTarget.value
 
-    console.log(input)
-    console.log(lang)
-    console.log(code)
-
     var to_compile = {
       "LanguageChoice": lang,
       "Program": code,
       "Input": input,
       "CompilerArgs" : ""
-    };
+    }
 
     $.ajax ({
       url: "https://rextester.com/rundotnet/api",
@@ -31,14 +27,13 @@ export default class extends Controller {
       else {
         output.value = `Error: ${data.Errors}`
       }
-      console.log(data)
     }).fail(function(data, err) {
-      alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err));
-    });
+      alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err))
+    })
   }
 
   connect() {
     require("../packs/nested_form")
-    var easyMDE = new EasyMDE({element: document.getElementById('exercice_content')});
+    var easyMDE = new EasyMDE({element: document.getElementById('exercice_content')})
   }
 }
