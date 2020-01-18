@@ -1,12 +1,7 @@
 div data-controller="exercices"
-  = simple_nested_form_for @exercice do |f|
+  = simple_nested_form_for @exercice, wrapper: :horizontal_form do |f|
     = f.error_notification
     = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-    / yes
-    - (Language.all).each do |lang|
-      div id="lang#{lang.id}" style=("display: none")
-        = lang.cod
 
     = f.association :category, collection: Category.all
     = f.association :language, collection: Language.all, input_html: {:'data-target' => 'exercices.lang'}
@@ -16,6 +11,12 @@ div data-controller="exercices"
     = f.input :limit_time
     = f.input :limit_mem
     = f.input :code, input_html: {:'data-target' => 'exercices.code'}
+    p
+      select#mode
+        option value="python" Python
+        option value="ruby" Ruby
+        option value="clike" C
+      button#change type="button"  change mode
 
     = f.fields_for :tests do |ff|
       = ff.input :input
@@ -27,3 +28,8 @@ div data-controller="exercices"
     = f.link_to_add "Add a test", :tests
 
     = f.submit
+
+/ yes
+- (Language.all).each do |lang|
+  div id="lang#{lang.id}" style=("display: none")
+    = lang.cod

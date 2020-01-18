@@ -6,7 +6,7 @@ require("jquery")
 
 import '../stylesheets/application'
 import 'bootstrap'
-import "controllers"
+import 'controllers'
 
 document.addEventListener('turbolinks:load', () =>{
   $('[data-toggle="tooltip"]').tooltip()
