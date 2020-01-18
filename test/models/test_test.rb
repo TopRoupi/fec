@@ -20,4 +20,20 @@ class TestTest < ActiveSupport::TestCase
     @test.valid?
     refute_empty @test.errors[:output]
   end
+
+  # exercice validations
+
+  test 'valid with a valid exercice' do
+    exercice = build :exercice
+    exercice.tests << @test
+    @test.valid?
+    assert_empty @test.errors[:exercice]
+  end
+
+  test 'invalid with a invalid exercice' do
+    exercice = build :exercice, name: nil
+    exercice.tests << @test
+    @test.valid?
+    refute_empty @test.errors[:exercice]
+  end
 end

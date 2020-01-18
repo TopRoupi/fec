@@ -78,7 +78,7 @@ content = ''\
 "| -10<br>4 | X = -6 |\n"
 
 e = Exercice.create(
-  language: Language.find(5), # python
+  language: Language.find_by(name: 'Python'),
   category: Category.first,
   level: 1,
   limit_time: 1,

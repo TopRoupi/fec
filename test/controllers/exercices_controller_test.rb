@@ -17,7 +17,30 @@ class ExercicesControllerTest < ActionDispatch::IntegrationTest
 
   test 'should create exercice' do
     assert_difference('Exercice.count') do
-      post exercices_url, params: { exercice: { category_id: @exercice.category_id, code: @exercice.code, content: @exercice.content, language_id: @exercice.language_id, level: @exercice.level, limit_mem: @exercice.limit_mem, limit_time: @exercice.limit_time, name: @exercice.name } }
+      post exercices_url, params: {
+                            exercice: {
+                              category_id: @exercice.category_id,
+                              code: @exercice.code,
+                              content: @exercice.content,
+                              language_id: @exercice.language_id,
+                              level: @exercice.level,
+                              limit_mem: @exercice.limit_mem,
+                              limit_time: @exercice.limit_time,
+                              name: @exercice.name,
+                              tests_attributes: {
+                                '0': {
+                                  input: @exercice.tests[0].input,
+                                  output: @exercice.tests[0].output,
+                                  visible: @exercice.tests[0].visible
+                                },
+                                '1': {
+                                  input: @exercice.tests[1].input,
+                                  output: @exercice.tests[1].output,
+                                  visible: @exercice.tests[1].visible
+                                }
+                              }
+                            }
+                          }
     end
 
     assert_redirected_to exercice_url(Exercice.last)

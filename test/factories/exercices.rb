@@ -2,6 +2,8 @@ FactoryBot.define do
   factory :exercice do
     association :category
     association :language
+    tests { [ build(:test, exercice: nil, visible: true),
+              build(:test, exercice: nil, visible: false) ] }
     name { "Soma Simples" }
     level { 1 }
     content {

@@ -24,6 +24,10 @@ p
 p
   strong Limit mem:
   = @exercice.limit_mem
+p
+  strong tests:
+  -  @exercice.tests.each do |test|
+    = test.id
 
 => link_to 'Edit', edit_exercice_path(@exercice)
 '|

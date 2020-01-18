@@ -138,4 +138,20 @@ class ExerciceTest < ActiveSupport::TestCase
     @exercice.valid?
     refute_empty @exercice.errors[:code]
   end
+
+  # tests validationd
+
+  test 'invalid if dont have a visible test' do
+    @exercice.tests = []
+    @exercice.tests << build(:test, visible: false)
+    @exercice.valid?
+    refute_empty @exercice.errors[:tests]
+  end
+
+  test 'invalid if dont have a hidden test' do
+    @exercice.tests = []
+    @exercice.tests << build(:test, visible: true)
+    @exercice.valid?
+    refute_empty @exercice.errors[:tests]
+  end
 end

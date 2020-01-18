@@ -1,4 +1,20 @@
+class ExerciceValidator < ActiveModel::Validator
+  def validate(record)
+    hidden_tests = record.tests.select { |e| e.visible == false }.length
+    visible_tests = record.tests.select { |e| e.visible == true }.length
+
+    if visible_tests == 0
+      record.errors[:tests] << "shall have at least 1 visible test"
+    end
+    if hidden_tests == 0
+      record.errors[:tests] << "shall have at least 1 hidden test"
+    end
+  end
+end
+
 class Exercice < ApplicationRecord
+  include ActiveModel::Validations
+  validates_with ExerciceValidator
   belongs_to :category
   belongs_to :language
   has_many :tests, dependent: :delete_all
