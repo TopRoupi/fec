@@ -1,34 +1,15 @@
-p#notice = notice
+div.row.justify-content-md-center
+  div.col.col-md-8.col-lg-7
+    p#notice = notice
 
-p
-  strong Category:
-  = @exercice.category
-p
-  strong Language:
-  = @exercice.language
-p
-  strong Name:
-  = @exercice.name
-p
-  strong Level:
-  = @exercice.level
-p
-  strong Content:
-  = markdown @exercice.content
-p
-  strong Code:
-  = @exercice.code
-p
-  strong Limit time:
-  = @exercice.limit_time
-p
-  strong Limit mem:
-  = @exercice.limit_mem
-p
-  strong tests:
-  -  @exercice.tests.each do |test|
-    = test.id
+    #exercice-header
+      small = "Exercice | #{@exercice.id}"
+      h1 = @exercice.name
+      small.font-weight-bolder = "TimeLimit: #{@exercice.limit_time} | MemLimit: #{@exercice.limit_mem}"
 
-=> link_to 'Edit', edit_exercice_path(@exercice)
-'|
-=< link_to 'Back', exercices_path
+    #exercice-content
+      = markdown @exercice.content
+
+    => link_to 'Edit', edit_exercice_path(@exercice)
+    '|
+    =< link_to 'Back', exercices_path

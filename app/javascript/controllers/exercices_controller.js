@@ -12,25 +12,39 @@ export default class extends Controller {
     var code = editor.getValue()
 
     var to_compile = {
-      "LanguageChoice": lang,
-      "Program": code,
-      "Input": input,
-      "CompilerArgs" : ""
+      "language_id": lang,
+      "source_code": code,
+      "stdin": input
     }
 
     $.ajax ({
-      url: "https://rextester.com/rundotnet/api",
+      url: "https://api.judge0.com/submissions",
       type: "POST",
       data: to_compile
     }).done(function(data) {
-      if(data.Result){
-        output.value = data.Result
+
+      do {
+        var res
+        $.ajax({
+          url: `https://api.judge0.com/submissions/${data.token}`,
+          type: "GET",
+          async: false
+        }).done(function(data) {
+          res = data
+        })
+      } while (res.status.id <= 2);
+
+      if(res.stdout){
+        output.value = res.stdout
       }
       else {
-        output.value = `Error: ${data.Errors}`
+        output.value = `Error: ${res.stderr}`
       }
+
     }).fail(function(data, err) {
+
       alert("fail " + JSON.stringify(data) + " " + JSON.stringify(err))
+
     })
   }
 
@@ -45,7 +59,8 @@ export default class extends Controller {
       element: document.getElementById('exercice_content')
     })
 
-    //code mirror
+
+    // code mirror ////////////////////////////////////////////////////////
 
     require('codemirror/addon/mode/loadmode');
     require('codemirror/mode/meta');
@@ -88,10 +103,19 @@ export default class extends Controller {
       editor.setOption("theme", themes[current_theme])
     }
 
+    var savebutton = document.createElement('button');
+    savebutton.innerHTML = 'Save'
+    savebutton.type = 'button'
+    savebutton.className = 'code_input_button'
+    savebutton.onclick = () => {
+      editor.save()
+    }
+
     code_input.parentNode.children[0].style.width = '100%'
 
     code_input.parentNode.children[0].appendChild(changebutton)
     code_input.parentNode.children[0].appendChild(themebutton)
-    
+    code_input.parentNode.children[0].appendChild(savebutton)
+
   }
 }

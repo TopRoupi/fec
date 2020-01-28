@@ -48,7 +48,7 @@ div.row.justify-content-md-center data-controller="exercices"
         div.border.rounded.main-section
           = ff.input :input
 
-          = ff.input :output, disabled: true
+          = ff.input :output, readonly: true
 
           input.generate_output type="button" value="generate output" data-action="click->exercices#generate_test_output"
 
