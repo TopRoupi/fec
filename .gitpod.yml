@@ -1,0 +1,8 @@
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 3000
+    onOpen: open-preview
+tasks:
+  - init: bundle install && yarn install --check-files
+    command: rails db:create db:migrate db:seed && rails s
