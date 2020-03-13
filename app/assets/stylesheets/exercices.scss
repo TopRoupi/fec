@@ -2,25 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
-.code_input_button {
-	float: right;
-	border: 1px solid;
-	border-color: #ccc;
-	border-radius: 5px;
-	// background-color: #eaeaea;
-	background-image: linear-gradient(#efefef, #eaeaea);
-	padding: 1px;
-	padding-left: 15px;
-	padding-right: 15px;
-	margin-left: 10px;
-}
-
-.code_input_button:hover {
-	background-image: linear-gradient(#eaeaea, #efefef);
-	border-color: #bbb;
-}
-
 .generate_output {
 	float: right;
 }

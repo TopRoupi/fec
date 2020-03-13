@@ -1,4 +1,4 @@
-div.row.justify-content-md-center data-controller="exercices"
+div.row.justify-content-md-center data-controller="exercices codemirror easymde"
   div.col.col-md-8.col-lg-7
     = simple_nested_form_for @exercice, wrapper: :vertical_form do |f|
       = f.error_notification
@@ -25,7 +25,7 @@ div.row.justify-content-md-center data-controller="exercices"
 
       = f.input :level, prompt: 'Select difficulty level', collection: 1..5
 
-      = f.input :content
+      = f.input :content, input_html: {id:'easymde-input'}
 
       div.row
         div.col-lg-6.col-sm-6.col-12
@@ -40,7 +40,7 @@ div.row.justify-content-md-center data-controller="exercices"
                     input_html: { min: 100, max: 1250, step: 10 },
                     hint: 'memory in mb'
 
-      = f.input :code, input_html: {:'data-target' => 'exercices.code'}
+      = f.input :code, input_html: {:'data-target' => 'exercices.code', id:'codemirror-input'}
 
       /test form
 
@@ -50,7 +50,7 @@ div.row.justify-content-md-center data-controller="exercices"
 
           = ff.input :output, readonly: true
 
-          input.generate_output type="button" value="generate output" data-action="click->exercices#run"
+          input.generate_output.light_button type="button" value="generate output" data-action="click->exercices#run"
 
           = ff.input :visible
 

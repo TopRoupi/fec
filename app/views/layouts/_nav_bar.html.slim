@@ -19,3 +19,7 @@ div.bg-dark
             = link_to "Sing_in", new_user_session_path, class: 'nav-link'
           li.nav-item
             = link_to "Sing_up", new_user_registration_path, class: 'nav-link'
+        li.nav-item
+          span.switch.nav-link.switch-sm data-controller="darkmode"
+            input.switch#switch-id type="checkbox" data-target="darkmode.darkswitch" data-action="click->darkmode#switch"
+            label for="switch-id" style="font-size: 17px;" Dark mode

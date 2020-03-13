@@ -6,3 +6,6 @@ ports:
 tasks:
   - init: bundle install && yarn install --check-files
     command: rails db:create db:migrate db:seed && rails s
+vscode:
+  extensions:
+    - sianglim.slim@0.1.2:4onqGNoAu7hRlKD2xe3Q3A==
