@@ -6,10 +6,23 @@ export default class extends Controller {
   static targets = [ "darkswitch" ];
 
   switch(event){
-    if (event.currentTarget.checked == true)
+    var DarkReader = require('darkreader');
+
+    if (event.currentTarget.checked == true){
       cookie.setCookie("darkmode", 'true', 365);
-    else
+
+      DarkReader.setFetchMethod(window.fetch)
+
+      DarkReader.enable({
+        brightness: 100,
+        contrast: 95
+      });
+    }
+    else{
+      DarkReader.disable();
+
       cookie.setCookie("darkmode", '', 365);
+    }
   }
 
   connect() {

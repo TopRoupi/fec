@@ -1,5 +1,5 @@
 div.row.justify-content-md-center data-controller="exercices codemirror easymde"
-  div.col.col-md-8.col-lg-7
+  div.col.col-md-9.col-lg-8
     = simple_nested_form_for @exercice, wrapper: :vertical_form do |f|
       = f.error_notification
       = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
@@ -40,7 +40,9 @@ div.row.justify-content-md-center data-controller="exercices codemirror easymde"
                     input_html: { min: 100, max: 1250, step: 10 },
                     hint: 'memory in mb'
 
-      = f.input :code, input_html: {:'data-target' => 'exercices.code', id:'codemirror-input'}
+      = f.input :code,
+                input_html: {:'data-target' => 'exercices.code', id:'codemirror-input'},
+                hint: 'please click on save to aply the changes'
 
       /test form
 
