@@ -9,7 +9,7 @@ export default class extends Controller {
           delay: 1000,
           uniqueId: 'mde-autosave-demo'
       },
-      element: document.getElementById('easymde-input');
+      element: document.getElementById('easymde-input')
     })
   }
 }

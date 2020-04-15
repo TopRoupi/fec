@@ -30,3 +30,29 @@ function token(params, callback) {
 export function run(params, callback) {
   token(params, callback);
 }
+
+export function round_runs(params, rounds, callback) {
+  var rounds_data = [];
+
+  for(var i = 0; i < rounds - 1; i++){
+    token(params, (data) => {
+      rounds_data.push(data);
+    });
+  }
+
+  token(params, (data) => {
+    rounds_data.push(data);
+    callback(rounds_data)
+  });
+}
+
+export function result_to_string(data) {
+  if(data.stderr){
+    var msg =  `ERROR:\n${data.stderr}`;
+    if(data.message)
+      msg += `\nMESSAGE:\n${data.message}`
+    return msg;
+  }
+  else
+    return data.stdout;
+}

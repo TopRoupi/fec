@@ -27,8 +27,8 @@ class Exercice < ApplicationRecord
                             less_than_or_equal_to: 5 }
   validates :limit_mem,
             presence: true,
-            numericality: { greater_than: 0,
-                            less_than_or_equal_to: 1250 }
+            numericality: { greater_than_or_equal_to: 10,
+                            less_than_or_equal_to: 250 }
   validates :limit_time,
             presence: true,
             numericality: { greater_than: 0,

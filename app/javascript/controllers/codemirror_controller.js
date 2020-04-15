@@ -18,6 +18,10 @@ export default class extends Controller {
       theme: 'neo'
     });
 
+    editor.on("change", (cm, change) => {
+      editor.save();
+    })
+
     var themes = ['default', 'neo', 'elegant', 'monokai'];
     var current_theme = 1;
 
@@ -43,19 +47,19 @@ export default class extends Controller {
       editor.setOption("theme", themes[current_theme]);
     }
 
-    var savebutton = document.createElement('button');
-    savebutton.innerHTML = 'Save'
-    savebutton.type = 'button'
-    savebutton.className = 'light_button'
-    savebutton.onclick = () => {
-      editor.save();
-    }
+    // var savebutton = document.createElement('button');
+    // savebutton.innerHTML = 'Save'
+    // savebutton.type = 'button'
+    // savebutton.className = 'light_button'
+    // savebutton.onclick = () => {
+    //   editor.save();
+    // }
 
     code_input.parentNode.children[0].style.width = '100%';
 
     code_input.parentNode.children[0].appendChild(changebutton);
     code_input.parentNode.children[0].appendChild(themebutton);
-    code_input.parentNode.children[0].appendChild(savebutton);
+    // code_input.parentNode.children[0].appendChild(savebutton);
 
   }
 }

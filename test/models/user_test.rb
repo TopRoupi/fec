@@ -27,40 +27,46 @@ class UserTest < ActiveSupport::TestCase
 
   # password validations
 
-  # test 'invalid without a password' do
-  #   @user.password = nil
-  #   @user.valid?
-  #   refute_empty @user.errors[:password]
-  # end
+  test 'invalid without a password' do
+    @user.password = nil
+    @user.valid?
+    refute_empty @user.errors[:password]
+  end
 
-  # test 'invalid if password have 8 or less characters' do
-  #   @user.password = '0' * 8
-  #   @user.valid?
-  #   refute_empty @user.errors[:password]
-  # end
+  test 'invalid if password have less than 8 characters' do
+    @user.password = '0' * 7
+    @user.valid?
+    refute_empty @user.errors[:password]
+  end
 
-  # test 'invalid if password have more than 50 characters' do
-  #   @user.password = '0' * 51
-  #   @user.valid?
-  #   refute_empty @user.errors[:password]
-  # end
+  test 'invalid if password have more than 50 characters' do
+    @user.password = '0' * 51
+    @user.valid?
+    refute_empty @user.errors[:password]
+  end
 
-  # test 'valid if password have more than 8 characters' do
-  #   @user.password = '0' * 9
-  #   @user.valid?
-  #   refute_empty @user.errors[:password]
-  # end
+  test 'valid if password have 8 characters' do
+    @user.password = '0' * 8
+    @user.valid?
+    assert_empty @user.errors[:password]
+  end
 
-  # test 'valid if password is less or equals to 50 characters' do
-  #   @user.password = '0' * 50
-  #   @user.valid?
-  #   refute_empty @user.errors[:password]
-  # end
+  test 'valid if password equals to 50 characters' do
+    @user.password = '0' * 50
+    @user.valid?
+    assert_empty @user.errors[:password]
+  end
 
   # email validations
 
   test 'invalid without a email' do
     @user.email = nil
+    @user.valid?
+    refute_empty @user.errors[:email]
+  end
+
+  test 'invalid with a invalid email' do
+    @user.email = "email.com"
     @user.valid?
     refute_empty @user.errors[:email]
   end

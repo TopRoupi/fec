@@ -35,6 +35,6 @@ FactoryBot.define do
             "print('X =', n1 + n2)"
           }
     limit_time { 1.5 }
-    limit_mem { 500 }
+    limit_mem { 50 }
   end
 end
