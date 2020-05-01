@@ -1,0 +1,7 @@
+#exercice-header
+  small = "Exercice | #{@exercice.id}"
+  h1 = @exercice.name
+  small.font-weight-bolder = "TimeLimit: #{@exercice.limit_time} | MemLimit: #{@exercice.limit_mem}"
+
+#exercice-content
+  = markdown @exercice.content

@@ -1,3 +1,156 @@
-// Place all the styles related to the submissions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+html, body {
+  height: 100%;
+  // overflow: hidden;
+}
+
+// layout ///////////////////
+
+.wrapper {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+}
+
+#sidebar {
+  min-width: 50px;
+  max-width: 50px;
+  height: 100%;
+  background-color: #e0e5e6;
+}
+
+#content {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: auto;
+}
+
+
+
+// theme shit for the sidebar
+
+#side-tab .nav-item .nav-link{
+  width: 50px;
+}
+
+#side-tab {
+  border: none !important;
+}
+
+#side-tab, #side-tab .nav-link {
+  border-radius: 0px !important;
+}
+
+#side-tab .nav-link.active {
+  background-color: #bec9ca !important;
+  border-color: #93a7a6 !important;
+}
+
+
+#side-tab .nav-link:hover, #side-tab .nav-link:focus {
+    border-color: #93a7a6 #93a7a6 #93a7a6 !important;
+}
+
+.octicon {
+  fill: #000;
+}
+
+#submit-button {
+  position: absolute;
+  left: 0px;
+  bottom: 1px;
+}
+
+
+
+// theme shit for the ide tab
+
+#ide-tab {
+  background-color: #e0e5e6;
+  height: 30px;
+  border-bottom: none;
+}
+
+#ide-tab .nav-item .nav-link{
+  height: 30px;
+  padding: 1.5px 20px 0px 20px;
+  border-radius: 0px !important;
+  border: none;
+}
+
+#ide-tab .nav-item .nav-link span::hover{
+  cursor: default !important;
+}
+
+#ide-tab .nav-link.active {
+  border-bottom: none;
+}
+
+#input, #ide-bottom-content {
+  height: calc(100% - 30px);
+}
+
+.full-textarea {
+  width: 100%;
+  height: calc(100% - 2px);
+  resize: none;
+  border: none;
+}
+
+#run-state {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#run-state.ready svg {
+  fill: blue;
+}
+
+#run-state.running svg {
+  fill: yellow;
+}
+
+#run-state.stopped svg {
+  fill: white;
+}
+
+#run-state.error svg {
+  fill: red;
+}
+
+
+
+
+
+//editor shit
+
+#top {
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  overflow: auto;
+}
+
+#bottom {
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.tab-content > .active {
+  display: contents !important;
+}
+
+.gutter  {
+  background-color: #d9d9d9;
+}
+
+
+
+//codemirror shit
+
+.CodeMirror {
+  border-radius: 0px !important;
+  height: 100% !important;
+  border-bottom: none !important;
+}

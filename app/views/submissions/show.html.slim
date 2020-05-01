@@ -1,18 +1,61 @@
-p#notice = notice
+div#submission-wrapper.wrapper data-controller="submissions codemirror"
+	nav#sidebar
+		ul#side-tab.nav.nav-tabs role="tablist"
+			li.nav-item
+				span#editor-tab.nav-link.active.btn data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="true"
+					= octicon "code"
+			li.nav-item
+				span#tests-tab.nav-link.btn data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false"
+					= octicon "beaker"
+			li.nav-item
+				span#exercice-tab.nav-link.btn data-toggle="tab" href="#exercice" role="tab" aria-controls="exercice" aria-selected="false"
+					= octicon "file"
+			li.nav-item#submit-button
+				span.nav-link.btn
+					= octicon "rocket"
 
-p
-  strong Code:
-  = @submission.code
-p
-  strong User:
-  = @submission.user
-p
-  strong Language:
-  = @submission.language
-p
-  strong Exercice:
-  = @submission.exercice
 
-=> link_to 'Edit', edit_submission_path(@submission)
-'|
-=< link_to 'Back', submissions_path
+	div#content.tab-content
+		div#editor.tab-pane.fade.show.active role="tabpanel" aria-labelledby="editor-tab"
+			div#top
+					textarea#codemirror-input data-target="submissions.code"
+
+			div#bottom
+				ul#ide-tab.nav.nav-tabs role="tablist"
+					li.nav-item
+						span#input-tab.nav-link.active.btn data-toggle="tab" href="#input" role="tab" aria-controls="input" aria-selected="true"
+							| Input
+					li.nav-item
+						span#output-tab.nav-link.btn data-toggle="tab" href="#output" role="tab" aria-controls="output" aria-selected="false"
+							| Output
+					li.nav-item
+						span#errors-tab.nav-link.btn data-toggle="tab" href="#errors" role="tab" aria-controls="errors" aria-selected="false"
+							| Compiler Output
+					li.nav-item
+						span#lang-tab.nav-link.btn data-toggle="tab" href="#lang" role="tab" aria-controls="lang" aria-selected="false"
+							| Language
+					li.nav-item.ml-auto
+						span.nav-link.btn data-action="click->submissions#run"
+							span#run-state.stopped
+								= octicon "primitive-dot"
+							| Run
+
+				div#ide-bottom-content.tab-content
+					div#input.tab-pane.fade.show.active role="tabpanel" aria-labelledby="input-tab"
+						textarea.full-textarea data-target="submissions.input"
+					div#output.tab-pane.fade role="tabpanel" aria-labelledby="output-tab"
+						textarea.full-textarea readonly=true data-target="submissions.output"
+					div#errors.tab-pane.fade role="tabpanel" aria-labelledby="errors-tab"
+						textarea.full-textarea readonly=true data-target="submissions.compileroutput"
+					div#lang.tab-pane.fade role="tabpanel" aria-labelledby="lang-tab"
+						- (@languages).each do |language|
+							input name="language" type="radio" value="#{language.cod}" = language.name
+							br
+
+
+		div#tests.tab-pane.fade role="tabpanel" aria-labelledby="tests-tab"
+		 | bbbbbbbbbbbbbbbbb
+
+		div#exercice.tab-pane.fade role="tabpanel" aria-labelledby="exercice-tab"
+			div.container
+		 		== render "exercices/showexercice"

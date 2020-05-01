@@ -69,7 +69,7 @@ e = Exercice.create(
   category: Category.first,
   level: 1,
   limit_time: 1,
-  limit_mem: 1,
+  limit_mem: 10,
   name: 'Soma Simples',
   content: content,
   code: "a = int(input)\n"\
@@ -81,3 +81,5 @@ tests.each do |test|
   t = Test.create test
   e.tests << t
 end
+
+e.save!

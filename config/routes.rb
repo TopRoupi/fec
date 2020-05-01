@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :submissions
+  resources :submissions, only: [:index, :create, :show]
   resources :exercices
   resources :languages
   resources :categories

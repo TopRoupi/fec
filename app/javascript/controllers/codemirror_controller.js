@@ -15,7 +15,7 @@ export default class extends Controller {
       mode: 'python',
       indentUnit: 4,
       indentWithTabs: true,
-      theme: 'neo'
+      theme: 'elegant',
     });
 
     editor.on("change", (cm, change) => {
