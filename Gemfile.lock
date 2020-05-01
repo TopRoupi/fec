@@ -128,7 +128,7 @@ GEM
     multi_xml (0.6.0)
     nested_form (0.3.2)
     nio4r (2.5.2)
-    nokogiri (1.10.7)
+    nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
     octicons (9.6.0)
       nokogiri (>= 1.6.3.1)
