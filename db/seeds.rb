@@ -83,3 +83,22 @@ tests.each do |test|
 end
 
 e.save!
+
+
+
+
+
+
+#will delete later i swear
+
+User.create(
+  name: "user",
+  email: "user@user",
+  password: "12345678"
+)
+
+User.create(
+  name: "admin",
+  email: "admin@admin",
+  password: "12345678"
+)

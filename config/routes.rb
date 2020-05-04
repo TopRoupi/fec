@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { registrations: 'registrations' }
 
+  get 'users/:id', to: "users#show", as: 'user'
   get '/input-generator', to: 'input_generator#index'
   get '/home', to: 'home#index'
   

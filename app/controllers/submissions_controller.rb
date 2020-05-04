@@ -1,5 +1,6 @@
 class SubmissionsController < ApplicationController
   before_action :set_exercice, only: [:show]
+  before_action :authenticate_user!
 
   # GET /submissions
   # GET /submissions.json
