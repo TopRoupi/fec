@@ -5,13 +5,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 		@user = create(:user)
 	end
 	
-	test "authenticated user should show user" do
+	test "an authenticated user should show user" do
     sign_in create(:user)
     get user_path(@user)
     assert_response :success
   end
 
-  test "not authenticated user should show user" do
+  test "a unauthenticated user should show user" do
     get user_path(@user)
     assert_response :success
   end

@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class LanguagesControllerTest < ActionDispatch::IntegrationTest
-  context 'a authenticated administrator' do
+  context 'an authenticated administrator' do
     setup do
       sign_in create(:admin)
       @language = create(:language)

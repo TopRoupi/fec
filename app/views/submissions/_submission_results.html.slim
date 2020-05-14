@@ -1,0 +1,52 @@
+div.card class=(@submission.passed? ? 'bg-success' : 'bg-danger')
+  div.card-header data-toggle="collapse" href="#submission-#{@submission.id}"
+    = "submission-#{@submission.id}"
+  div.collapse id="submission-#{@submission.id}"
+    ul.list-group
+      li.list-group-item.list-group-item-light
+        | code
+        br
+        code
+          = @submission.code
+      li.list-group-item.list-group-item-light
+        = "language: #{@submission.language.name}"
+      - SubmissionsTest.where(submission: @submission).each do |test|
+        li.list-group-item data-toggle="collapse" href="#test-#{test.id}" class=(test.pass ? 'list-group-item-success' : 'list-group-item-danger')
+          = "test-#{test.id}"
+          - if test.test.visible
+            = "+"
+        - if test.test.visible
+          div.collapse id="test-#{test.id}"
+            li.list-group-item.list-group-item-light
+              = "description: #{test.description}"
+            li.list-group-item.list-group-item-light
+              | input
+              br
+              code
+                = test.test.input
+            li.list-group-item.list-group-item-light
+              | output
+              br
+              code
+                = test.output
+            li.list-group-item.list-group-item-light
+              | expected output
+              br
+              code
+                = test.test.output
+            - if test.code_errors
+              li.list-group-item.list-group-item-light
+                | errors output
+                br
+                code
+                  = test.code_errors
+            - if test.compile_output
+              li.list-group-item.list-group-item-light
+                | compile output
+                br
+                code
+                  = test.compile_output
+            li.list-group-item.list-group-item-light
+              = "time running: #{test.time_running} | limit : #{test.test.exercice.limit_time}"
+            li.list-group-item.list-group-item-light
+              = "memory peak: #{test.mem_peak} | limit : #{test.test.exercice.limit_mem}"

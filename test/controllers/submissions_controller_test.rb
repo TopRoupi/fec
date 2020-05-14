@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SubmissionsControllerTest < ActionDispatch::IntegrationTest
-  context "a authenticated user" do
+  context "an authenticated user" do
     setup do
       sign_in create(:user)
       @submission = create(:submission)
@@ -17,8 +17,6 @@ class SubmissionsControllerTest < ActionDispatch::IntegrationTest
       assert_difference('Submission.count') do
         post submissions_url, params: { submission: { code: @submission.code, exercice_id: @submission.exercice_id, language_id: @submission.language_id, user_id: @submission.user_id } }
       end
-
-      assert_redirected_to submission_url(Submission.last)
     end
 
     should 'show submission' do

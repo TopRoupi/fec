@@ -14,13 +14,14 @@ gem 'slim-rails'
 
 gem 'nested_form'
 
-gem 'rextester'
-
 gem 'octicons_helper'
 
 gem 'minitest-reporters'
 
 gem 'shoulda-context'
+
+gem "judge0", "0.0.1"
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

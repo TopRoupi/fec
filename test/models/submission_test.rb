@@ -38,4 +38,20 @@ class SubmissionTest < ActiveSupport::TestCase
     @submission.valid?
     refute_empty @submission.errors[:exercice]
   end
+
+  # methods tests
+
+  test 'passed? method should return true if all submission tests passed' do
+    test1 = create(:submissions_test, submission: @submission)
+    test2 = create(:submissions_test, submission: @submission)
+
+    assert @submission.passed?
+  end
+
+  test 'passed? method should return false if any submission test failed' do
+    test1 = create(:submissions_test, submission: @submission)
+    test2 = create(:submissions_test, submission: @submission, pass: false)
+
+    refute @submission.passed?
+  end
 end

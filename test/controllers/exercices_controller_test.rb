@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ExercicesControllerTest < ActionDispatch::IntegrationTest
-  context 'a authenticated admin' do
+  context 'an authenticated admin' do
     setup do
       sign_in create(:admin)
       @exercice = create(:exercice)
