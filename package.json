@@ -12,7 +12,7 @@
     "codemirror": "^5.50.2",
     "darkreader": "^4.9.1",
     "easymde": "^2.8.0",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "popper.js": "^1.16.0",
     "split.js": "^1.5.11",
     "stimulus": "^1.1.1",
