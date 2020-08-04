@@ -100,5 +100,6 @@ User.create(
 User.create(
   name: "admin",
   email: "admin@admin",
+  role: 'admin',
   password: "12345678"
 )

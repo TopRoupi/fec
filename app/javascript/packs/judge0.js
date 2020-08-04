@@ -1,6 +1,8 @@
+var base_url = 'http://judge0-api.roupi.xyz'
+
 function result(token, callback) {
   $.ajax({
-    url: "https://api.judge0.com/submissions/" + token,
+    url: base_url + "/submissions/" + token,
     type: "GET",
     success: function (data) {
       if (data.status.id <= 2) { // In Queue or Processing
@@ -17,7 +19,7 @@ function result(token, callback) {
 
 function token(params, callback) {
   $.ajax ({
-    url: "https://api.judge0.com/submissions",
+    url: base_url + "/submissions",
     type: "POST",
     data: params
   }).done(function(data) {
