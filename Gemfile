@@ -20,7 +20,7 @@ gem 'minitest-reporters'
 
 gem 'shoulda-context'
 
-gem "judge0", "0.0.1"
+gem "judge0"
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

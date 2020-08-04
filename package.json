@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0-alpha",
     "@rails/webpacker": "^4.0.7",
     "bootstrap": "^4.4.1",
+    "bootstrap-input-spinner": "^1.13.19",
+    "bootstrap-select": "^1.13.18",
     "codemirror": "^5.50.2",
     "darkreader": "^4.9.1",
     "easymde": "^2.8.0",

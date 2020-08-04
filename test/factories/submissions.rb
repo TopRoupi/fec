@@ -4,9 +4,9 @@ FactoryBot.define do
     association :language
     association :exercice
     code {
-            "n1 = int(input())
-            n2 = int(input())
-            print('X =', n1 + n2)}"
+            "n1 = int(input())\n"\
+            "n2 = int(input())\n"\
+            "print('X =', n1 + n2)"
           }
   end
 end
