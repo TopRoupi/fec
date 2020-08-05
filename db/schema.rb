@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_184947) do
+ActiveRecord::Schema.define(version: 2020_08_05_093749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,17 +23,13 @@ ActiveRecord::Schema.define(version: 2020_05_04_184947) do
 
   create_table "exercices", force: :cascade do |t|
     t.bigint "category_id", null: false
-    t.bigint "language_id", null: false
     t.string "name"
     t.integer "level"
     t.text "content"
-    t.text "code"
-    t.float "limit_time"
-    t.float "limit_mem"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "complete"
     t.index ["category_id"], name: "index_exercices_on_category_id"
-    t.index ["language_id"], name: "index_exercices_on_language_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -74,13 +70,25 @@ ActiveRecord::Schema.define(version: 2020_05_04_184947) do
   end
 
   create_table "tests", force: :cascade do |t|
-    t.bigint "exercice_id", null: false
     t.text "input"
     t.text "output"
     t.boolean "visible"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exercice_id"], name: "index_tests_on_exercice_id"
+    t.bigint "tests_specification_id"
+    t.index ["tests_specification_id"], name: "index_tests_on_tests_specification_id"
+  end
+
+  create_table "tests_specifications", force: :cascade do |t|
+    t.text "code"
+    t.float "limit_time"
+    t.float "limit_mem"
+    t.bigint "exercice_id", null: false
+    t.bigint "language_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_tests_specifications_on_exercice_id"
+    t.index ["language_id"], name: "index_tests_specifications_on_language_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,11 +106,11 @@ ActiveRecord::Schema.define(version: 2020_05_04_184947) do
   end
 
   add_foreign_key "exercices", "categories"
-  add_foreign_key "exercices", "languages"
   add_foreign_key "submissions", "exercices"
   add_foreign_key "submissions", "languages"
   add_foreign_key "submissions", "users"
   add_foreign_key "submissions_tests", "submissions"
   add_foreign_key "submissions_tests", "tests"
-  add_foreign_key "tests", "exercices"
+  add_foreign_key "tests_specifications", "exercices"
+  add_foreign_key "tests_specifications", "languages"
 end

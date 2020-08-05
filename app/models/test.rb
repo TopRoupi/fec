@@ -13,9 +13,10 @@ end
 
 class Test < ApplicationRecord
   include ActiveModel::Validations
-  belongs_to :exercice
+  belongs_to :tests_specification
+  
   validates :output, presence: true
   validates :input, presence: true
-  validates_associated :exercice
+  validates_associated :tests_specification
   # validates_with TestValidator
 end

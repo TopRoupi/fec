@@ -80,23 +80,6 @@ class ExercicesController < ApplicationController
   end
 
   def exercice_params
-    if params.require(:exercice).key? 'tests_attributes'
-      params.require(:exercice)['tests_attributes'].each do |test|
-        test[1]['output'].gsub!(/\r\n?/, "\n") if test[1]['output']
-      end
-    end
-    params.require(:exercice).permit(:category_id,
-                                     :language_id,
-                                     :name,
-                                     :level,
-                                     :content,
-                                     :code,
-                                     :limit_time,
-                                     :limit_mem,
-                                     tests_attributes: %I[id
-                                                          output
-                                                          input
-                                                          visible
-                                                          _destroy])
+    params.require(:exercice).permit(:category_id, :name, :level, :content)
   end
 end

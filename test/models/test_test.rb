@@ -6,6 +6,12 @@ class TestTest < ActiveSupport::TestCase
   end
 
   # input validations
+  
+  test 'valid with input' do
+    @test.input = '1\n2'
+    @test.valid?
+    assert_empty @test.errors[:input]
+  end
 
   test 'invalid without input' do
     @test.input = nil
@@ -14,6 +20,12 @@ class TestTest < ActiveSupport::TestCase
   end
 
   # output validations
+  
+  test 'valid with output' do
+    @test.output = 'X = 3'
+    @test.valid?
+    assert_empty @test.errors[:output]
+  end
 
   test 'invalid without output' do
     @test.output = nil
@@ -23,17 +35,17 @@ class TestTest < ActiveSupport::TestCase
 
   # exercice validations
 
-  test 'valid with a valid exercice' do
-    exercice = build :exercice
-    exercice.tests << @test
+  test 'valid with a valid test specification' do
+    tests_specification = build :tests_specification
+    tests_specification.tests << @test
     @test.valid?
-    assert_empty @test.errors[:exercice]
+    assert_empty @test.errors[:tests_specification]
   end
 
-  test 'invalid with a invalid exercice' do
-    exercice = build :exercice, name: nil
-    exercice.tests << @test
+  test 'invalid with a invalid test specification' do
+    tests_specification = build :tests_specification, code: nil
+    tests_specification.tests << @test
     @test.valid?
-    refute_empty @test.errors[:exercice]
+    refute_empty @test.errors[:tests_specification]
   end
 end

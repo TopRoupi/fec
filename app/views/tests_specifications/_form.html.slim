@@ -1,0 +1,12 @@
+= simple_form_for(@tests_specification) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :code
+    = f.input :limit_time
+    = f.input :limit_mem
+    = f.association :exercice
+
+  .form-actions
+    = f.button :submit

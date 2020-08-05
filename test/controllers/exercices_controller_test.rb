@@ -22,25 +22,9 @@ class ExercicesControllerTest < ActionDispatch::IntegrationTest
         post exercices_url, params: {
                               exercice: {
                                 category_id: @exercice.category_id,
-                                code: @exercice.code,
                                 content: @exercice.content,
-                                language_id: @exercice.language_id,
                                 level: @exercice.level,
-                                limit_mem: @exercice.limit_mem,
-                                limit_time: @exercice.limit_time,
                                 name: @exercice.name,
-                                tests_attributes: {
-                                  '0': {
-                                    input: @exercice.tests[0].input,
-                                    output: @exercice.tests[0].output,
-                                    visible: @exercice.tests[0].visible
-                                  },
-                                  '1': {
-                                    input: @exercice.tests[1].input,
-                                    output: @exercice.tests[1].output,
-                                    visible: @exercice.tests[1].visible
-                                  }
-                                }
                               }
                             }
       end
@@ -59,7 +43,14 @@ class ExercicesControllerTest < ActionDispatch::IntegrationTest
     end
 
     should 'update exercice' do
-      patch exercice_url(@exercice), params: { exercice: { category_id: @exercice.category_id, code: @exercice.code, content: @exercice.content, language_id: @exercice.language_id, level: @exercice.level, limit_mem: @exercice.limit_mem, limit_time: @exercice.limit_time, name: @exercice.name } }
+      patch exercice_url(@exercice), params: {
+                                      exercice: {
+                                        category_id: @exercice.category_id,
+                                        content: @exercice.content,
+                                        level: @exercice.level,
+                                        name: @exercice.name
+                                        }
+                                      }
       assert_redirected_to exercice_url(@exercice)
     end
 
@@ -96,25 +87,9 @@ class ExercicesControllerTest < ActionDispatch::IntegrationTest
         post exercices_url, params: {
                               exercice: {
                                 category_id: @exercice.category_id,
-                                code: @exercice.code,
                                 content: @exercice.content,
-                                language_id: @exercice.language_id,
                                 level: @exercice.level,
-                                limit_mem: @exercice.limit_mem,
-                                limit_time: @exercice.limit_time,
                                 name: @exercice.name,
-                                tests_attributes: {
-                                  '0': {
-                                    input: @exercice.tests[0].input,
-                                    output: @exercice.tests[0].output,
-                                    visible: @exercice.tests[0].visible
-                                  },
-                                  '1': {
-                                    input: @exercice.tests[1].input,
-                                    output: @exercice.tests[1].output,
-                                    visible: @exercice.tests[1].visible
-                                  }
-                                }
                               }
                             }
       end
@@ -134,7 +109,14 @@ class ExercicesControllerTest < ActionDispatch::IntegrationTest
 
     should 'not update exercice' do
       updated_name = "sooooooooooam"
-      patch exercice_url(@exercice), params: { exercice: { category_id: @exercice.category_id, code: @exercice.code, content: @exercice.content, language_id: @exercice.language_id, level: @exercice.level, limit_mem: @exercice.limit_mem, limit_time: @exercice.limit_time, name: updated_name } }
+      patch exercice_url(@exercice), params: {
+                                      exercice: {
+                                        category_id: @exercice.category_id,
+                                        content: @exercice.content,
+                                        level: @exercice.level,
+                                        name: @exercice.name
+                                        }
+                                      }
       @exercice.reload
       refute_equal(@exercice.name, updated_name)
     end
