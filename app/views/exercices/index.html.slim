@@ -9,6 +9,7 @@ table
       th
       th
       th
+      th
 
   tbody
     - @exercices.each do |exercice|
@@ -17,6 +18,7 @@ table
         td = exercice.name
         td = exercice.level
         td = link_to 'Tests specification', edit_tests_specification_path(exercice.tests_specification)
+        td = link_to 'New submission', submission_path(exercice)
         td = link_to 'Show', exercice
         td = link_to 'Edit', edit_exercice_path(exercice)
         td = link_to 'Destroy', exercice, data: { confirm: 'Are you sure?' }, method: :delete

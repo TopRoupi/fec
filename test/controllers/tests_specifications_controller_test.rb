@@ -22,7 +22,7 @@ class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
                 limit_time: @tests_specification.limit_time
                 }
               }
-      assert_redirected_to tests_specification_url(@tests_specification)
+      assert_redirected_to edit_tests_specification_url(@tests_specification)
     end
   end
   

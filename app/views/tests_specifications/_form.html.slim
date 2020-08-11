@@ -1,12 +1,56 @@
-= simple_form_for(@tests_specification) do |f|
-  = f.error_notification
-  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+div.row.justify-content-md-center data-controller="tests-specification codemirror"
+  div.col.col-md-9.col-lg-8
+    = simple_nested_form_for(@tests_specification) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+      - if @tests_specification.errors[:tests].length != 0
+        div.alert.alert-danger
+          - @tests_specification.errors[:tests].each do |error|
+            = "tests #{error}"
+            br
 
-  .form-inputs
-    = f.input :code
-    = f.input :limit_time
-    = f.input :limit_mem
-    = f.association :exercice
+      div.row
+        div.col-sm-4
+          = f.input :limit_time,
+                    placeholder: 'Max running time',
+                    input_html: { min: 0.1,
+                                  max: 5,
+                                  step: 0.1,
+                                  :'data-target' => 'tests-specification.cpulimit' },
+                    hint: 'time in seconds'
+        div.col-sm-4
+          = f.input :limit_mem,
+                    placeholder: 'Max memory peak',
+                    input_html: { min: 10,
+                                  max: 250,
+                                  step: 1,
+                                  :'data-target' => 'tests-specification.memlimit' },
+                    hint: 'memory in mb'
+        div.col-sm-4
+          = f.association :language,
+                          prompt: "Select a language",
+                          collection: Language.all,
+                          input_html: { :'data-target' => 'tests-specification.lang' }
+                    
+      = f.input :code, input_html: {:'data-target' => 'tests-specification.code', id:'codemirror-input'}
+      
+      = f.fields_for :tests do |ff|
+        div.border.rounded.main-section
+          = ff.input :input
 
-  .form-actions
-    = f.button :submit
+          = ff.input :output, readonly: true
+
+          input.generate_output.light_button type="button" value="generate output" data-action="click->tests-specification#run"
+
+          = ff.input :visible
+
+          = ff.link_to_remove "Remove this test", class: 'text-danger'
+
+
+      = f.link_to_add "Add a test", :tests, class: 'btn btn-secondary btn-block'
+
+      = f.submit class: 'btn btn-primary btn-block'
+  / yes
+  - (Language.all).each do |lang|
+    div id="lang#{lang.id}" style=("display: none")
+      = lang.cod

@@ -47,6 +47,6 @@ div.card class=(@submission.passed? ? 'bg-success' : 'bg-danger')
                 code
                   = test.compile_output
             li.list-group-item.list-group-item-light
-              = "time running: #{test.time_running} | limit : #{test.test.exercice.limit_time}"
+              = "time running: #{test.time_running}s | limit : #{test.test.tests_specification.limit_time}s"
             li.list-group-item.list-group-item-light
-              = "memory peak: #{test.mem_peak} | limit : #{test.test.exercice.limit_mem}"
+              = "memory peak: #{(test.mem_peak/1024).round(2)}mb | limit : #{test.test.tests_specification.limit_mem}mb"

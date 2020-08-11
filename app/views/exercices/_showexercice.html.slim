@@ -1,7 +1,7 @@
 #exercice-header
   small = "Exercice | #{@exercice.id}"
   h1 = @exercice.name
-  - if @exercice.tests_specification
+  - if @exercice.complete?
     small.font-weight-bolder = "TimeLimit: #{@exercice.tests_specification.limit_time} | MemLimit: #{@exercice.tests_specification.limit_mem}"
 
 #exercice-content

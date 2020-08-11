@@ -29,7 +29,7 @@ class SubmissionsController < ApplicationController
       return
     end
 
-    tests = @submission.exercice.tests
+    tests = @submission.exercice.tests_specification.tests
     tests_result = run_tests_battery
 
     for i in 0...tests.length
@@ -57,7 +57,7 @@ class SubmissionsController < ApplicationController
       config.language_id = @submission.language.cod
     end
 
-    tests = @submission.exercice.tests.map { |test| [test.input, test.output] }
+    tests = @submission.exercice.tests_specification.tests.map { |test| [test.input, test.output] }
 
     sub.tests_battery(tests)
   end

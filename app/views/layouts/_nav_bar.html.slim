@@ -13,6 +13,10 @@ nav.navbar.navbar-expand-md.bg-light.navbar-light.border-bottom.border-top
       ul.navbar-nav
         li.nav-item
           = link_to "Exercices", exercices_path, class: "nav-link #{active_class(exercices_path)}"
+        li.nav-item
+          = link_to "My Submissions", submissions_path, class: "nav-link #{active_class(submissions_path)}"
+        li.nav-item
+          = link_to "Input Generator", input_generator_path, class: "nav-link #{active_class(input_generator_path)}"
       ul.navbar-nav.ml-auto
         - if user_signed_in?
           li.nav-item

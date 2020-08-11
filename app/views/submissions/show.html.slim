@@ -1,6 +1,6 @@
 div#submission-wrapper.wrapper data-controller="submissions codemirror"
-  span.d-none data-target="submissions.timelimit" = @exercice.limit_time 
-  span.d-none data-target="submissions.memlimit" = @exercice.limit_mem
+  span.d-none data-target="submissions.timelimit" = @exercice.tests_specification.limit_time 
+  span.d-none data-target="submissions.memlimit" = @exercice.tests_specification.limit_mem
   span.d-none data-target="submissions.exerciceid" = @exercice.id
 
   nav#sidebar

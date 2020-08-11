@@ -17,8 +17,7 @@ html lang="en"
 
   body
     = render "layouts/nav_bar"
-          span aria-hidden="true"  ×
-    div.container style="margin-top: 30px;"
+    div.container style="margin-top: 30px;" data-controller="bootstrap-select"
       - if notice
         div.alert.alert-info
           = notice

@@ -99,12 +99,12 @@ export default class extends Controller {
 
   connect() {
     $("#submission-wrapper").parent().removeClass("container")
-    $("#submission-wrapper").parent().attr("style", "height: calc(100% - 57px);");
+    $("#submission-wrapper").parent().attr("style", "height: calc(100% - 59px);");
 
     Split(['#top', '#bottom'], {
       sizes: [75, 25],
       direction: 'vertical',
-      minSize: [100,30],
+      minSize: [50,30],
     })
   }
 }

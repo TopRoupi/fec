@@ -3,11 +3,6 @@ div.row.justify-content-md-center data-controller="exercices codemirror easymde"
     = simple_nested_form_for @exercice, wrapper: :vertical_form do |f|
       = f.error_notification
       = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-      - if @exercice.errors[:tests].length != 0
-        div.alert.alert-danger
-          - @exercice.errors[:tests].each do |error|
-            = "tests #{error}"
-            br
 
       = f.input :name, placeholder: 'Exercice title'
 
@@ -16,58 +11,11 @@ div.row.justify-content-md-center data-controller="exercices codemirror easymde"
           = f.association :category,
                           prompt: "Select a category",
                           collection: Category.all
-
         div.col-lg-6.col-sm-6.col-12
           = f.input :level, prompt: 'Select difficulty level', collection: 1..5
-          /= f.association :language,
-                          prompt: "Select a language",
-                          collection: Language.all,
-                          input_html: { :'data-target' => 'exercices.lang' }
 
       = f.input :content, input_html: {id:'easymde-input'}
 
-      /div.row
-        div.col-lg-6.col-sm-6.col-12
-          = f.input :limit_time,
-                    placeholder: 'Max running time',
-                    input_html: { min: 0.1,
-                                  max: 5,
-                                  step: 0.1,
-                                  :'data-target' => 'exercices.cpulimit' },
-                    hint: 'time in seconds'
-
-        div.col-lg-6.col-sm-6.col-12
-          = f.input :limit_mem,
-                    placeholder: 'Max memory peak',
-                    input_html: { min: 10,
-                                  max: 250,
-                                  step: 1,
-                                  :'data-target' => 'exercices.memlimit' },
-                    hint: 'memory in mb'
-
-      /= f.input :code,
-                input_html: {:'data-target' => 'exercices.code', id:'codemirror-input'}
-
-      /test form
-
-      /= f.fields_for :tests do |ff|
-        div.border.rounded.main-section
-          = ff.input :input
-
-          = ff.input :output, readonly: true
-
-          input.generate_output.light_button type="button" value="generate output" data-action="click->exercices#run"
-
-          = ff.input :visible
-
-          = ff.link_to_remove "Remove this test", class: 'text-danger'
-
-
-      /= f.link_to_add "Add a test", :tests, class: 'btn btn-secondary btn-block'
-
       = f.submit class: 'btn btn-primary btn-block'
 
-  / yes
-  /- (Language.all).each do |lang|
-    div id="lang#{lang.id}" style=("display: none")
-      = lang.cod
+

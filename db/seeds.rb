@@ -8,7 +8,7 @@ Category.create(name: 'Paradigmas')
 Category.create(name: 'Geometria computacional')
 Category.create(name: 'Estruturas e bibliotecas')
 
-Language.create(name: 'Python', cod: 71, version: '3.8.1')
+Language.create(name: 'Python', cod: 71, version: '3.8.1').save!
 Language.create(name: 'C', cod: 50, version: 'GCC 9.2.0')
 Language.create(name: 'Ruby', cod: 72, version: '2.7.0')
 
@@ -71,7 +71,7 @@ exercice = Exercice.create(
   content: content,
 )
 
-tests_specification = TestsSpecification.create(
+exercice.tests_specification.update(
   language: Language.find_by(name: 'Python'),
   exercice: exercice,
   limit_time: 1,
@@ -83,10 +83,10 @@ tests_specification = TestsSpecification.create(
 
 tests.each do |test|
   t = Test.create test
-  tests_specification.tests << t
+  exercice.tests_specification.tests << t
 end
 
-tests_specification.save!
+exercice.tests_specification.save!
 
 
 #will delete later i swear
