@@ -4,10 +4,10 @@ class TestsSpecificationValidator < ActiveModel::Validator
     visible_tests = record.tests.select { |e| e.visible == true }.length
 
     if visible_tests == 0
-      record.errors[:tests] << "shall have at least 1 visible test"
+      record.errors.add(:tests, "shall have at least 1 visible test")
     end
     if hidden_tests == 0
-      record.errors[:tests] << "shall have at least 1 hidden test"
+      record.errors.add(:tests, "shall have at least 1 hidden test")
     end
   end
 end

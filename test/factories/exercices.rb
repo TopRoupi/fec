@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :exercice do
     association :category
+    tests_specification { build(:tests_specification, exercice: nil) }
     name { "Soma Simples" }
     level { 1 }
     content {

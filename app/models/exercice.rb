@@ -17,7 +17,9 @@ class Exercice < ApplicationRecord
   def create_empty_test_specification
     Language.new().save(validate: false)  unless Language.first
     
-    ts = TestsSpecification.new(exercice: self, language: Language.first)
-    ts.save(validate: false)
+    if tests_specification.blank?
+      ts = TestsSpecification.new(exercice: self, language: Language.first)
+      ts.save(validate: false)
+    end
   end
 end

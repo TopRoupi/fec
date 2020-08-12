@@ -22,6 +22,7 @@ gem 'shoulda-context'
 
 gem "judge0"
 
+gem 'view_component_reflex'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -53,6 +54,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
+  gem 'simplecov', require: false, group: :test
 end
 
 group :development do
