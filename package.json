@@ -2,10 +2,10 @@
   "name": "fec",
   "private": true,
   "dependencies": {
-    "@rails/actioncable": "^6.0.0-alpha",
-    "@rails/activestorage": "^6.0.0-alpha",
-    "@rails/ujs": "^6.0.0-alpha",
-    "@rails/webpacker": "^4.0.7",
+    "@rails/actioncable": "^6.0.0",
+    "@rails/activestorage": "^6.0.0",
+    "@rails/ujs": "^6.0.0",
+    "@rails/webpacker": "^4.2.2",
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.18",
     "codemirror": "^5.50.2",
@@ -15,10 +15,11 @@
     "popper.js": "^1.16.0",
     "split.js": "^1.5.11",
     "stimulus": "^1.1.1",
+    "stimulus_reflex": "^3.3.0-pre2",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.8.2"
+    "webpack-dev-server": "^3.11.0"
   }
 }

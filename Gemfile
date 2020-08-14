@@ -22,7 +22,9 @@ gem 'shoulda-context'
 
 gem "judge0"
 
-gem 'view_component_reflex'
+#gem 'stimulus_reflex', '3.3.0.pre2'
+
+gem 'view_component_reflex', "2.0.2"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

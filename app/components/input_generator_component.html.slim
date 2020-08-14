@@ -1,0 +1,13 @@
+= component_controller class: 'editor' do
+  span lang
+  textarea  data-reflex="input->InputGeneratorComponent#handle_lang_change" data-key="#{key}"
+    = @lang
+  br
+  span code
+  textarea data-reflex="input->InputGeneratorComponent#handle_code_change" data-key="#{key}"
+    = @code
+  br
+  = @output
+  br
+  = render RunCodeButtonComponent.new
+
