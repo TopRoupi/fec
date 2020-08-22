@@ -12,19 +12,8 @@
  *
  *= require_tree .
  *= require_self
- */
- 
+*/
 
-/*fix the selecpicker style*/ 
-.btn.dropdown-toggle.btn-light {
-  border: 1px solid #ced4da;
-  background-color: transparent !important;
-}
-
-.is-valid .btn.dropdown-toggle.btn-light {
-  border-color: rgb(42, 155, 67) !important;
-}
- 
-input[type=number] {
-  -moz-appearance: textfield;
-}
+input[type=number] { 
+  -moz-appearance: textfield; 
+} 

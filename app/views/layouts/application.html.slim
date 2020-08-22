@@ -17,14 +17,14 @@ html lang="en"
 
   body
     = render "layouts/nav_bar"
-    div.container style="margin-top: 30px;" data-controller="bootstrap-select"
+    div.container style="margin-top: 30px;" data-controller="bootstrap"
       - if notice
-        div.alert.alert-info
+        div.alert.alert-info.alert-dismissible.fade.show role="alert"
           = notice
           button.close aria-label="Close" data-dismiss="alert" type="button"
             span aria-hidden="true"  ×
       - if alert
-        div.alert.alert-danger
+        div.alert.alert-danger.alert-dismissible.fade.show role="alert"
           = alert
           button.close aria-label="Close" data-dismiss="alert" type="button"
             span aria-hidden="true"  ×

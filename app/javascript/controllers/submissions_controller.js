@@ -98,8 +98,8 @@ export default class extends Controller {
   }
 
   connect() {
-    $("#submission-wrapper").parent().removeClass("container")
-    $("#submission-wrapper").parent().attr("style", "height: calc(100% - 59px);");
+    document.querySelector("#submission-wrapper").parentNode.classList.remove("container")
+    document.querySelector("#submission-wrapper").parentNode.setAttribute("style", "height: calc(100% - 59px);");
 
     Split(['#top', '#bottom'], {
       sizes: [75, 25],

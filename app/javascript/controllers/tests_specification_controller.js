@@ -26,8 +26,4 @@ export default class extends Controller {
       output.value = judge0.result_to_string(data);
     });
   }
-
-  connect() {
-    console.log("a");
-  }
 }

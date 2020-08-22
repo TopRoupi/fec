@@ -1,4 +1,8 @@
 class InputGeneratorComponent < ViewComponentReflex::Component
+  def initialize(languages:)
+    @languages = languages
+  end
+
   def handle_lang_change
     @lang = element.value
   end

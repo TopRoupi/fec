@@ -5,13 +5,5 @@ h1
 p
   | Find me in app/views/home/index.html.erb
 
-/= render(CounterComponent.new)
-
 div
-  = render(InputGeneratorComponent.new)
-div
-  = render(InputGeneratorComponent.new)
-
-/a data-count="#{@count.to_i}" data-reflex="click->CounterReflex#increment" data-step="1" href="#" 
-  | Increment #{@count.to_i}
-
+  = render(InputGeneratorComponent.new(languages: Language.all))
