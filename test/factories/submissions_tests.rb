@@ -10,5 +10,10 @@ FactoryBot.define do
     description { 'Accepted' }
     code_warnings { '' }
     mem_peak { 6 }
+    factory :wrong_submissions_test do
+      pass { false }
+      output { "X = 6\n" }
+      description { "Wrong Answer"}
+    end
   end
 end

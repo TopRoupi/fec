@@ -65,4 +65,61 @@ class ExerciceTest < ActiveSupport::TestCase
     @exercice.valid?
     refute_empty @exercice.errors[:content]
   end
+
+  test '#submissions_by_unique_users' do
+    user_a = create :user
+    user_b = create :user
+
+    create :submission, exercice: @exercice, user: user_a
+    create :submission, exercice: @exercice, user: user_a
+
+    create :submission, exercice: @exercice, user: user_b
+
+    assert @exercice.submissions_by_unique_users.length, 2
+    assert_includes @exercice.submissions_by_unique_users, user_a.submissions
+    assert_includes @exercice.submissions_by_unique_users, user_b.submissions
+  end
+
+  test '#submissions should return exercice submissions' do
+    sub_a = create :submission, exercice: @exercice
+    sub_b = create :submission, exercice: @exercice
+
+    assert_includes @exercice.submissions, sub_a
+    assert_includes @exercice.submissions, sub_b
+  end
+
+  test "#users should return users that submitted in this exercice" do
+    sub_a = create :submission, exercice: @exercice
+    sub_b = create :submission
+
+    assert_includes @exercice.users, sub_a.user
+    refute_includes @exercice.users, sub_b.user
+  end
+
+  test "#users_with_correct_submissions" do
+    sub_a = create :submission, exercice: @exercice
+    sub_b = create :wrong_submission, exercice: @exercice
+
+    assert_includes @exercice.users_with_correct_submissions, sub_a.user
+    refute_includes @exercice.users_with_correct_submissions, sub_b.user
+  end
+
+  test "#users_without_correct_submissions" do
+    sub_a = create :submission, exercice: @exercice
+    sub_b = create :wrong_submission, exercice: @exercice
+
+    refute_includes @exercice.users_without_correct_submissions, sub_a.user
+    assert_includes @exercice.users_without_correct_submissions, sub_b.user
+  end
+
+  test "#correct_submissions_percentage" do
+    sub_a = create :submission, exercice: @exercice
+    sub_b = create :wrong_submission, exercice: @exercice
+
+    assert @exercice.correct_submissions_percentage, 50.0
+  end
+
+  test "#correct_submissions_percentage should be 0 without submissions" do
+    assert @exercice.correct_submissions_percentage, 0
+  end
 end

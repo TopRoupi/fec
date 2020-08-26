@@ -70,4 +70,16 @@ class UserTest < ActiveSupport::TestCase
     @user.valid?
     refute_empty @user.errors[:email]
   end
+
+  test '#have_correct_submission_in? should be true with a correct submission' do
+    submission = create :submission, user: @user
+
+    assert @user.have_correct_submission_in?(submission.exercice)
+  end
+
+  test '#have_correct_submission_in? should be false without a correct submission' do
+    submission = create :wrong_submission, user: @user
+
+    refute @user.have_correct_submission_in?(submission.exercice)
+  end
 end

@@ -1,0 +1,20 @@
+.card
+  .row
+    .col-sm-3
+      .card
+        img.card-img src="https://i.imgur.com/Yg7v1Hz.png"  alt="ruby logo"
+        .card-img-overlay
+          button.btn.btn-white.btn-sm = octicon 'clock'
+          button.btn.btn-sm.float-right class="btn-#{difficult_color_class(@exercice)}"
+            = @exercice.level
+    .col-sm-9
+      h3.mt-3.mb-3 = @exercice.name
+      - resolved_percentage = @exercice.correct_submissions_percentage.round(2)
+      - resolved = @exercice.users_with_correct_submissions.count
+      - unresolved = @exercice.users_without_correct_submissions.count
+      button.btn.btn-sm [data-toggle="tooltip"
+      data-placement="bottom"
+      title="Resolved: #{resolved}, Unresolved: #{unresolved}"]
+        strong Percentage resolved: 
+        span class="text-#{resolved_percentage_color(resolved_percentage)}"
+          = @exercice.correct_submissions_percentage.round(2)

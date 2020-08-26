@@ -1,28 +1,5 @@
 h1 Listing exercices
 
-table
-  thead
-    tr
-      th Category
-      th Name
-      th Level
-      th
-      th
-      th
-      th
-
-  tbody
-    - @exercices.each do |exercice|
-      tr
-        td = exercice.category.name
-        td = exercice.name
-        td = exercice.level
-        td = link_to 'Tests specification', edit_tests_specification_path(exercice.tests_specification)
-        td = link_to 'New submission', submission_path(exercice)
-        td = link_to 'Show', exercice
-        td = link_to 'Edit', edit_exercice_path(exercice)
-        td = link_to 'Destroy', exercice, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Exercice', new_exercice_path
+- @exercices.each do |exercice|
+  - @exercice = exercice
+  = render 'show_exercice_card'
