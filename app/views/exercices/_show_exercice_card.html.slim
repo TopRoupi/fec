@@ -32,7 +32,12 @@
         button.btn.btn-white.btn-sm.btn-block data-toggle="modal" data-target="#exercice#{@exercice.id}"
           = octicon 'plus'
       .col
-        a.btn.btn-white.btn-sm.btn-block href="#{submission_path(@exercice.id)}"
+        a.btn.btn-white.btn-sm.btn-block [
+          href="#{submission_path(@exercice.id)}"
+          data-controller="prefetch"
+          data-prefetch-hover-time="200"
+          data-action="mouseenter->prefetch#prefetch mouseleave->prefetch#cleanup"
+        ]
           = octicon 'terminal'
 
 
