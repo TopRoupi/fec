@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_05_093749) do
+ActiveRecord::Schema.define(version: 2020_08_28_232950) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,25 @@ ActiveRecord::Schema.define(version: 2020_08_05_093749) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "version"
+  end
+
+  create_table "list_exercices", force: :cascade do |t|
+    t.bigint "exercice_id", null: false
+    t.bigint "list_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_list_exercices_on_exercice_id"
+    t.index ["list_id"], name: "index_list_exercices_on_list_id"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "privacy"
+    t.bigint "owner_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_lists_on_owner_id"
   end
 
   create_table "submissions", force: :cascade do |t|
@@ -106,6 +125,9 @@ ActiveRecord::Schema.define(version: 2020_08_05_093749) do
   end
 
   add_foreign_key "exercices", "categories"
+  add_foreign_key "list_exercices", "exercices"
+  add_foreign_key "list_exercices", "lists"
+  add_foreign_key "lists", "users", column: "owner_id"
   add_foreign_key "submissions", "exercices"
   add_foreign_key "submissions", "languages"
   add_foreign_key "submissions", "users"

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :submissions
+  has_one :do_later_list, class_name: 'List', foreign_key: :owner_id
 	enum role: [:user, :admin]
 	after_initialize :set_default_role, :if => :new_record?
 
@@ -12,11 +13,13 @@ class User < ApplicationRecord
   validates :password, length: { in: 8..50 }, presence: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
 
-  def set_default_role
-    self.role ||= :user
-  end
-
   def have_correct_submission_in?(exercice)
     submissions.where(exercice: exercice).reject { |sub| sub.passed? }.empty?
+  end
+
+  private
+
+  def set_default_role
+    self.role ||= :user
   end
 end

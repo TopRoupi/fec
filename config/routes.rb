@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lists
   resources :tests_specifications, only:[:edit, :update]
   resources :submissions, only: [:index, :create, :show]
   resources :exercices
