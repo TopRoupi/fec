@@ -15,18 +15,9 @@ nav.navbar.navbar-expand-md.bg-light.navbar-light.border-bottom.border-top
           = link_to "Exercices", exercices_path, class: "nav-link #{active_class(exercices_path)}"
         li.nav-item
           = link_to "My Submissions", submissions_path, class: "nav-link #{active_class(submissions_path)}"
-        li.nav-item
-          = link_to "Input Generator", input_generator_path, class: "nav-link #{active_class(input_generator_path)}"
       ul.navbar-nav.ml-auto
-        - if user_signed_in?
-          li.nav-item
-            = link_to "Log_out", destroy_user_session_path, method: "delete", class: "nav-link #{active_class(destroy_user_session_path)}"
-        - else
-          li.nav-item
-            = link_to "Log_in", new_user_session_path, class: "nav-link #{active_class(new_user_session_path)}"
-          li.nav-item
-            = link_to "Sing_up", new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}"
-        li.nav-item
-          span.switch.nav-link.switch-sm data-controller="darkmode"
-            input.switch#switch-id type="checkbox" data-target="darkmode.darkswitch" data-action="click->darkmode#switch"
-            label for="switch-id" style="font-size: 17px; margin: 0px;" Dark mode
+        li.nav-item.dropdown
+          = render 'layouts/profile_dropdown'
+        li.nav-item.dropdown
+          = render 'layouts/notifications_dropdown'
+

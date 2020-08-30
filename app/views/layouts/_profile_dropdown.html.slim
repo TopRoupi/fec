@@ -1,0 +1,19 @@
+button.btn data-toggle="dropdown" type="button"
+  = octicon 'person'
+ul.dropdown-menu.notification-menu.dropdown-menu-right role="menu"
+  - if user_signed_in?
+    li.dropdown-header.text-center
+      = current_user.name
+    li.dropdown-item
+      = link_to "Log_out", destroy_user_session_path, method: "delete", class: "nav-link #{active_class(destroy_user_session_path)}"
+  - else
+    li.dropdown-item
+      = link_to "Log_in", new_user_session_path, class: "nav-link #{active_class(new_user_session_path)}"
+    li.dropdown-item
+      = link_to "Sing_up", new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}"
+  .dropdown-divider
+  li.dropdown-item
+    span.switch.nav-link.switch-sm data-controller="darkmode"
+      input.switch#switch-id type="checkbox" data-target="darkmode.darkswitch" data-action="click->darkmode#switch"
+      label for="switch-id" style="font-size: 17px; margin: 0px;" Dark mode
+

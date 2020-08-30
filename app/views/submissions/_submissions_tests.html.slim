@@ -1,3 +1,6 @@
 div#tests-results.container style="margin-top:30px;"
-  - @submissions.each do |submission|
-    == render_submission(submission)
+  p.text-muted.text-center.mt-5
+    | You dont any submissions on this exercice yet.
+  /- @submissions.each do |submission|
+    - @submission = submission
+    = render 'submission_results'
