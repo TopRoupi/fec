@@ -4,6 +4,7 @@ class User < ApplicationRecord
   enum role: [:user, :admin]
   after_initialize :set_default_role, if: :new_record?
   after_initialize :set_do_later_list, if: :new_record?
+  has_many :notifications, as: :recipient
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

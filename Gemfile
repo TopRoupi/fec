@@ -16,13 +16,11 @@ gem 'nested_form'
 
 gem 'octicons_helper'
 
-gem 'minitest-reporters'
-
-gem 'shoulda-context'
-
 gem "judge0"
 
 gem 'stimulus_reflex'
+
+gem 'noticed'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'
@@ -55,6 +53,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
   gem 'simplecov', require: false, group: :test
+  gem 'minitest-reporters'
+  gem 'shoulda-context'
 end
 
 group :development do

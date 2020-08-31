@@ -3,3 +3,12 @@ h1 todo: make the whole page :)
 br
 
 = link_to 'New Submission', exercices_path
+
+br
+br
+
+h1 Do later list
+
+- current_user.do_later_list.exercices.each do |exercice|
+  = exercice.name
+  br

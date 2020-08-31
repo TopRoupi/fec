@@ -1,6 +1,8 @@
 Rails.application.configure do
   config.hosts << /.*(gitpod\.io\Z)/
   config.middleware.insert_after ActionDispatch::Static, Rack::LiveReload
+  config.session_store :cache_store
+
 
   # Settings specified here will take precedence over those in config/application.rb.
 
