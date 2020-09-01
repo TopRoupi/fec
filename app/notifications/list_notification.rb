@@ -18,11 +18,11 @@ class ListNotification < Noticed::Base
   # Define helper methods to make rendering easier.
   #
   def message
-    case params[:params][:method]
+    case params[:method]
     when :add
-      "#{params[:params][:exercice].name} was added to you do later list"
+      "#{params[:exercice].name} was added to you do later list"
     when :remove
-      "#{params[:params][:exercice].name} was removed from your do later list"
+      "#{params[:exercice].name} was removed from your do later list"
     end
   end
   #

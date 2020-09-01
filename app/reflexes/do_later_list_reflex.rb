@@ -4,6 +4,7 @@ class DoLaterListReflex < ApplicationReflex
     current_user.do_later_list.exercices << exercice
     notification = ListNotification.with(method: :add, exercice: exercice, list: current_user.do_later_list)
     notification.deliver(current_user)
+    current_user.notifications.reload
   end
 
   def remove_exercice
@@ -11,5 +12,6 @@ class DoLaterListReflex < ApplicationReflex
     current_user.do_later_list.exercices.delete(exercice.id)
     notification = ListNotification.with(method: :remove, exercice: exercice, list: current_user.do_later_list)
     notification.deliver(current_user)
+    current_user.notifications.reload
   end
 end

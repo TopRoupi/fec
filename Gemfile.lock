@@ -298,6 +298,12 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.7)
+    view_component (2.18.1)
+      activesupport (>= 5.0.0, < 7.0)
+    view_component_reflex (2.0.2)
+      rails (~> 6.0.3, >= 6.0.3.1)
+      stimulus_reflex
+      view_component
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.4)
@@ -352,9 +358,9 @@ DEPENDENCIES
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)
-  stimulus_reflex
   turbolinks (~> 5)
   tzinfo-data
+  view_component_reflex (= 2.0.2)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)

@@ -1,0 +1,23 @@
+= component_controller do
+  button#notif-button.btn data-toggle="dropdown" type="button"
+    = octicon 'bell'
+    - unless @notifications.blank?
+      span.badge.bg-secondary style="position: absolute;right: 0" = @notifications.count
+  #notif-menu.dropdown-menu.dropdown-menu-lg.notification-menu.dropdown-menu-right role="menu"
+    .list-group.list-group-flush
+      .text-center.text-primary.font-weight-bold.border-bottom.border-light.py-3
+        | Notifications
+      - if @notifications.blank?
+        .list-group-item.list-group-item-action.border-bottom.border-light
+          .text-muted.text-center
+            | You have no notifications
+      - else
+        - @notifications.each do |notification|
+          - notification = notification.to_notification
+          .list-group-item.list-group-item-action.border-bottom.border-light
+            .row
+              .col-2.text-center.row.g-0
+                = octicon 'check-circle', height: 25, class: 'align-self-center'
+              .col-10.pl-1
+                = notification.message
+                = reflex_tag :remove_notification, :button, "remove", data: {id: notification.record.id, reflex_root: '#notif-menu, #notif-button'}, class: 'btn btn-sm float-right'

@@ -16,11 +16,12 @@ gem 'nested_form'
 
 gem 'octicons_helper'
 
-gem "judge0"
+gem 'judge0'
 
-gem 'stimulus_reflex'
+gem 'view_component_reflex', "2.0.2"
 
 gem 'noticed'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

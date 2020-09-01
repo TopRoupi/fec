@@ -48,3 +48,7 @@ input[type=number] {
 .notification-menu:hover {
     display: block;
 }
+
+.dropdown-menu-lg {
+  min-width: 350px !important;
+}
