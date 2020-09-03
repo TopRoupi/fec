@@ -10,7 +10,7 @@
       - if @notifications.blank?
         .list-group-item.list-group-item-action.border-bottom.border-light
           .text-muted.text-center
-            | You have no notifications
+            | You have no unread notifications.
       - else
         - @notifications.each do |notification|
           - notification = notification.to_notification
@@ -20,4 +20,9 @@
                 = octicon 'check-circle', height: 25, class: 'align-self-center'
               .col-10.pl-1
                 = notification.message
-                = reflex_tag :remove_notification, :button, "remove", data: {id: notification.record.id, reflex_root: '#notif-menu, #notif-button'}, class: 'btn btn-sm float-right'
+                = reflex_tag :read_notification, :button, "read", data: {id: notification.record.id, reflex_root: '#notif-menu, #notif-button'}, class: 'btn btn-sm float-right'
+    .nav.nav-fill.mt-2
+      a.btn.btn-sm.nav-link href="#{notifications_path}" Manage notifications
+      - if @notifications.count > 1
+        = reflex_tag :read_all_notifications, :button, 'Mark all as read', data: {reflex_root: '#notif-menu, #notif-button'}, class: 'btn btn-sm nav-link'
+

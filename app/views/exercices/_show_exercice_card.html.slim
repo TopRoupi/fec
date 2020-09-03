@@ -25,18 +25,16 @@
       = @exercice.category.name
   .card-footer
     .row
-      .col
-        - if not current_user
-          a.btn.btn-white.btn-sm.btn-block href="#{new_user_session_path}"
-            = octicon 'clock'
-        - elsif current_user.do_later_list.exercices.exists? @exercice.id
-          button.btn.btn-success.btn-sm.btn-block [ data-reflex="click->DoLaterListReflex#remove_exercice"
+      - if current_user
+        .col
+          - if current_user.do_later_list.exercices.exists? @exercice.id
+            button.btn.text-success.btn-sm.btn-block [ data-reflex="click->DoLaterListReflex#remove_exercice"
+                                                      data-id="#{@exercice.id}" ]
+              = octicon 'clock'
+          - else
+            button.btn.btn-white.btn-sm.btn-block [ data-reflex="click->DoLaterListReflex#add_exercice"
                                                     data-id="#{@exercice.id}" ]
-            = octicon 'clock'
-        - else
-          button.btn.btn-white.btn-sm.btn-block [ data-reflex="click->DoLaterListReflex#add_exercice"
-                                                  data-id="#{@exercice.id}" ]
-            = octicon 'clock'
+              = octicon 'clock'
       .col
         button.btn.btn-white.btn-sm.btn-block data-toggle="modal" data-target="#exercice#{@exercice.id}"
           = octicon 'plus'
