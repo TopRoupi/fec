@@ -4,7 +4,6 @@ class NotificationsDropdownComponent < ViewComponentReflex::Component
   end
 
   def read_notification
-    # @notifications.find(element.dataset[:id].to_i).destroy
     notification = @notifications.find(element.dataset[:id].to_i)
     notification.mark_as_read!
     @notifications.reload
