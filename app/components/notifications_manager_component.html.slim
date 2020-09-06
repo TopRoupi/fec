@@ -1,12 +1,12 @@
 = component_controller do
   .row
-    .col-2
+    .col-sm-2.mb-3
       .list-group
         - Notification.types.each do |type, name|
           /.list-group-item
             = name
           = reflex_tag :filter_by_type, :div, name, data: { option: type },class: 'list-group-item'
-    .col-10
+    .col-sm-10
       .nav.mb-3.bg-light.rounded
         .nav-link.pl-2
           .btn-group
@@ -25,11 +25,14 @@
           = reflex_tag :mark_all_selected_as_unread, :button, octicon('eye-closed', height: 16), class: 'btn btn-sm btn-block'
         .nav-link.pl-2.pr-2
           = reflex_tag :remove_all_selected, :button, octicon('trash', height: 16), class: 'btn btn-sm'
-      .list-group
+      .list-group.list-group-flush.mb-5.overflow-auto.rounded style="height: 60vh; border: 1px solid rgba(0, 0, 0, 0.125);"
+        - if @m_notifications.blank?
+          .list-group-item.text-muted.text-center.row.g-0.h-100 style="display: flex;"
+              h5.align-self-center Notifications is empty.
         - @m_notifications.each do |notification|
           - notification = notification.to_notification
           - checked = @selected.include?(notification.record.id) ? true : nil
           .list-group-item class="#{'list-group-item-secondary' if checked} #{'text-muted font-weight-light' if notification.record.read?}"
+            = reflex_tag :remove_item, :button, octicon('trash', height: 16), data: {id: notification.record.id}, class: 'btn btn-sm float-right p-0 ml-3'
             = reflex_tag :toggle_selected, :input, nil, type: 'checkbox', data: {id: notification.record.id}, class: 'form-check-input mr-3', checked: checked
             = notification.message
-            = reflex_tag :remove_item, :button, octicon('trash', height: 16), data: {id: notification.record.id}, class: 'btn btn-sm float-right p-0'
