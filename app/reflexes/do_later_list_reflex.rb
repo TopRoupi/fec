@@ -6,10 +6,6 @@ class DoLaterListReflex < ApplicationReflex
     notification.deliver(current_user)
   end
 
-  def kek
-    @user.validate
-  end
-
   def remove_exercice
     exercice = Exercice.find(element.dataset[:id].to_i)
     current_user.do_later_list.exercices.delete(exercice.id)

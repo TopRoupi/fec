@@ -2,6 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     @user ||= User.new(sign_up_params)
     @user.validate
+    @ramdom = rand 999999
+    @params = params
   end
 
   private
