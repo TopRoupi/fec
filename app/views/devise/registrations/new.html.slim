@@ -3,12 +3,14 @@
     .card
       .card-body
         h2.card-title.text-center.mb-4.mt-1 Sign up
-        = simple_form_for resource, url: registration_path(resource_name) do |f|
-          = f.input :name
-          = f.input :email
-          = f.input :password
-          = f.input :password_confirmation
-          = f.button :submit, class: 'btn btn-primary btn-block rounded-pill'
+        = simple_form_for @user, url: registration_path(resource_name) do |f|
+          = f.input :name, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :email, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :password, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :password_confirmation, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.button :submit, class: "btn btn-block rounded-pill #{'btn-primary' if @user.valid?} #{'btn-secondary' if @user.invalid?}", disabled: @user.invalid?
+          = @kek
+          button data-reflex="click->DoLaterListReflex#kek" refresh
         .separator.text-muted.mt-3.mb-3 or
         .text-center
           = render "devise/shared/links"
