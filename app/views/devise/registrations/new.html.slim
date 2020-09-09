@@ -2,22 +2,15 @@
   .col.col-md-7.col-lg-5
     .card
       .card-body
-        = @ramdom
-        br
-        = @params
         h2.card-title.text-center.mb-4.mt-1 Sign up
-        /= simple_form_for @user, url: registration_path(resource_name) do |f|
-        /  = f.input :name, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-        /  = f.input :email, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-        /  = f.input :password, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-        /  = f.input :password_confirmation, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-        /  = f.button :submit,\
-        /    class: "btn btn-block rounded-pill #{'btn-primary' if @user.valid?} #{'btn-secondary' if @user.invalid?}",\
-        /    disabled: @user.invalid?
-        = form_with model: @user, url: '#' do |f|
-          = f.label :name
-          = f.text_field :name, data: { reflex:"debounced:input", reflex_permanent: true }
-          = @user.errors[:name]
+        = simple_form_for @user, url: registration_path(resource_name), data: { controller: 'validations'} do |f|
+          = f.input :name, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :email, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :password, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.input :password_confirmation, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
+          = f.button :submit,\
+            class: "btn btn-block rounded-pill #{'btn-primary' if @user.valid?} #{'btn-secondary' if @user.invalid?}",\
+            disabled: @user.invalid?
         .separator.text-muted.mt-3.mb-3 or
         .text-center
           = render "devise/shared/links"

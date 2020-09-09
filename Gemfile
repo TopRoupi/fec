@@ -18,7 +18,7 @@ gem 'octicons_helper'
 
 gem 'judge0'
 
-gem 'view_component_reflex', "2.0.2"
+gem 'view_component_reflex', "2.2.1"
 
 gem 'noticed'
 

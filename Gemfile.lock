@@ -281,7 +281,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stimulus_reflex (3.2.3)
+    stimulus_reflex (3.3.0.pre2)
       cable_ready (>= 4.1.2)
       nokogiri
       rack
@@ -300,9 +300,9 @@ GEM
     unf_ext (0.0.7.7)
     view_component (2.18.1)
       activesupport (>= 5.0.0, < 7.0)
-    view_component_reflex (2.0.2)
+    view_component_reflex (2.2.1)
       rails (~> 6.0.3, >= 6.0.3.1)
-      stimulus_reflex
+      stimulus_reflex (= 3.3.0.pre2)
       view_component
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -360,7 +360,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
   tzinfo-data
-  view_component_reflex (= 2.0.2)
+  view_component_reflex (= 2.2.1)
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
