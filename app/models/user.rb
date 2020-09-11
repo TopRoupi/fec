@@ -12,8 +12,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, length: { maximum: 60 }, presence: true
-  validates :password, length: { in: 8..50 }, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :password, length: { maximum: 50 }, presence: true
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true
 
   def have_correct_submission_in?(exercice)
     submissions.where(exercice: exercice).reject { |sub| sub.passed? }.empty?

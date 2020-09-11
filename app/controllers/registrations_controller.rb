@@ -2,6 +2,8 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     @user ||= User.new(sign_up_params)
     @user.validate
+
+    @user.errors.messages.reject! { |param| sign_up_params[param].blank? }
   end
 
   private

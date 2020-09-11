@@ -17,7 +17,7 @@ html lang="en"
 
   body
     = render "layouts/nav_bar"
-    div.container style="margin-top: 30px;" data-controller="bootstrap"
+    div.container.mt-5.mb-5 data-controller="bootstrap"
       - if notice
         div.alert.alert-info.alert-dismissible.fade.show role="alert"
           = notice
