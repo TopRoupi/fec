@@ -1,0 +1,64 @@
+= component_controller do
+  .card
+    .card-body.pt-0
+      - if @user
+        .float-right.mt-2
+          - on_do_later_list = @user.have_on_do_later_list?(@exercice)
+          = reflex_tag(:do_later_list,\
+                      :button,\
+                      octicon('clock'),\
+                      data: { method: on_do_later_list ? 'remove' : 'add' },\
+                      class: helpers.css('btn btn-sm btn-block', 'text-success': on_do_later_list))
+      h6.mt-3.mb-3
+        = @exercice.name 
+      - resolved_percentage = @exercice.correct_submissions_percentage.round(2)
+      - resolved = @exercice.users_with_correct_submissions.count
+      .row
+        .col-7
+          small.text-muted
+            = truncate(@exercice.content, length: 170)
+        .col-5
+          small
+            strong Percentage Solved: 
+            span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
+              = @exercice.correct_submissions_percentage.round(2)
+              |  %
+          br
+          small
+            strong Solved by: 
+            = resolved
+          br
+          small
+            strong Category: 
+            = @exercice.category.name
+          br
+          span.badge.rounded-pill.bg-dark Unsolved
+          span.badge.rounded-pill.ml-1 class="bg-#{helpers.difficult_color_class(@exercice)}"
+            | level 
+            = @exercice.level
+    /.card-footer
+      .row
+        .col
+          button.btn.btn-white.btn-sm.btn-block data-toggle="modal" data-target="#exercice#{@exercice.id}"
+            = octicon 'plus'
+        .col
+          a.btn.btn-white.btn-sm.btn-block [
+            href="#{submission_path(@exercice.id)}"
+            data-controller="prefetch"
+            data-prefetch-hover-time="200"
+            data-action="mouseenter->prefetch#prefetch mouseleave->prefetch#cleanup"
+          ]
+            = octicon 'terminal'
+
+
+
+  /.modal.fade id="exercice#{@exercice.id}" tabindex="-1" aria-hidden="true"
+    .modal-dialog.modal-xl.modal-dialog-scrollable
+      .modal-content
+        .modal-header
+          h5.modal-title Exercice preview
+          button.close data-dismiss="modal" aria-label="Close" ×
+        .modal-body
+          == render 'show_exercice_content'
+        .modal-footer
+          button.btn.btn-secondary data-dismiss="modal" Close

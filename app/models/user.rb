@@ -19,6 +19,10 @@ class User < ApplicationRecord
     submissions.where(exercice: exercice).reject { |sub| sub.passed? }.empty?
   end
 
+  def have_on_do_later_list?(exercice)
+    do_later_list.exercices.exists? exercice.id
+  end
+
   private
 
   def set_do_later_list

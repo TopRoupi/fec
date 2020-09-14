@@ -1,12 +1,10 @@
 = component_controller do
   .row
-    .col-sm-2.mb-3
+    .col-md-2.mb-3
       .list-group
         - Notification.types.each do |type, name|
-          /.list-group-item
-            = name
           = reflex_tag :filter_by_type, :div, name, data: { option: type },class: 'list-group-item'
-    .col-sm-10
+    .col-md-10
       .nav.mb-3.bg-light.rounded
         .nav-link.pl-2
           .btn-group
@@ -25,7 +23,7 @@
           = reflex_tag :mark_all_selected_as_unread, :button, octicon('eye-closed', height: 16), class: 'btn btn-sm btn-block'
         .nav-link.pl-2.pr-2
           = reflex_tag :remove_all_selected, :button, octicon('trash', height: 16), class: 'btn btn-sm'
-      .list-group.list-group-flush.mb-5.overflow-auto.rounded style="height: 60vh; border: 1px solid rgba(0, 0, 0, 0.125);"
+      .list-group.list-group-flush.overflow-auto.rounded style="height: 60vh; border: 1px solid rgba(0, 0, 0, 0.125);"
         - if @m_notifications.blank?
           .list-group-item.text-muted.text-center.row.g-0.h-100 style="display: flex;"
               h5.align-self-center Notifications is empty.

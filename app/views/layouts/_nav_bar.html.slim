@@ -15,7 +15,7 @@ nav.navbar.navbar-expand-md.bg-light.navbar-light.border-bottom.border-top
       .dropdown
         = render 'layouts/profile_dropdown'
       .dropdown
-        = render(NotificationsDropdownComponent.new(user: current_user)) if current_user
+        = render(Notifications::DropdownComponent.new(user: current_user)) if current_user
     #navbar-list.collapse.navbar-collapse.ml-3
       ul.navbar-nav
         li.nav-item

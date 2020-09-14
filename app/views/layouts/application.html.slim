@@ -1,23 +1,22 @@
 doctype html
 html lang="en"
   head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    meta charset="utf-8" /
-    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible" /
-    meta content="width=device-width, initial-scale=1.0" name="viewport" /
-    title= content_for?(:title) ? yield(:title) : "Fec"
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type"
+    meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1.0" name="viewport"
+    title= content_for?(:title) ? "#{yield(:title)} - Fec" : "Fec"
     link href="/assets/icon" rel=("shortcut icon")
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     //easyMDE
-    link href="https://unpkg.com/easymde/dist/easymde.min.css" rel="stylesheet" /
+    link href="https://unpkg.com/easymde/dist/easymde.min.css" rel="stylesheet"
     script src="https://unpkg.com/easymde/dist/easymde.min.js"
 
   body
     = render "layouts/nav_bar"
-    div.container.mt-5.mb-5 data-controller="bootstrap"
+    div.container style="margin-top: 30px; margin-bottom: 1.5rem" data-controller="bootstrap"
       - if notice
         div.alert.alert-info.alert-dismissible.fade.show role="alert"
           = notice

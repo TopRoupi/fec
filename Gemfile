@@ -18,7 +18,7 @@ gem 'octicons_helper'
 
 gem 'judge0'
 
-gem 'view_component_reflex', "2.2.1"
+gem 'view_component_reflex', git: 'https://github.com/thorpj/view_component_reflex', branch: 'master'
 
 gem 'noticed'
 

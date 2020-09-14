@@ -33,8 +33,8 @@ class UserTest < ActiveSupport::TestCase
     refute_empty @user.errors[:password]
   end
 
-  test 'invalid if password have less than 8 characters' do
-    @user.password = '0' * 7
+  test 'invalid if password have less than 6 characters' do
+    @user.password = '0' * 5
     @user.valid?
     refute_empty @user.errors[:password]
   end
@@ -81,5 +81,19 @@ class UserTest < ActiveSupport::TestCase
     submission = create :wrong_submission, user: @user
 
     refute @user.have_correct_submission_in?(submission.exercice)
+  end
+
+  test "#have_on_do_later_list? should be true if the exercice is on do later list" do
+    exercice = create :exercice
+    @user.do_later_list.exercices << exercice
+    @user.save!
+
+    assert @user.have_on_do_later_list?(exercice)
+  end
+
+  test "#have_on_do_later_list? should be false if the exercice is not on do later list" do
+    exercice = create :exercice
+
+    refute @user.have_on_do_later_list? exercice
   end
 end

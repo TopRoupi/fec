@@ -9,8 +9,13 @@ module ApplicationHelper
     markdown.render(content)
     sanitize(markdown.render(content)).html_safe
   end
-  
+
   def active_class(link_path)
     current_page?(link_path) ? "active" : ""
+  end
+
+  def css(default = "", conditionals = {})
+    additions = conditionals.each_with_object([]) { |(k, v), memo| memo << k if v }
+    "#{default} #{additions.join " "}"
   end
 end

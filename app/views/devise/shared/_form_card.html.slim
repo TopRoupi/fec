@@ -1,0 +1,11 @@
+.row.justify-content-md-center
+    .col.col-md-7.col-lg-5
+      .card
+        .card-body
+          h2.card-title.text-center.mb-4.mt-1
+            = yield :title
+          = yield
+          .separator.text-muted.mt-3.mb-3 or
+          .text-center
+            = render "devise/shared/links"
+
