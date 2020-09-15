@@ -2,9 +2,6 @@
 
 = render 'devise/shared/form_card' do
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = f.input :email, autofocus: true
-    = f.input :password
-    = f.input :remember_me, as: :boolean
-    = f.button :submit,\
-      'Log In',
-      class: 'btn btn-block rounded-pill btn-primary'
+    = f.input :email, autofocus: true, input_html: { autocomplete: 'email' }
+    = f.input :password, input_html: { autocomplete: 'current-password' }
+    = f.button :submit, 'Log In', class: 'btn btn-block rounded-pill btn-primary'

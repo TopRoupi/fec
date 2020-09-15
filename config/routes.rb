@@ -6,12 +6,14 @@ Rails.application.routes.draw do
   resources :languages
   resources :categories
 
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 
   get 'users/:id', to: "users#show", as: 'user'
   get '/input-generator', to: 'input_generator#index'
   get '/home', to: 'home#index'
   get '/notifications', to: 'notifications#index', as: 'notifications'
-  
+
   root to: 'home#index'
 end

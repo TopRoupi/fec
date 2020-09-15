@@ -2,11 +2,7 @@
 
 = render 'devise/shared/form_card' do
   = simple_form_for resource, url: registration_path(resource_name), data: { controller: 'validations'} do |f|
-    = f.input :name, autofocus: true, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-    = f.input :email, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-    = f.input :password, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-    = f.input :password_confirmation, input_html: { data: { reflex: "debounced:input", reflex_permanent: true } }
-    = f.button :submit,\
-      class: css("btn btn-block rounded-pill", 'btn-primary': resource.valid?, 'btn-secondary': resource.invalid?),\
-      disabled: resource.invalid?
-
+    = f.input :name, autofocus: true, input_html: { data: { reflex: "debounced:input" } }
+    = f.input :email, input_html: { data: { reflex: "debounced:input" }, autocomplete: 'email' }
+    = f.input :password, input_html: { data: { reflex: "debounced:input" }, autocomplete: 'new-password' }
+    = f.button :submit, 'Sign Up', class: 'btn btn-block rounded-pill btn-primary'
