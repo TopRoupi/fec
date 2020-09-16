@@ -1,6 +1,6 @@
 div.row.justify-content-md-center
   div.col.col-md-8.col-lg-7
-    == render "show_exercice_content"
+    == render partial: "show_exercice_content", locals: {exercice: @exercice}
 
     => link_to 'Edit', edit_exercice_path(@exercice)
     '|

@@ -17,7 +17,7 @@ module Exercices
       notification = ListNotification.with(method: method.to_sym, exercice: @exercice, list: @user.do_later_list)
       notification.deliver(@user)
 
-      refresh! '#notif-dropdown', selector
+      refresh! "#{selector} #btn-do-later",'#notif-dropdown'
     end
   end
 end

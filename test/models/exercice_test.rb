@@ -122,4 +122,11 @@ class ExerciceTest < ActiveSupport::TestCase
   test "#correct_submissions_percentage should be 0 without submissions" do
     assert @exercice.correct_submissions_percentage, 0
   end
+
+  test "#excerpt should return the first paragraph of the content" do
+    @exercice.content = "some text\n"\
+                        "some other text"
+
+    assert_equal @exercice.excerpt, "some text"
+  end
 end

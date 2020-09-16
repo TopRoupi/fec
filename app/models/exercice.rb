@@ -9,7 +9,7 @@ class Exercice < ApplicationRecord
                             less_than_or_equal_to: 5 }
   validates :content, presence: true
   validates :name, length: { maximum: 30 }, presence: true
-  
+
   after_create :create_empty_test_specification
 
   def correct_submissions_percentage
@@ -20,7 +20,7 @@ class Exercice < ApplicationRecord
   def users_with_correct_submissions
     users.filter { |user| user.have_correct_submission_in?(self) }
   end
-  
+
   def users_without_correct_submissions
     users.reject { |user| user.have_correct_submission_in?(self) }
   end
@@ -39,11 +39,15 @@ class Exercice < ApplicationRecord
     end
   end
 
+  def excerpt
+    content.split("\n").first
+  end
+
   private
-  
+
   def create_empty_test_specification
     Language.new().save(validate: false)  unless Language.first
-    
+
     if tests_specification.blank?
       ts = TestsSpecification.new(exercice: self, language: Language.first)
       ts.save(validate: false)
