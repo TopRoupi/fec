@@ -8,7 +8,7 @@ Category.create(name: 'Paradigmas')
 Category.create(name: 'Geometria computacional')
 Category.create(name: 'Estruturas e bibliotecas')
 
-Language.create(name: 'Python', cod: 71, version: '3.8.1').save!
+Language.create(name: 'Python', cod: 71, version: '3.8.1')
 Language.create(name: 'C', cod: 50, version: 'GCC 9.2.0')
 Language.create(name: 'Ruby', cod: 72, version: '2.7.0')
 

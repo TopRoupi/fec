@@ -1,6 +1,8 @@
 div#tests-results.container style="margin-top:30px;"
-  p.text-muted.text-center.mt-5
-    | You dont have any submissions on this exercice yet.
-  /- @submissions.each do |submission|
-    - @submission = submission
-    = render 'submission_results'
+  - if @submissions.blank?
+    p.text-muted.text-center.mt-5
+      | You dont have any submissions on this exercice yet.
+  - else
+    - @submissions.each do |submission|
+      - @submission = submission
+      = render 'submission_results'

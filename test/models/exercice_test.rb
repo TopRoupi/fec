@@ -80,41 +80,45 @@ class ExerciceTest < ActiveSupport::TestCase
     assert_includes @exercice.submissions_by_unique_users, user_b.submissions
   end
 
-  test '#submissions should return exercice submissions' do
-    sub_a = create :submission, exercice: @exercice
-    sub_b = create :submission, exercice: @exercice
+  test "#users_with_correct_submissions should return users with at least one correct submission" do
+    user_a = create :user
+    user_b = create :user
 
-    assert_includes @exercice.submissions, sub_a
-    assert_includes @exercice.submissions, sub_b
+    create :submission, user: user_a, exercice: @exercice
+    create :submission, user: user_a, exercice: @exercice
+    create :wrong_submission, user: user_a, exercice: @exercice
+
+    create :wrong_submission, user: user_b, exercice: @exercice
+
+    assert_includes @exercice.users_with_correct_submissions, user_a
+    refute_includes @exercice.users_with_correct_submissions, user_b
+    assert_equal 1, @exercice.users_with_correct_submissions.length
   end
 
-  test "#users should return users that submitted in this exercice" do
-    sub_a = create :submission, exercice: @exercice
-    sub_b = create :submission
+  test "#users_without_correct_submissions should return users without a correct submission" do
+    user_a = create :user
+    user_b = create :user
 
-    assert_includes @exercice.users, sub_a.user
-    refute_includes @exercice.users, sub_b.user
+    create :submission, user: user_a, exercice: @exercice
+    create :wrong_submission, user: user_a, exercice: @exercice
+
+    create :wrong_submission, user: user_b, exercice: @exercice
+    create :wrong_submission, user: user_b, exercice: @exercice
+
+    refute_includes @exercice.users_without_correct_submissions, user_a
+    assert_includes @exercice.users_without_correct_submissions, user_b
+    assert_equal 1, @exercice.users_without_correct_submissions.length
   end
 
-  test "#users_with_correct_submissions" do
-    sub_a = create :submission, exercice: @exercice
-    sub_b = create :wrong_submission, exercice: @exercice
+  test "#correct_submissions_percentage should return the percentage of users that solved the exercice" do
+    user_a = create :user
+    user_b = create :user
 
-    assert_includes @exercice.users_with_correct_submissions, sub_a.user
-    refute_includes @exercice.users_with_correct_submissions, sub_b.user
-  end
+    create :submission, user: user_a, exercice: @exercice
+    create :wrong_submission, user: user_a, exercice: @exercice
 
-  test "#users_without_correct_submissions" do
-    sub_a = create :submission, exercice: @exercice
-    sub_b = create :wrong_submission, exercice: @exercice
-
-    refute_includes @exercice.users_without_correct_submissions, sub_a.user
-    assert_includes @exercice.users_without_correct_submissions, sub_b.user
-  end
-
-  test "#correct_submissions_percentage" do
-    sub_a = create :submission, exercice: @exercice
-    sub_b = create :wrong_submission, exercice: @exercice
+    create :wrong_submission, user: user_b, exercice: @exercice
+    create :wrong_submission, user: user_b, exercice: @exercice
 
     assert @exercice.correct_submissions_percentage, 50.0
   end

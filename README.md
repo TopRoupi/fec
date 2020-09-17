@@ -18,13 +18,13 @@ https://fec-online-judge.herokuapp.com/
 * Ruby version
 
   ```
-  2.6.3
+  2.7.1
   ```
 
 * System dependencies
 
   ```
-  Postgresql 11.5
+  Postgresql 12
   ```
 
 * Configuration

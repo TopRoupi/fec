@@ -2,6 +2,8 @@ class Exercice < ApplicationRecord
   include ActiveModel::Validations
   belongs_to :category
   has_one :tests_specification, dependent: :delete
+  has_many :submissions
+  has_many :users, -> { distinct }, through: :submissions
 
   validates :level,
             presence: true,
@@ -18,25 +20,15 @@ class Exercice < ApplicationRecord
   end
 
   def users_with_correct_submissions
-    users.filter { |user| user.have_correct_submission_in?(self) }
+    users.filter { |user| user.have_correct_submission_in?(self) }.uniq
   end
 
   def users_without_correct_submissions
-    users.reject { |user| user.have_correct_submission_in?(self) }
+    users.reject { |user| user.have_correct_submission_in?(self) }.uniq
   end
 
   def submissions_by_unique_users
     users.map { |user| user.submissions.where(exercice: self) }
-  end
-
-  def submissions
-    Submission.where(exercice: self)
-  end
-
-  def users
-    submissions.pluck(:user_id).uniq.map do |user_id|
-      User.find(user_id)
-    end
   end
 
   def excerpt

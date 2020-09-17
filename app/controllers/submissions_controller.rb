@@ -46,7 +46,7 @@ class SubmissionsController < ApplicationController
       )
     end
 
-    render inline: "<%== render 'submissions/submission_results' %>"
+    render inline: "<%= render 'submissions/submission_results' %>"
   end
 
   private

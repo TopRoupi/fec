@@ -8,6 +8,7 @@ if (darkmode != "") {
   DarkReader.setFetchMethod(window.fetch)
   DarkReader.enable({
     brightness: 100,
-    contrast: 95
+    contrast: 95,
+    sepia: 15
   });
 }

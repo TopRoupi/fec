@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.6'
+ruby '~> 2.7.1'
 
 gem 'devise'
 
@@ -18,7 +18,7 @@ gem 'octicons_helper'
 
 gem 'judge0'
 
-gem 'view_component_reflex', git: 'https://github.com/thorpj/view_component_reflex', branch: 'master'
+gem 'view_component_reflex', '~> 2.2.2'
 
 gem 'noticed'
 
