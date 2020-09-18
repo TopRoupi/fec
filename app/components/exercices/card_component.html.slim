@@ -2,7 +2,7 @@
   .card
     .card-body.pt-0
       .float-right.mt-2.d-flex
-        .collapse id="exercice#{@exercice.id}options"
+        .collapse.width.bg-light.d-flex.rounded-pill.mr-2 id="exercice#{@exercice.id}options"
           - if @user
             #btn-do-later.d-inline
               - on_do_later_list = @user.have_on_do_later_list?(@exercice)
@@ -10,10 +10,10 @@
                 :button,\
                   octicon('clock'),\
                   data: { method: on_do_later_list ? 'remove' : 'add' },\
-                  class: helpers.css('btn btn-sm mr-2', 'text-success': on_do_later_list))
+                  class: helpers.css('btn btn-sm mr-2 rounded-pill', 'text-success': on_do_later_list))
           button.btn.btn-white.btn-sm.mr-2 data-toggle="modal" data-target="#exercice#{@exercice.id}"
             = octicon 'plus'
-          a.btn.btn-white.btn-sm.mr-2 [
+          a.btn.btn-white.btn-sm.rounded-pill [
             href="#{submission_path(@exercice.id)}"
             data-controller="prefetch"
             data-prefetch-hover-time="200"
