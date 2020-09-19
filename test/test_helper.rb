@@ -1,16 +1,17 @@
-require 'simplecov'
-SimpleCov.start 'rails'
+# frozen_string_literal: true
 
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
-require 'rails/test_help'
+require "simplecov"
+SimpleCov.start "rails"
 
-require 'minitest/autorun'
-require 'minitest/reporters'
-require 'shoulda/context'
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
+require "rails/test_help"
+
+require "minitest/autorun"
+require "shoulda/context"
 
 class ActiveSupport::TestCase
-  # parallelize(workers: :number_of_processors)
+  parallelize(workers: :number_of_processors)
   include FactoryBot::Syntax::Methods
   include Devise::Test::IntegrationHelpers
 end
@@ -18,5 +19,3 @@ end
 class ActionController::TestCase
   Devise::Test::ControllerHelpers
 end
-
-Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new # spec-like progress

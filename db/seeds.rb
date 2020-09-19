@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-Category.create(name: 'Iniciante')
-Category.create(name: 'Strings')
-Category.create(name: 'Matemática')
-Category.create(name: 'Grafos')
-Category.create(name: 'Paradigmas')
-Category.create(name: 'Geometria computacional')
-Category.create(name: 'Estruturas e bibliotecas')
+Category.create(name: "Iniciante")
+Category.create(name: "Strings")
+Category.create(name: "Matemática")
+Category.create(name: "Grafos")
+Category.create(name: "Paradigmas")
+Category.create(name: "Geometria computacional")
+Category.create(name: "Estruturas e bibliotecas")
 
-Language.create(name: 'Python', cod: 71, version: '3.8.1')
-Language.create(name: 'C', cod: 50, version: 'GCC 9.2.0')
-Language.create(name: 'Ruby', cod: 72, version: '2.7.0')
+Language.create(name: "Python", cod: 71, version: "3.8.1")
+Language.create(name: "C", cod: 50, version: "GCC 9.2.0")
+Language.create(name: "Ruby", cod: 72, version: "2.7.0")
 
 tests = []
 
@@ -42,11 +42,11 @@ tests << {
   visible: false
 }
 
-content = ''\
-'Leia 2 valores inteiros e armazene-os nas variáveis **A** e **B**. Efetue a '\
-'soma de **A** e **B** atribuindo o seu resultado na variável **X**. Imprima '\
-'**X** conforme exemplo apresentado abaixo. Não apresente mensagem alguma '\
-'além daquilo que está sendo especificado e não esqueça de imprimir o fim de '\
+content = ""\
+"Leia 2 valores inteiros e armazene-os nas variáveis **A** e **B**. Efetue a "\
+"soma de **A** e **B** atribuindo o seu resultado na variável **X**. Imprima "\
+"**X** conforme exemplo apresentado abaixo. Não apresente mensagem alguma "\
+"além daquilo que está sendo especificado e não esqueça de imprimir o fim de "\
 "linha após o resultado.\n"\
 "\n"\
 "### Entrada\n"\
@@ -56,7 +56,7 @@ content = ''\
 "### Saída\n"\
 "\n"\
 'Imprima a mensagem "X = " (letra X maiúscula) seguido pelo valor da variável '\
-'X e pelo final de linha. Cuide para que tenha um espaço antes e depois do '\
+"X e pelo final de linha. Cuide para que tenha um espaço antes e depois do "\
 "sinal de igualdade, conforme o exemplo abaixo.\n"\
 "\n"\
 "| Exemplos de Entrada | Exemplos de Saída |\n"\
@@ -67,12 +67,12 @@ content = ''\
 exercice = Exercice.create(
   category: Category.first,
   level: 1,
-  name: 'Soma Simples',
-  content: content,
+  name: "Soma Simples",
+  content: content
 )
 
 exercice.tests_specification.update(
-  language: Language.find_by(name: 'Python'),
+  language: Language.find_by(name: "Python"),
   exercice: exercice,
   limit_time: 1,
   limit_mem: 10,
@@ -88,8 +88,7 @@ end
 
 exercice.tests_specification.save!
 
-
-#will delete later i swear
+# will delete later i swear
 
 User.create(
   name: "user",
@@ -100,6 +99,6 @@ User.create(
 User.create(
   name: "admin",
   email: "admin@admin",
-  role: 'admin',
+  role: "admin",
   password: "12345678"
 )

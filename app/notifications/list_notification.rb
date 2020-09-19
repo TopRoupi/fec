@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ListNotification < Noticed::Base
   deliver_by :database
 

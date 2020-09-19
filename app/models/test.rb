@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Test < ApplicationRecord
   belongs_to :tests_specification
   has_many :submissions_tests, dependent: :delete_all

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Notifications
   class ManagerComponent < ViewComponentReflex::Component
     def initialize(user:)
@@ -16,11 +18,11 @@ module Notifications
 
     def toggle_all_selected
       case element.dataset[:option]
-      when 'all'
+      when "all"
         ids = @m_notifications.pluck(:id)
-      when 'read'
+      when "read"
         ids = @m_notifications.select { |notif| notif.read? }.pluck(:id)
-      when 'unread'
+      when "unread"
         ids = @m_notifications.select { |notif| notif.unread? }.pluck(:id)
       end
 

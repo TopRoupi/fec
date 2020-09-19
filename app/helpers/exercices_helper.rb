@@ -1,22 +1,24 @@
+# frozen_string_literal: true
+
 module ExercicesHelper
   def difficult_color_class(exercice)
     case exercice.level
     when 0..2
-      'success'
+      "success"
     when 3..4
-      'warning'
+      "warning"
     else
-      'danger'
+      "danger"
     end
   end
-  
+
   def resolved_percentage_color(percentage)
     if percentage < 5
-      'danger'
+      "danger"
     elsif percentage < 50
-      'warning'
+      "warning"
     else
-      'success'
+      "success"
     end
   end
 end

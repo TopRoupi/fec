@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class List < ApplicationRecord
-  belongs_to :owner, class_name: 'User'
+  belongs_to :owner, class_name: "User"
   has_many :list_exercices
-  has_many :exercices,through: :list_exercices
+  has_many :exercices, through: :list_exercices
 
   enum privacy: [:private_list, :notlisted_list, :public_list]
 

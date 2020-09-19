@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class SubmissionsTestTest < ActiveSupport::TestCase
   setup do
@@ -7,7 +9,7 @@ class SubmissionsTestTest < ActiveSupport::TestCase
 
   # description validations
 
-  test 'invalid without description' do
+  test "invalid without description" do
     @submissions_test.description = nil
     @submissions_test.valid?
     refute_empty @submissions_test.errors[:description]

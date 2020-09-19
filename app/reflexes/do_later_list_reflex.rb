@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DoLaterListReflex < ApplicationReflex
   def add_exercice
     exercice = Exercice.find(element.dataset[:id].to_i)

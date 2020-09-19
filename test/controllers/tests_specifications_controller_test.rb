@@ -1,7 +1,9 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
-  context 'an authenticated admin' do
+  context "an authenticated admin" do
     setup do
       sign_in create(:admin)
       @tests_specification = create(:tests_specification)
@@ -19,29 +21,29 @@ class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "update tests_specification" do
-      @tests_specification.code = 'edited code'
+      @tests_specification.code = "edited code"
       patch tests_specification_url(@tests_specification),
-            params: {
-              tests_specification: @tests_specification.attributes
-            }
-      assert_equal @tests_specification.code, 'edited code'
+        params: {
+          tests_specification: @tests_specification.attributes
+        }
+      assert_equal @tests_specification.code, "edited code"
       assert_redirected_to edit_tests_specification_url(@tests_specification)
     end
 
     should "update tests_specification tests" do
-      @tests_specification.tests[0].output = 'edited output'
+      @tests_specification.tests[0].output = "edited output"
       patch tests_specification_url(@tests_specification),
         params: {
           tests_specification: @tests_specification.nested_attributes
         }
       @tests_specification.reload
-      assert_equal(@tests_specification.tests[0].output, 'edited output')
+      assert_equal(@tests_specification.tests[0].output, "edited output")
     end
 
     should "update tests_specification with a new test" do
       attributes = @tests_specification.nested_attributes
-      attributes[:tests_attributes]['-1'] = build(:test).attributes
-      assert_difference 'Test.count' do
+      attributes[:tests_attributes]["-1"] = build(:test).attributes
+      assert_difference "Test.count" do
         patch tests_specification_url(@tests_specification),
           params: {
             tests_specification: attributes
@@ -53,8 +55,8 @@ class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
     should "update tests_specification deleting a test" do
       @tests_specification.tests << build(:test)
       attributes = @tests_specification.nested_attributes
-      attributes[:tests_attributes][2]['_destroy'] = true
-      assert_difference('Test.count', -1) do
+      attributes[:tests_attributes][2]["_destroy"] = true
+      assert_difference("Test.count", -1) do
         patch tests_specification_url(@tests_specification),
           params: {
             tests_specification: attributes
@@ -64,7 +66,7 @@ class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
-  context 'a unauthenticated user' do
+  context "a unauthenticated user" do
     setup do
       @tests_specification = create(:tests_specification)
     end
@@ -75,13 +77,13 @@ class TestsSpecificationsControllerTest < ActionDispatch::IntegrationTest
     end
 
     should "not update tests_specification" do
-      @tests_specification.code = 'edited code'
+      @tests_specification.code = "edited code"
       patch tests_specification_url(@tests_specification),
-            params: {
-              tests_specification: @tests_specification.attributes
-            }
+        params: {
+          tests_specification: @tests_specification.attributes
+        }
       @tests_specification.reload
-      refute_equal(@tests_specification.code, 'edited code')
+      refute_equal(@tests_specification.code, "edited code")
     end
   end
 end

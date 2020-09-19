@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SubmissionsController < ApplicationController
   before_action :set_exercice, only: [:show]
   before_action :authenticate_user!
@@ -32,7 +34,7 @@ class SubmissionsController < ApplicationController
     tests = @submission.exercice.tests_specification.tests
     tests_result = run_tests_battery
 
-    for i in 0...tests.length
+    (0...tests.length).each do |i|
       SubmissionsTest.create(
         submission_id: @submission.id,
         test: tests[i],
@@ -52,10 +54,10 @@ class SubmissionsController < ApplicationController
   private
 
   def run_tests_battery
-    sub = Judge0::Submission.new do |config|
+    sub = Judge0::Submission.new { |config|
       config.source_code = @submission.code
       config.language_id = @submission.language.cod
-    end
+    }
 
     tests = @submission.exercice.tests_specification.tests.map { |test| [test.input, test.output] }
 

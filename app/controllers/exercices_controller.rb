@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class ExercicesController < ApplicationController
   before_action :set_exercice, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [ :index, :show ]
-  before_action :ensure_admin!, except: [ :index, :show ]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :ensure_admin!, except: [:index, :show]
 
   # GET /exercices
   # GET /exercices.json
@@ -40,7 +42,7 @@ class ExercicesController < ApplicationController
 
     respond_to do |format|
       if @exercice.save
-        format.html { redirect_to @exercice, notice: 'Exercice was successfully created.' }
+        format.html { redirect_to @exercice, notice: "Exercice was successfully created." }
         format.json { render :show, status: :created, location: @exercice }
       else
         format.html { render :new }
@@ -54,7 +56,7 @@ class ExercicesController < ApplicationController
   def update
     respond_to do |format|
       if @exercice.update(exercice_params)
-        format.html { redirect_to @exercice, notice: 'Exercice was successfully updated.' }
+        format.html { redirect_to @exercice, notice: "Exercice was successfully updated." }
         format.json { render :show, status: :ok, location: @exercice }
       else
         format.html { render :edit }
@@ -68,7 +70,7 @@ class ExercicesController < ApplicationController
   def destroy
     @exercice.destroy
     respond_to do |format|
-      format.html { redirect_to exercices_url, notice: 'Exercice was successfully destroyed.' }
+      format.html { redirect_to exercices_url, notice: "Exercice was successfully destroyed." }
       format.json { head :no_content }
     end
   end

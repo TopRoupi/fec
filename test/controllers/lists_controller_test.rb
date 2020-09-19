@@ -1,4 +1,6 @@
-require 'test_helper'
+# frozen_string_literal: true
+
+require "test_helper"
 
 class ListsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +18,8 @@ class ListsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create list" do
-    assert_difference('List.count') do
-      post lists_url, params: { list: { description: @list.description, name: @list.name, owner_id: @list.owner_id, privacy: @list.privacy } }
+    assert_difference("List.count") do
+      post lists_url, params: {list: {description: @list.description, name: @list.name, owner_id: @list.owner_id, privacy: @list.privacy}}
     end
 
     assert_redirected_to list_url(List.last)
@@ -34,12 +36,12 @@ class ListsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update list" do
-    patch list_url(@list), params: { list: { description: @list.description, name: @list.name, owner_id: @list.owner_id, privacy: @list.privacy } }
+    patch list_url(@list), params: {list: {description: @list.description, name: @list.name, owner_id: @list.owner_id, privacy: @list.privacy}}
     assert_redirected_to list_url(@list)
   end
 
   test "should destroy list" do
-    assert_difference('List.count', -1) do
+    assert_difference("List.count", -1) do
       delete list_url(@list)
     end
 

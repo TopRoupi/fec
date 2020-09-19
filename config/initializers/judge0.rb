@@ -1,1 +1,3 @@
-Judge0.base_url = 'http://judge0-api.roupi.xyz'
+# frozen_string_literal: true
+
+Judge0.base_url = "http://judge0-api.roupi.xyz"
