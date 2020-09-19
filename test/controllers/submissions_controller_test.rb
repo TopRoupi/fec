@@ -13,12 +13,12 @@ class SubmissionsControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
-    # should 'create submission' do
-    #   assert_difference('Submission.count') do
-    #     post submissions_url, params: { submission: { code: @submission.code, exercice_id: @submission.exercice_id, language_id: @submission.language_id, user_id: @submission.user_id } }
-    #   end
-    # end
-    #
+    should 'create submission' do
+      assert_difference('Submission.count') do
+        post submissions_url, params: { submission: { code: @submission.code, exercice_id: @submission.exercice_id, language_id: @submission.language_id, user_id: @submission.user_id } }
+      end
+    end
+
     should 'show submission' do
       get submission_url(@exercice)
       assert_response :success

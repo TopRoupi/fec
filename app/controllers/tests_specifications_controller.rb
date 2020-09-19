@@ -29,11 +29,6 @@ class TestsSpecificationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tests_specification_params
-      if params.require(:tests_specification).key? 'tests_attributes'
-        params.require(:tests_specification)['tests_attributes'].each do |test|
-          test[1]['output'].gsub!(/\r\n?/, "\n") if test[1]['output']
-        end
-      end
       params.require(:tests_specification)
         .permit(
           :code,

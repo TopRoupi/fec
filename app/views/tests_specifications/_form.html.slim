@@ -1,6 +1,6 @@
 div.row.justify-content-md-center data-controller="tests-specification codemirror"
   div.col.col-md-9.col-lg-8
-    = simple_nested_form_for(@tests_specification) do |f|
+    = simple_form_for(@tests_specification) do |f|
       = f.error_notification
       = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
       - if @tests_specification.errors[:tests].length != 0
@@ -31,23 +31,14 @@ div.row.justify-content-md-center data-controller="tests-specification codemirro
                           prompt: "Select a language",
                           collection: Language.all,
                           input_html: { :'data-target' => 'tests-specification.lang' }
-                    
+
       = f.input :code, input_html: {:'data-target' => 'tests-specification.code', id:'codemirror-input'}
-      
-      = f.fields_for :tests do |ff|
-        div.border.rounded.main-section
-          = ff.input :input
 
-          = ff.input :output, readonly: true
-
-          input.generate_output.light_button type="button" value="generate output" data-action="click->tests-specification#run"
-
-          = ff.input :visible
-
-          = ff.link_to_remove "Remove this test", class: 'text-danger'
-
-
-      = f.link_to_add "Add a test", :tests, class: 'btn btn-secondary btn-block'
+      #tests
+        = f.simple_fields_for :tests do |test|
+          = render 'test_fields', f: test
+        .links
+          = link_to_add_association "Add test", f, :tests, class: 'btn btn-secondary btn-block mb-3'
 
       = f.submit class: 'btn btn-primary btn-block'
   / yes

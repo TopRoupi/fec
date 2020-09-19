@@ -1,0 +1,7 @@
+.nested-fields.border.rounded.main-section
+  = f.input :input
+  = f.input :output, readonly: true
+  input.generate_output.light_button type="button" value="generate output" data-action="click->tests-specification#run"
+  = f.input :visible
+
+  = link_to_remove_association "Remove this test", f, class: 'text-danger'

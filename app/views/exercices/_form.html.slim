@@ -1,6 +1,6 @@
 div.row.justify-content-md-center data-controller="exercices easymde"
   div.col.col-md-9.col-lg-8
-    = simple_nested_form_for @exercice, wrapper: :vertical_form do |f|
+    = simple_form_for @exercice, wrapper: :vertical_form do |f|
       = f.error_notification
       = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 

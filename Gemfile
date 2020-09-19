@@ -12,7 +12,7 @@ gem 'simple_form'
 
 gem 'slim-rails'
 
-gem 'nested_form'
+gem "cocoon"
 
 gem 'octicons_helper'
 
