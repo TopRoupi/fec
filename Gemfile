@@ -33,6 +33,8 @@ group :development, :test do
   gem "faker", git: "https://github.com/faker-ruby/faker.git", branch: "master"
   gem "simplecov", require: false, group: :test
   gem "shoulda-context"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do
