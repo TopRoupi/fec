@@ -1,0 +1,32 @@
+-# frozen_string_literal: true
+
+= component_controller style: 'height: 100%' do
+  form style="height: 100%"
+    #top
+      textarea#codemirror-input name="code"
+
+    #bottom
+      ul#ide-tab.nav.nav-tabs role="tablist"
+        - @tabs.each do |tab|
+          li.nav-item
+            span.nav-link.btn class="#{'active' if @selected_tab == tab}" data-toggle="tab" href="##{tab}"
+              = tab.to_s.split('_').join(' ').capitalize
+        li.nav-item.ml-auto
+          = reflex_tag :run, :span, class: 'nav-link btn', id: 'run-button' do
+            span#run-state class="#{@run_state}"
+              = octicon "dot-fill"
+            | Run
+
+      #ide-bottom-content.tab-content
+        #input.tab-pane.fade class="#{'show active' if @selected_tab == :input}"
+          textarea.full-textarea name="input"
+        #output.tab-pane.fade class="#{'show active' if @selected_tab == :output}"
+          textarea.full-textarea readonly=true
+            = @output
+        #compiler_output.tab-pane.fade class="#{'show active' if @selected_tab == :compiler_output}"
+          textarea.full-textarea readonly=true
+        #language.tab-pane.fade class="#{'show active' if @selected_tab == :language}"
+          - (@languages).each do |language|
+            input name="language" type="radio" id="#{language.id}" value="#{language.cod}"
+              = language.name
+            br

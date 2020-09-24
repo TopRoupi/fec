@@ -22,10 +22,10 @@ div#submission-wrapper.wrapper data-controller="submissions codemirror"
 
   div#content.tab-content
     div#editor.tab-pane.fade.show.active role="tabpanel" aria-labelledby="editor-tab"
-      == render "code_editor"
+      = render(Submissions::Ide::CodeEditorComponent.new(submission: @last_submission, languages: @languages))
 
     div#tests.tab-pane.fade role="tabpanel" aria-labelledby="tests-tab"
-      == render "submissions_tests"
+      = render "submissions_tests"
 
     div#exercice.tab-pane.fade role="tabpanel" aria-labelledby="exercice-tab"
-      == render "exercice_show"
+      = render "exercice_show"
