@@ -25,10 +25,10 @@ class SubmissionsController < ApplicationController
 
     respond_to do |format|
       if @submission.save
-        format.html { redirect_to submission_ide_path(@submission.exercice_id, 'results') }
-        format.json { render @submission}
+        format.html { redirect_to submission_ide_path(@submission.exercice_id, "results") }
+        format.json { render @submission }
       else
-        format.html { redirect_back fallback_location: '/', alert: 'Something wrong' }
+        format.html { redirect_back fallback_location: "/", alert: "Something wrong" }
         format.json { render json: @submission.errors, status: :unprocessable_entity }
       end
     end

@@ -1,5 +1,4 @@
 -# frozen_string_literal: true
-
 = component_controller style: 'height: 100%; overflow: hidden' do
   = form_for Submission.new, html: { style: "height: 100%" } do |f|
     = f.hidden_field :exercice_id, value: @exercice.id

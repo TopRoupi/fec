@@ -7,7 +7,9 @@
 online judge
 
 
+
 # live-demo
+
 
 https://fec-online-judge.herokuapp.com/
 
@@ -40,6 +42,13 @@ https://fec-online-judge.herokuapp.com/
 
   ```sh
   rails test
+  ```
+
+* Standard
+
+  ```sh
+    bundle exec standardrb --fix .
+    bundle exec magic_frozen_string_literal .
   ```
 
 * Deployment instructions

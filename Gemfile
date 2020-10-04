@@ -13,7 +13,7 @@ gem "simple_form"
 gem "slim-rails"
 gem "cocoon"
 gem "octicons_helper"
-gem 'judge0'
+gem "judge0"
 gem "view_component_reflex", "~> 2.3.4"
 gem "noticed"
 gem "pg", ">= 0.18", "< 2.0"
