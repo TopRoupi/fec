@@ -1,5 +1,6 @@
 -# frozen_string_literal: true
-div.card class=(@submission.passed? ? 'bg-success' : 'bg-danger')
+
+= component_controller class: "card #{@submission.passed? ? 'bg-success' : 'bg-danger'}" do
   div.card-header data-toggle="collapse" href="#submission-#{@submission.id}"
     = "submission-#{@submission.id}"
   div.collapse id="submission-#{@submission.id}"

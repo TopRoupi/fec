@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
 
+  get "submissions/:id/:page", to: "submissions#show", as: "submission_ide"
+
   get "users/:id", to: "users#show", as: "user"
   get "/input-generator", to: "input_generator#index"
   get "/home", to: "home#index"

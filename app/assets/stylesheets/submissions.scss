@@ -14,15 +14,20 @@ html, body {
 #sidebar {
   min-width: 50px;
   max-width: 50px;
-  height: 100%;
-  background-color: #e0e5e6;
+  border-radius: 10px;
+  margin: 10px 0px 10px 10px;
+  height: calc(100% - 20px);
+  background-color: #f8f9fa;
 }
 
 #content {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 20px);
   position: relative;
   overflow: auto;
+  margin: 10px;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
 }
 
 
@@ -31,6 +36,11 @@ html, body {
 
 #side-tab .nav-item .nav-link{
   width: 50px;
+  padding: 12px 0px 12px 0px;
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 9px 0 rgba(0, 0, 0, 0.19);
+  border: none !important;
 }
 
 #side-tab {
@@ -38,17 +48,19 @@ html, body {
 }
 
 #side-tab, #side-tab .nav-link {
-  border-radius: 0px !important;
+  border-radius: 10px;
 }
 
 #side-tab .nav-link.active {
-  background-color: #bec9ca !important;
-  border-color: #93a7a6 !important;
+  background-color: #dedede !important;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 15px 0 rgba(0, 0, 0, 0.19);
+  border: none !important;
 }
 
 
 #side-tab .nav-link:hover, #side-tab .nav-link:focus {
-    border-color: #93a7a6 #93a7a6 #93a7a6 !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: none !important;
 }
 
 .octicon {
@@ -57,8 +69,8 @@ html, body {
 
 #submit-button {
   position: absolute;
-  left: 0px;
-  bottom: 1px;
+  left: 10px;
+  bottom: 0px;
 }
 
 
@@ -67,7 +79,6 @@ html, body {
 
 #ide-tab {
   background-color: #e0e5e6;
-  height: 30px;
   border-bottom: none;
 }
 
@@ -152,7 +163,6 @@ html, body {
 .CodeMirror {
   border-radius: 0px !important;
   height: 100% !important;
-  border-bottom: none !important;
-  border-top: none !important;
+  border: none !important;
   padding: 0px !important;
 }

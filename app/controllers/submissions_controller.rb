@@ -14,10 +14,7 @@ class SubmissionsController < ApplicationController
   # GET /submissions/1
   # GET /submissions/1.json
   def show
-    @submission = Submission.new
-    @languages = Language.all
-
-    @submissions = Submission.where(exercice: @exercice, user: current_user)
+    @page = params[:page]
   end
 
   # POST /submissions
@@ -26,29 +23,34 @@ class SubmissionsController < ApplicationController
     @submission = Submission.new(submission_params)
     @submission.user = current_user
 
-    unless @submission.save
-      render json: @submission.errors, status: :unprocessable_entity
-      return
+    respond_to do |format|
+      if @submission.save
+        format.html { redirect_to submission_ide_path(@submission.exercice_id, 'results') }
+        format.json { render @submission}
+      else
+        format.html { redirect_back fallback_location: '/', alert: 'Something wrong' }
+        format.json { render json: @submission.errors, status: :unprocessable_entity }
+      end
     end
 
-    tests = @submission.exercice.tests_specification.tests
-    tests_result = run_tests_battery
-
-    (0...tests.length).each do |i|
-      SubmissionsTest.create(
-        submission_id: @submission.id,
-        test: tests[i],
-        pass: tests_result[i]["status"]["description"] == "Accepted",
-        time_running: tests_result[i]["time"],
-        output: tests_result[i]["stdout"],
-        code_errors: tests_result[i]["stderr"],
-        compile_output: tests_result[i]["compile_output"],
-        mem_peak: tests_result[i]["memory"],
-        description: tests_result[i]["status"]["description"]
-      )
-    end
-
-    render inline: "<%= render 'submissions/submission_results' %>"
+    # tests = @submission.exercice.tests_specification.tests
+    # tests_result = run_tests_battery
+    #
+    # (0...tests.length).each do |i|
+    #   SubmissionsTest.create(
+    #     submission_id: @submission.id,
+    #     test: tests[i],
+    #     pass: tests_result[i]["status"]["description"] == "Accepted",
+    #     time_running: tests_result[i]["time"],
+    #     output: tests_result[i]["stdout"],
+    #     code_errors: tests_result[i]["stderr"],
+    #     compile_output: tests_result[i]["compile_output"],
+    #     mem_peak: tests_result[i]["memory"],
+    #     description: tests_result[i]["status"]["description"]
+    #   )
+    # end
+    #
+    # render inline: "<%= render 'submissions/submission_results' %>"
   end
 
   private

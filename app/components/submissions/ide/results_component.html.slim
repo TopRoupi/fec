@@ -1,9 +1,9 @@
 -# frozen_string_literal: true
-div#tests-results.container style="margin-top:30px;"
+
+= component_controller id: "tests-results", class: 'container mt-4' do
   - if @submissions.blank?
     p.text-muted.text-center.mt-5
       | You dont have any submissions on this exercice yet.
   - else
     - @submissions.each do |submission|
-      - @submission = submission
-      = render 'submission_results'
+      = render(Submissions::Ide::Results::SubmissionComponent.new(submission: submission))

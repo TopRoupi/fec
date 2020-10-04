@@ -1,31 +1,4 @@
 -# frozen_string_literal: true
-div#submission-wrapper.wrapper data-controller="submissions codemirror"
-  span.d-none data-target="submissions.timelimit" = @exercice.tests_specification.limit_time 
-  span.d-none data-target="submissions.memlimit" = @exercice.tests_specification.limit_mem
-  span.d-none data-target="submissions.exerciceid" = @exercice.id
 
-  nav#sidebar
-    ul#side-tab.nav.nav-tabs role="tablist"
-      li.nav-item
-        span#editor-tab.nav-link.active.btn data-toggle="tab" href="#editor" role="tab" aria-controls="editor" aria-selected="true"
-          = octicon "code"
-      li.nav-item
-        span#tests-tab.nav-link.btn data-toggle="tab" href="#tests" role="tab" aria-controls="tests" aria-selected="false"
-          = octicon "beaker"
-      li.nav-item
-        span#exercice-tab.nav-link.btn data-toggle="tab" href="#exercice" role="tab" aria-controls="exercice" aria-selected="false"
-          = octicon "file"
-      li.nav-item#submit-button
-        span.nav-link.btn data-action="click->submissions#submit"
-          = octicon "rocket"
+= render(Submissions::IdeComponent.new(exercice: @exercice, user: current_user, page: @page))
 
-
-  div#content.tab-content
-    div#editor.tab-pane.fade.show.active role="tabpanel" aria-labelledby="editor-tab"
-      = render(Submissions::Ide::CodeEditorComponent.new(submission: @last_submission, languages: @languages))
-
-    div#tests.tab-pane.fade role="tabpanel" aria-labelledby="tests-tab"
-      = render "submissions_tests"
-
-    div#exercice.tab-pane.fade role="tabpanel" aria-labelledby="exercice-tab"
-      = render "exercice_show"

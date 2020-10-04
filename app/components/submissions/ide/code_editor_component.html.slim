@@ -1,16 +1,19 @@
 -# frozen_string_literal: true
 
-= component_controller style: 'height: 100%' do
-  form style="height: 100%"
+= component_controller style: 'height: 100%; overflow: hidden' do
+  = form_for Submission.new, html: { style: "height: 100%" } do |f|
+    = f.hidden_field :exercice_id, value: @exercice.id
     #top
-      textarea#codemirror-input name="code"
+      = f.text_area :code, id: "codemirror-input"
 
     #bottom
-      ul#ide-tab.nav.nav-tabs role="tablist"
+      ul#ide-tab.nav.nav-tabs.d-sm-flex.d-block
         - @tabs.each do |tab|
           li.nav-item
             span.nav-link.btn class="#{'active' if @selected_tab == tab}" data-toggle="tab" href="##{tab}"
               = tab.to_s.split('_').join(' ').capitalize
+        li.nav-item
+          = f.collection_select :language_id, Language.all, :id, :name, {}, {class: "nav-link btn w-100", style: "-moz-appearance: none"}
         li.nav-item.ml-auto
           = reflex_tag :run, :span, class: 'nav-link btn', id: 'run-button' do
             span#run-state class="#{@run_state}"
@@ -25,8 +28,4 @@
             = @output
         #compiler_output.tab-pane.fade class="#{'show active' if @selected_tab == :compiler_output}"
           textarea.full-textarea readonly=true
-        #language.tab-pane.fade class="#{'show active' if @selected_tab == :language}"
-          - (@languages).each do |language|
-            input name="language" type="radio" id="#{language.id}" value="#{language.cod}"
-              = language.name
-            br
+            = @compiler_output

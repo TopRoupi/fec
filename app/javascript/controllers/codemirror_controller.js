@@ -1,13 +1,12 @@
 import { Controller } from "stimulus"
+var CodeMirror = require('codemirror');
+
+require('codemirror/addon/mode/loadmode');
+require('codemirror/mode/meta');
+require('codemirror/mode/python/python');
 
 export default class extends Controller {
   connect() {
-    require('codemirror/addon/mode/loadmode');
-    require('codemirror/mode/meta');
-    require('codemirror/mode/python/python');
-    
-    var CodeMirror = require('codemirror');
-
     var code_input = document.getElementById("codemirror-input");
 
     var editor = CodeMirror.fromTextArea(code_input, {
@@ -47,19 +46,9 @@ export default class extends Controller {
       editor.setOption("theme", themes[current_theme]);
     }
 
-    // var savebutton = document.createElement('button');
-    // savebutton.innerHTML = 'Save'
-    // savebutton.type = 'button'
-    // savebutton.className = 'light_button'
-    // savebutton.onclick = () => {
-    //   editor.save();
-    // }
-
     code_input.parentNode.children[0].style.width = '100%';
 
     code_input.parentNode.children[0].appendChild(changebutton);
     code_input.parentNode.children[0].appendChild(themebutton);
-    // code_input.parentNode.children[0].appendChild(savebutton);
-
   }
 }
