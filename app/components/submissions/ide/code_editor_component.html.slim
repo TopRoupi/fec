@@ -3,7 +3,7 @@
   = form_for Submission.new, html: { style: "height: 100%" } do |f|
     = f.hidden_field :exercice_id, value: @exercice.id
     #top
-      = f.text_area :code, id: "codemirror-input"
+      = f.text_area :code, {id: "codemirror-input", value: @code}
 
     #bottom
       ul#ide-tab.nav.nav-tabs.d-sm-flex.d-block
@@ -12,7 +12,7 @@
             span.nav-link.btn class="#{'active' if @selected_tab == tab}" data-toggle="tab" href="##{tab}"
               = tab.to_s.split('_').join(' ').capitalize
         li.nav-item
-          = f.collection_select :language_id, Language.all, :id, :name, {}, {class: "nav-link btn w-100", style: "-moz-appearance: none"}
+          = f.collection_select :language_id, Language.all, :id, :name, {selected: @language}, {class: "nav-link btn w-100", style: "-moz-appearance: none"}
         li.nav-item.ml-auto
           = reflex_tag :run, :span, class: 'nav-link btn', id: 'run-button' do
             span#run-state class="#{@run_state}"

@@ -10,6 +10,7 @@ FactoryBot.define do
     code_errors { "" }
     compile_output { "" }
     description { "Accepted" }
+    process_state { :processed }
     code_warnings { "" }
     mem_peak { 6 }
     factory :wrong_submissions_test do

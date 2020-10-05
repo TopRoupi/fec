@@ -5,4 +5,4 @@
       | You dont have any submissions on this exercice yet.
   - else
     - @submissions.each do |submission|
-      = render(Submissions::Ide::Results::SubmissionComponent.new(submission: submission))
+      = render(Submissions::Ide::Results::SubmissionComponent.new(key, submission: submission))

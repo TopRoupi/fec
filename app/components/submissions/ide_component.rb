@@ -5,7 +5,7 @@ class Submissions::IdeComponent < ViewComponentReflex::Component
     @user = user
     @exercice = exercice
     @page = page ? page.to_sym : :editor
-    @last_submission = Submission.where(exercice: exercice, user: user)
+    @last_submission = Submission.where(exercice: exercice, user: user).last
     @submissions = Submission.where(exercice: exercice, user: user)
     @languages = Language.all
   end

@@ -3,7 +3,8 @@
 class Submissions::Ide::CodeEditorComponent < ViewComponentReflex::Component
   def initialize(submission:, exercice:)
     @exercice = exercice
-    @submission = submission
+    @code = submission.code if submission
+    @language = submission.language_id if submission
     @selected_tab = :input
     @tabs = %I[input output compiler_output]
     @run_state = "stopped"
@@ -13,7 +14,7 @@ class Submissions::Ide::CodeEditorComponent < ViewComponentReflex::Component
     sub = Judge0::Submission.new { |config|
       submission = params["submission"]
       config.source_code = submission["code"]
-      config.language_id = submission["language"]
+      config.language_id = Language.find(submission["language_id"]).cod
       config.stdin = submission["input"]
     }
 
