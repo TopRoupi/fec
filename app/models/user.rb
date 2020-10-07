@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true
 
   def have_correct_submission_in?(exercice)
-    submissions.where(exercice: exercice).select { |sub| sub.passed? }.any?
+    submissions.where(exercice: exercice).correct.any?
   end
 
   def have_on_do_later_list?(exercice)

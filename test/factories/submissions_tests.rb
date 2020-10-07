@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :submissions_test do
     association :submission
     association :test
-    pass { true }
+    result { :correct }
     time_running { 0.5 }
     output { "X = 5\n" }
     code_errors { "" }
@@ -14,7 +14,7 @@ FactoryBot.define do
     code_warnings { "" }
     mem_peak { 6 }
     factory :wrong_submissions_test do
-      pass { false }
+      result { :incorrect }
       output { "X = 6\n" }
       description { "Wrong Answer" }
     end

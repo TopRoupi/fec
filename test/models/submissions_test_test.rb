@@ -4,7 +4,9 @@ require "test_helper"
 
 class SubmissionsTestTest < ActiveSupport::TestCase
   setup do
-    @submissions_test = build(:submissions_test)
+    VCR.use_cassette("submissions") do
+      @submissions_test = build(:submissions_test)
+    end
   end
 
   # description validations

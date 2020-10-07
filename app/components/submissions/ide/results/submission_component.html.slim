@@ -1,5 +1,7 @@
 -# frozen_string_literal: true
-= component_controller class: "card #{@submission.passed? ? 'bg-success' : 'bg-danger'}" do
+= component_controller class: "#{helpers.css('card', 'bg-danger': @submission.incorrect?, 'bg-success': @submission.correct?, 'bg-secondary': @submission.result.nil?)}", id: dom_id(@submission) do
   div.card-header
     = "submission-#{@submission.id}"
     = reflex_tag :remove, :button, 'remove', class: "btn btn-danger btn-sm float-right"
+    span.float-right.mr-2
+      = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} processed tests"

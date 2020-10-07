@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_05_060841) do
+ActiveRecord::Schema.define(version: 2020_10_06_064939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_060841) do
     t.bigint "exercice_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "result"
     t.index ["exercice_id"], name: "index_submissions_on_exercice_id"
     t.index ["language_id"], name: "index_submissions_on_language_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
@@ -85,7 +86,6 @@ ActiveRecord::Schema.define(version: 2020_10_05_060841) do
   create_table "submissions_tests", force: :cascade do |t|
     t.bigint "submission_id", null: false
     t.bigint "test_id", null: false
-    t.boolean "pass"
     t.float "time_running"
     t.text "output"
     t.text "code_errors"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_060841) do
     t.string "compile_output"
     t.string "description"
     t.integer "process_state"
+    t.integer "result"
     t.index ["submission_id"], name: "index_submissions_tests_on_submission_id"
     t.index ["test_id"], name: "index_submissions_tests_on_test_id"
   end
