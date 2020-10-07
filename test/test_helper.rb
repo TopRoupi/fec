@@ -14,8 +14,6 @@ class ActiveSupport::TestCase
   parallelize(workers: :number_of_processors)
   include FactoryBot::Syntax::Methods
   include Devise::Test::IntegrationHelpers
-
-  Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 end
 
 class ActionController::TestCase

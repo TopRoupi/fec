@@ -4,9 +4,7 @@ require "test_helper"
 
 class SubmissionTest < ActiveSupport::TestCase
   setup do
-    VCR.use_cassette("submission") do
-      @submission = build(:submission)
-    end
+    @submission = build(:submission)
   end
 
   # code validations
@@ -45,20 +43,34 @@ class SubmissionTest < ActiveSupport::TestCase
 
   # methods tests
 
-  test "set_result method should set result to true if all tests_results are correct" do
-    VCR.use_cassette("submissions") do
-      @submission.set_result
+  test "#set_result should set result to true if all tests_results are correct" do
+    @submission.save!
+    @submission.process_tests!
+    @submission.set_result
 
-      assert @submission.correct?
-    end
+    assert @submission.correct?
   end
 
-  test "set_result method should set result to incorrect if it have any tests_results incorrect" do
-    VCR.use_cassette("submissions") do
-      @submission = create :wrong_submission
-      @submission.set_result
+  test "#set_result should set result to incorrect if it have any tests_results incorrect" do
+    @submission = create :wrong_submission
+    @submission.process_tests!
+    @submission.set_result
 
-      assert @submission.incorrect?
-    end
+    assert @submission.incorrect?
+  end
+
+  test "#set_result should set result to nil if it have any test_results unprocessed" do
+    @submission.save!
+    @submission.set_result
+
+    assert_nil @submission.result
+  end
+
+  test "#set_result should set result to nil if it have any test_results processing" do
+    @submission.save!
+    @submission.tests_results.last.update(process_state: :processing)
+    @submission.set_result
+
+    assert_nil @submission.result
   end
 end

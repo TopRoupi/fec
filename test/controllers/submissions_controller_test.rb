@@ -5,11 +5,9 @@ require "test_helper"
 class SubmissionsControllerTest < ActionDispatch::IntegrationTest
   context "an authenticated user" do
     setup do
-      VCR.use_cassette("submissions") do
-        sign_in create(:user)
-        @submission = create(:submission)
-        @exercice = create(:exercice)
-      end
+      sign_in create(:user)
+      @submission = create(:submission)
+      @exercice = create(:exercice)
     end
 
     should "get index" do
@@ -19,9 +17,7 @@ class SubmissionsControllerTest < ActionDispatch::IntegrationTest
 
     should "create submission" do
       assert_difference("Submission.count") do
-        VCR.use_cassette("submissions") do
-          post submissions_url, params: {submission: {code: @submission.code, exercice_id: @submission.exercice_id, language_id: @submission.language_id, user_id: @submission.user_id}}
-        end
+        post submissions_url, params: {submission: {code: @submission.code, exercice_id: @submission.exercice_id, language_id: @submission.language_id, user_id: @submission.user_id}}
       end
     end
 
@@ -33,10 +29,8 @@ class SubmissionsControllerTest < ActionDispatch::IntegrationTest
 
   context "a unauthenticated user" do
     setup do
-      VCR.use_cassette("submissions") do
-        @submission = create(:submission)
-        @exercice = create(:exercice)
-      end
+      @submission = create(:submission)
+      @exercice = create(:exercice)
     end
 
     should "not get index" do

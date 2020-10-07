@@ -69,68 +69,59 @@ class ExerciceTest < ActiveSupport::TestCase
   end
 
   test "#submissions_by_unique_users" do
-    VCR.use_cassette("submissions") do
-      user_a = create :user
-      user_b = create :user
+    user_a = create :user
+    user_b = create :user
 
-      create :submission, exercice: @exercice, user: user_a
-      create :submission, exercice: @exercice, user: user_a
+    create :submission, exercice: @exercice, user: user_a
+    create :submission, exercice: @exercice, user: user_a
 
-      create :submission, exercice: @exercice, user: user_b
+    create :submission, exercice: @exercice, user: user_b
 
-      assert @exercice.submissions_by_unique_users.length, 2
-      assert_includes @exercice.submissions_by_unique_users, user_a.submissions
-      assert_includes @exercice.submissions_by_unique_users, user_b.submissions
-    end
+    assert @exercice.submissions_by_unique_users.length, 2
+    assert_includes @exercice.submissions_by_unique_users, user_a.submissions
+    assert_includes @exercice.submissions_by_unique_users, user_b.submissions
   end
 
   test "#users_with_correct_submissions should return users with at least one correct submission" do
-    VCR.use_cassette("submissions") do
-      user_a = create :user
-      user_b = create :user
+    user_a = create :user
+    user_b = create :user
 
-      create :submission, user: user_a, exercice: @exercice
-      create :submission, user: user_a, exercice: @exercice
-      create :wrong_submission, user: user_a, exercice: @exercice
+    create(:submission, user: user_a, exercice: @exercice).process_tests!
+    create(:wrong_submission, user: user_a, exercice: @exercice).process_tests!
 
-      create :wrong_submission, user: user_b, exercice: @exercice
+    create(:wrong_submission, user: user_b, exercice: @exercice).process_tests!
 
-      assert_includes @exercice.users_with_correct_submissions, user_a
-      refute_includes @exercice.users_with_correct_submissions, user_b
-      assert_equal 1, @exercice.users_with_correct_submissions.length
-    end
+    assert_includes @exercice.users_with_correct_submissions, user_a
+    refute_includes @exercice.users_with_correct_submissions, user_b
+    assert_equal 1, @exercice.users_with_correct_submissions.length
   end
 
   test "#users_without_correct_submissions should return users without a correct submission" do
-    VCR.use_cassette("submissions") do
-      user_a = create :user
-      user_b = create :user
+    user_a = create :user
+    user_b = create :user
 
-      create :submission, user: user_a, exercice: @exercice
-      create :wrong_submission, user: user_a, exercice: @exercice
+    create(:submission, user: user_a, exercice: @exercice).process_tests!
+    create(:wrong_submission, user: user_a, exercice: @exercice).process_tests!
 
-      create :wrong_submission, user: user_b, exercice: @exercice
-      create :wrong_submission, user: user_b, exercice: @exercice
+    create(:wrong_submission, user: user_b, exercice: @exercice).process_tests!
+    create(:wrong_submission, user: user_b, exercice: @exercice).process_tests!
 
-      refute_includes @exercice.users_without_correct_submissions, user_a
-      assert_includes @exercice.users_without_correct_submissions, user_b
-      assert_equal 1, @exercice.users_without_correct_submissions.length
-    end
+    refute_includes @exercice.users_without_correct_submissions, user_a
+    assert_includes @exercice.users_without_correct_submissions, user_b
+    assert_equal 1, @exercice.users_without_correct_submissions.length
   end
 
   test "#correct_submissions_percentage should return the percentage of users that solved the exercice" do
-    VCR.use_cassette("submissions") do
-      user_a = create :user
-      user_b = create :user
+    user_a = create :user
+    user_b = create :user
 
-      create :submission, user: user_a, exercice: @exercice
-      create :wrong_submission, user: user_a, exercice: @exercice
+    create(:submission, user: user_a, exercice: @exercice).process_tests!
+    create(:wrong_submission, user: user_a, exercice: @exercice).process_tests!
 
-      create :wrong_submission, user: user_b, exercice: @exercice
-      create :wrong_submission, user: user_b, exercice: @exercice
+    create(:wrong_submission, user: user_b, exercice: @exercice).process_tests!
+    create(:wrong_submission, user: user_b, exercice: @exercice).process_tests!
 
-      assert @exercice.correct_submissions_percentage, 50.0
-    end
+    assert @exercice.correct_submissions_percentage, 50.0
   end
 
   test "#correct_submissions_percentage should be 0 without submissions" do
@@ -139,7 +130,7 @@ class ExerciceTest < ActiveSupport::TestCase
 
   test "#excerpt should return the first paragraph of the content" do
     @exercice.content = "some text\n"\
-                        "some other text"
+      "some other text"
 
     assert_equal @exercice.excerpt, "some text"
   end

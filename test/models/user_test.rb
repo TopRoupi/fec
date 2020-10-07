@@ -74,19 +74,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "#have_correct_submission_in? should be true with a correct submission" do
-    VCR.use_cassette("submissions") do
-      submission = create :submission, user: @user
+    submission = create :submission, user: @user
+    submission.process_tests!
+    submission.set_result
 
-      assert @user.have_correct_submission_in?(submission.exercice)
-    end
+    assert @user.have_correct_submission_in?(submission.exercice)
   end
 
   test "#have_correct_submission_in? should be false without a correct submission" do
-    VCR.use_cassette("submissions") do
-      submission = create :wrong_submission, user: @user
+    submission = create :wrong_submission, user: @user
 
-      refute @user.have_correct_submission_in?(submission.exercice)
-    end
+    refute @user.have_correct_submission_in?(submission.exercice)
   end
 
   test "#have_on_do_later_list? should be true if the exercice is on do later list" do
