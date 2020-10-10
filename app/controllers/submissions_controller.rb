@@ -27,7 +27,6 @@ class SubmissionsController < ApplicationController
       if @submission.save
         format.html { redirect_to submission_ide_path(@submission.exercice_id, "results") }
         format.json { render @submission }
-
         @submission.process_tests
       else
         format.html { redirect_back fallback_location: "/", alert: @submission.errors }

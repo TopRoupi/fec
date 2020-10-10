@@ -1,4 +1,5 @@
 class CreateSubmissionTestJob < ApplicationJob
+  include CableReady::Broadcaster
   queue_as :default
 
   def perform(token, testr)
@@ -16,5 +17,16 @@ class CreateSubmissionTestJob < ApplicationJob
     testr.save!
 
     testr.submission.set_result
+
+    morph_submission_card(testr.submission)
+  end
+
+  def morph_submission_card(submission)
+    cable_ready["application-stream"].morph(
+      selector: "#submission_#{submission.id}",
+      html: ApplicationController.render(Submissions::ResultCard::Component.new(submission: submission))
+    )
+
+    cable_ready.broadcast
   end
 end

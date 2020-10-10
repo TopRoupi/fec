@@ -15,7 +15,7 @@ class Submissions::Ide::CodeEditorComponent < ViewComponentReflex::Component
       submission = params["submission"]
       config.source_code = submission["code"]
       config.language_id = Language.find(submission["language_id"]).cod
-      config.stdin = submission["input"]
+      config.stdin = params["input"]
     }
 
     @run_state = "running"

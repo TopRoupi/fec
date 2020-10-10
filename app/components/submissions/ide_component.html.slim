@@ -21,7 +21,9 @@
       = render(Submissions::Ide::CodeEditorComponent.new(submission: @last_submission, exercice: @exercice))
 
     div#results.tab-pane.fade class="#{'show active' if @page == :results}"
-      = render(Submissions::Ide::ResultsComponent.new(submissions: @submissions))
+      .container.mt-4
+        = render(Submissions::Ide::TestsResults::Component.new(exercice: @exercice, user: @user))
 
     div#exercice.tab-pane.fade class="#{'show active' if @page == :exercice}"
-      = render(Submissions::Ide::ExerciceComponent.new(exercice: @exercice))
+      .container.mt-4
+        = render(Exercices::Content::Component.new(exercice: @exercice))

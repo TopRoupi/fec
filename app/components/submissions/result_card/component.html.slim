@@ -1,0 +1,16 @@
+-# frozen_string_literal: true
+
+.card id="#{dom_id @submission}"
+  div.card-header class="#{result_class}"
+    - unless @submission.result
+      .spinner-border.spinner-border-sm.mr-2
+    = @submission.result ? @submission.result.capitalize : 'Processing'
+    |  Submission 
+    span.text-muted
+      = time_ago_in_words(@submission.created_at)
+    button.btn.btn-danger.btn-sm.float-right [ data-submission="#{@submission.id}"
+      data-reflex="click->Submissions::ResultCard::ComponentReflex#remove" 
+      data-reflex-root="#tests-results" ]
+      = octicon 'trash', height: 16
+    span.float-right.mr-2
+      = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} tests processed"
