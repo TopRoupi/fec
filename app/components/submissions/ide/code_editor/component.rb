@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Submissions::Ide::CodeEditorComponent < ViewComponentReflex::Component
+class Submissions::Ide::CodeEditor::Component < ViewComponentReflex::Component
   def initialize(submission:, exercice:)
     @exercice = exercice
     @code = submission.code if submission

@@ -47,7 +47,10 @@
           strong Category: 
           = @exercice.category.name
         br
-        span.badge.rounded-pill.bg-dark Unsolved
+        - if current_user.have_correct_submission_in?(@exercice)
+          span.badge.rounded-pill.bg-success Solved
+        - else
+          span.badge.rounded-pill.bg-dark Unsolved
         span.badge.rounded-pill.ml-1 class="bg-#{helpers.difficult_color_class(@exercice)}"
           | level 
           = @exercice.level

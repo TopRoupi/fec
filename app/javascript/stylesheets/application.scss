@@ -12,3 +12,6 @@
 
 @import './switch';
 
+input[type=number] {
+  -moz-appearance: textfield;
+}

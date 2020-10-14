@@ -1,4 +1,5 @@
-import ApplicationController from './application_controller'
+import './component.scss'
+import ApplicationController from '../../../javascript/controllers/application_controller'
 import Split from 'split.js'
 
 export default class extends ApplicationController {

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Submissions::IdeComponent < ViewComponentReflex::Component
+class Submissions::Ide::Component < ApplicationComponent
   def initialize(exercice:, user:, page:)
     @user = user
     @exercice = exercice

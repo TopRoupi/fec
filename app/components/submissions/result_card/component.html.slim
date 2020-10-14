@@ -1,6 +1,6 @@
 -# frozen_string_literal: true
 
-.card id="#{dom_id @submission}"
+.card.mb-2 id="#{dom_id @submission}" data-controller="submissions--result-card--component"
   div.card-header class="#{result_class}"
     - unless @submission.result
       .spinner-border.spinner-border-sm.mr-2

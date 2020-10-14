@@ -1,5 +1,5 @@
 -# frozen_string_literal: true
-= component_controller id: 'submission-wrapper', class: 'wrapper', data: {controller: 'submissions codemirror'} do
+#submission-wrapper.wrapper data-controller="submissions--ide--component codemirror"
   nav#sidebar
     ul#side-tab.nav.nav-tabs role="tablist"
       li.nav-item
@@ -18,7 +18,7 @@
 
   div#content.tab-content
     div#editor.tab-pane.fade class="#{'show active' if @page == :editor}"
-      = render(Submissions::Ide::CodeEditorComponent.new(submission: @last_submission, exercice: @exercice))
+      = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercice: @exercice))
 
     div#results.tab-pane.fade class="#{'show active' if @page == :results}"
       .container.mt-4

@@ -8,9 +8,9 @@ class Submissions::ResultCard::Component < ApplicationComponent
   def result_class
     case @submission.result
     when "correct"
-      "bg-success"
+      "subm-correct"
     when "incorrect"
-      "bg-danger"
+      "subm-incorrect"
     else
       "bg-light"
     end
