@@ -1,0 +1,10 @@
+ul.nav.flex-column
+  - @tests_results.each do |testr|
+    li.nav-item.mb-2.border.p-2.rounded class="#{helpers.result_class(testr.result)}"
+      = "#{testr.result.capitalize} test"
+      - if testr.test.visible?
+        button.btn.btn-light.btn-sm.float-right.ml-2.p-0.pl-2.pr-2 data-toggle="tab" href="##{dom_id testr}"
+          = octicon 'chevron-down', height: 16
+      .float-right
+        = testr.description
+

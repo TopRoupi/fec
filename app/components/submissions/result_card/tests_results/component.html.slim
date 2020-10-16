@@ -1,50 +1,18 @@
-.text-center.mb-3
-  strong
-    = "#{@title} tests"
-- @tests_results.each do |testr|
-  .card.mb-2
-    .card-header class="#{helpers.result_class(testr.result)}"
-      = "#{testr.result.capitalize} test"
-      - if @visible
-        button.btn.btn-light.btn-sm.float-right.ml-2.p-0.pl-2.pr-2 data-toggle="collapse" data-target="##{dom_id testr}_collapse"
-          = octicon 'chevron-down', height: 16
-      .float-right
-        = testr.description
-    - if @visible
-      .card-body.collapse id="#{dom_id testr}_collapse"
-        p
-          strong Expected output
-          br
-          code
-            = testr.test.output
-        p
-          strong Output
-          br
-          code
-            = testr.output
-        p
-          strong Errors output
-          br
-          code
-            - if testr.code_errors
-              = testr.code_errors
-            - else
-              | None
-        p
-          strong Compiler output
-          br
-          code
-            - if testr.compile_output
-              = testr.compile_output
-            - else
-              | None
-        p
-          strong Time running
-          br
-          code
-            = "#{testr.time_running}s | limit: #{testr.test.tests_specification.limit_time}"
-        p
-          strong Memory peak
-          br
-          code
-            = "#{(testr.mem_peak/1024).round(2)}mb | limit: #{testr.test.tests_specification.limit_mem}mb"
+.row
+  .col-md-6.mb-2
+    .text-center.mb-3
+      strong Visible tests
+    = render(Submissions::ResultCard::TestsResults::TestList::Component.new(tests_results: @tests_results.visible))
+  .col-md-6.mb-2
+    .text-center.mb-3
+      strong Hidden tests
+    = render(Submissions::ResultCard::TestsResults::TestList::Component.new(tests_results: @tests_results.hidden))
+.tab-content.card.mb-3
+  .tab-pane.fade.show.active
+    .card-body.text-center.text-muted
+      | No test result selected.
+  - @tests_results.visible.each do |testr|
+    .tab-pane.fade id="#{dom_id testr}"
+      .card-body
+        = render(TestsResults::Content::Component.new(test_result: testr))
+

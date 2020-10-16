@@ -1,28 +1,28 @@
 -# frozen_string_literal: true
 #submission-wrapper.wrapper data-controller="submissions--ide--component codemirror"
   nav#sidebar
-    ul#side-tab.nav.nav-tabs role="tablist"
+    ul#side-tab.nav.nav-tabs
       li.nav-item
-        span#editor-tab.nav-link.btn class="#{'active' if @page == :editor}" data-toggle="tab" href="#editor"
+        button.nav-link.btn class="#{'active' if @page == :editor}" data-toggle="tab" href="#editor"
           = octicon "code"
       li.nav-item
-        span#tests-tab.nav-link.btn class="#{'active' if @page == :results}"  data-toggle="tab" href="#results"
+        button.nav-link.btn class="#{'active' if @page == :results}"  data-toggle="tab" href="#results"
           = octicon "beaker"
       li.nav-item
-        span#exercice-tab.nav-link.btn class="#{'active' if @page == :exercice}"  data-toggle="tab" href="#exercice"
+        button.nav-link.btn class="#{'active' if @page == :exercice}"  data-toggle="tab" href="#exercice"
           = octicon "file"
       li.nav-item#submit-button
-        span.nav-link.btn data-action="click->submissions--ide--component#submit"
+        button.nav-link.btn data-action="click->submissions--ide--component#submit"
           = octicon "rocket"
 
-  div#content.tab-content
-    div#editor.tab-pane.fade class="#{'show active' if @page == :editor}"
+  #content.tab-content
+    #editor.tab-pane.fade class="#{'show active' if @page == :editor}"
       = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercice: @exercice))
 
-    div#results.tab-pane.fade class="#{'show active' if @page == :results}"
+    #results.tab-pane.fade class="#{'show active' if @page == :results}"
       .container.mt-4
         = render(Submissions::Ide::TestsResults::Component.new(exercice: @exercice, user: @user))
 
-    div#exercice.tab-pane.fade class="#{'show active' if @page == :exercice}"
+    #exercice.tab-pane.fade class="#{'show active' if @page == :exercice}"
       .container.mt-4
         = render(Exercices::Content::Component.new(exercice: @exercice))

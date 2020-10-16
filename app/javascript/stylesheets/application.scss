@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import './custom_bootstrap';
 
+@import '~highlight.js/styles/github';
+
 // codemirror themes
 
 @import '~codemirror/lib/codemirror';

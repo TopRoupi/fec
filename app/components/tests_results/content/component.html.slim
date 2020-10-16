@@ -1,0 +1,48 @@
+.row
+  .col-md-6
+    .text-center.mb-2
+      strong Expected output
+    .card.bg-dark.mb-2
+      .card-body
+        code style="color: #fff"
+          = @testr.test.output
+  .col-md-6
+    .text-center.mb-2
+      strong Output
+    .card.bg-dark.mb-2
+      .card-body
+        code style="color: #fff"
+          = @testr.output
+
+.row
+  .col-sm-6
+    p
+      strong Errors output
+      br
+      code
+        - if @testr.code_errors
+          = @testr.code_errors
+        - else
+          | None
+  .col-sm-6
+    p
+      strong Compiler output
+      br
+      code
+        - if @testr.compile_output
+          = @testr.compile_output
+        - else
+          | None
+.row
+  .col-sm-6
+    p
+      strong Time running
+      br
+      code
+        = "#{@testr.time_running}s | limit: #{@testr.test.tests_specification.limit_time}s"
+  .col-sm-6
+    p
+      strong Memory peak
+      br
+      code
+        = "#{(@testr.mem_peak/1024).round(2)}mb | limit: #{@testr.test.tests_specification.limit_mem}mb"

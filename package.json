@@ -14,6 +14,7 @@
     "darkreader": "^4.9.1",
     "debounced": "^0.0.5",
     "easymde": "^2.8.0",
+    "highlight.js": "^10.2.1",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "split.js": "^1.5.11",

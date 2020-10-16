@@ -19,12 +19,9 @@
       = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} tests processed"
   - if @submission.result
     .card-body.collapse id="#{dom_id @submission}_collapse"
-      .row
-        .col-md-6.mb-2
-          = render(Submissions::ResultCard::TestsResults::Component.new(visible: true, tests_results: @submission.tests_results.visible))
-        .col-md-6.mb-2
-          = render(Submissions::ResultCard::TestsResults::Component.new(visible: false, tests_results: @submission.tests_results.hidden))
-      .text-center
+      = render(Submissions::ResultCard::TestsResults::Component.new(tests_results: @submission.tests_results))
+      .text-center.mb-2
         strong = "Code (#{@submission.language.name})"
-      code
-        = @submission.code
+      pre.mb-2.rounded
+        code class="#{@submission.language.name.downcase}"
+          = @submission.code
