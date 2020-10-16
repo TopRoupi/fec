@@ -8,4 +8,6 @@ class SubmissionsTest < ApplicationRecord
   validates :process_state, presence: true
   enum process_state: [:unprocessed, :processing, :processed]
   enum result: [:correct, :incorrect]
+  scope :visible, -> { joins(:test).where(tests: {visible: true}) }
+  scope :hidden, -> { joins(:test).where(tests: {visible: false}) }
 end

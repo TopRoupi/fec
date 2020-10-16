@@ -1,16 +1,30 @@
 -# frozen_string_literal: true
 
 .card.mb-2 id="#{dom_id @submission}" data-controller="submissions--result-card--component"
-  div.card-header class="#{result_class}"
+  .card-header class="#{helpers.result_class(@submission.result)}"
     - unless @submission.result
       .spinner-border.spinner-border-sm.mr-2
     = @submission.result ? @submission.result.capitalize : 'Processing'
     |  Submission 
     span.text-muted
       = time_ago_in_words(@submission.created_at)
+    - if @submission.result
+      button.btn.btn-light.btn-sm.float-right.ml-2 data-toggle="collapse" data-target="##{dom_id @submission}_collapse"
+        = octicon 'chevron-down', height: 16
     button.btn.btn-danger.btn-sm.float-right [ data-submission="#{@submission.id}"
       data-reflex="click->Submissions::ResultCard::ComponentReflex#remove" 
       data-reflex-root="#tests-results" ]
       = octicon 'trash', height: 16
     span.float-right.mr-2
       = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} tests processed"
+  - if @submission.result
+    .card-body.collapse id="#{dom_id @submission}_collapse"
+      .row
+        .col-md-6.mb-2
+          = render(Submissions::ResultCard::TestsResults::Component.new(visible: true, tests_results: @submission.tests_results.visible))
+        .col-md-6.mb-2
+          = render(Submissions::ResultCard::TestsResults::Component.new(visible: false, tests_results: @submission.tests_results.hidden))
+      .text-center
+        strong = "Code (#{@submission.language.name})"
+      code
+        = @submission.code

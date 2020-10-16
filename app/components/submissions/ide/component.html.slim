@@ -12,9 +12,8 @@
         span#exercice-tab.nav-link.btn class="#{'active' if @page == :exercice}"  data-toggle="tab" href="#exercice"
           = octicon "file"
       li.nav-item#submit-button
-        span.nav-link.btn data-action="click->submissions#submit"
+        span.nav-link.btn data-action="click->submissions--ide--component#submit"
           = octicon "rocket"
-
 
   div#content.tab-content
     div#editor.tab-pane.fade class="#{'show active' if @page == :editor}"

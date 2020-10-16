@@ -5,14 +5,5 @@ class Submissions::ResultCard::Component < ApplicationComponent
     @submission = submission
   end
 
-  def result_class
-    case @submission.result
-    when "correct"
-      "subm-correct"
-    when "incorrect"
-      "subm-incorrect"
-    else
-      "bg-light"
-    end
-  end
+
 end
