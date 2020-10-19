@@ -1,5 +1,4 @@
 -# frozen_string_literal: true
-
 .card id="#{dom_id @exercice}"
   .card-body.pt-0
     .float-right.mt-2.d-flex
@@ -47,7 +46,7 @@
           strong Category: 
           = @exercice.category.name
         br
-        - if current_user.have_correct_submission_in?(@exercice)
+        - if current_user and current_user.have_correct_submission_in?(@exercice)
           span.badge.rounded-pill.bg-success Solved
         - else
           span.badge.rounded-pill.bg-dark Unsolved

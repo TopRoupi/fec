@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateSubmissionTestJob < ApplicationJob
   include CableReady::Broadcaster
   queue_as :default
