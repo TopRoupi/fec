@@ -17,11 +17,11 @@
       = octicon 'trash', height: 16
     span.float-right.mr-2
       = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} tests processed"
-  - if @submission.result
-    .card-body.collapse id="#{dom_id @submission}_collapse"
+  .card-body.collapse id="#{dom_id @submission}_collapse"
+    - if @submission.result
       = render(Submissions::ResultCard::TestsResults::Component.new(tests_results: @submission.tests_results))
-      .text-center.mb-2
-        strong = "Code (#{@submission.language.name})"
-      pre.mb-2.rounded
-        code class="#{@submission.language.name.downcase}"
-          = @submission.code
+    .text-center.mb-2
+      strong = "Code (#{@submission.language.name})"
+    pre.mb-2.rounded
+      code class="#{@submission.language.name.downcase}" data-target="submissions--result-card--component.code"
+        = @submission.code

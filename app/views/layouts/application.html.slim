@@ -17,15 +17,6 @@ html lang="en"
 
   body
     = render "layouts/nav_bar"
-    div.container style="margin-top: 30px; margin-bottom: 1.5rem" data-controller="bootstrap"
-      - if notice
-        div.alert.alert-info.alert-dismissible.fade.show role="alert"
-          = notice
-          button.close aria-label="Close" data-dismiss="alert" type="button"
-            span aria-hidden="true"  ×
-      - if alert
-        div.alert.alert-danger.alert-dismissible.fade.show role="alert"
-          = alert
-          button.close aria-label="Close" data-dismiss="alert" type="button"
-            span aria-hidden="true"  ×
+    div class="#{'container mt-5 mb-4' unless content_for?(:borderless_page)}" data-controller="bootstrap"
+      = render "layouts/alert_boxes"
       = yield

@@ -1,36 +1,42 @@
 import { Controller } from "stimulus"
 
-var cookie = require("../packs/cookies");
+import Cookies from 'js-cookie'
+var DarkReader = require('darkreader')
 
 export default class extends Controller {
-  static targets = [ "darkswitch" ];
+  static targets = [ "darkswitch" ]
 
   switch(event){
-    var DarkReader = require('darkreader');
-
     if (event.currentTarget.checked == true){
-      cookie.setCookie("darkmode", 'true', 365);
+      Cookies.set('darkmode', 'true')
 
       DarkReader.setFetchMethod(window.fetch)
-
       DarkReader.enable({
         brightness: 100,
-        contrast: 95
+        contrast: 95,
+        sepia: 15
       });
     }
     else{
-      DarkReader.disable();
+      DarkReader.disable()
 
-      cookie.setCookie("darkmode", '', 365);
+      Cookies.set('darkmode', '')
     }
   }
 
   connect() {
-    var darkmode = cookie.getCookie("darkmode");
+    var darkmode = Cookies.get('darkmode')
 
-    if (darkmode != "")
-      this.darkswitchTarget.checked = true;
-    else
-      this.darkswitchTarget.checked = false;
+    if (darkmode == "")
+      this.darkswitchTarget.checked = false
+    else {
+      this.darkswitchTarget.checked = true
+      DarkReader.setFetchMethod(window.fetch)
+      DarkReader.enable({
+        brightness: 100,
+        contrast: 95,
+        sepia: 15
+      })
+    }
   }
 }

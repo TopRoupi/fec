@@ -22,7 +22,7 @@ class CreateSubmissionTestJob < ApplicationJob
   end
 
   def morph_submission_card(submission)
-    cable_ready["application-stream"].morph(
+    cable_ready["application-stream"].outer_html(
       selector: "#submission_#{submission.id}",
       html: ApplicationController.render(Submissions::ResultCard::Component.new(submission: submission))
     )

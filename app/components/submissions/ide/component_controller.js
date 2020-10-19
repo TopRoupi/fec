@@ -4,7 +4,6 @@ import Split from 'split.js'
 
 export default class extends ApplicationController {
   connect() {
-    document.querySelector("#submission-wrapper").parentNode.classList.remove("container")
     document.querySelector("#submission-wrapper").parentNode.setAttribute("style", "height: calc(100% - 59px);");
 
     Split(['#top', '#bottom'], {
@@ -15,7 +14,6 @@ export default class extends ApplicationController {
   }
 
   submit() {
-    console.log('aguinha')
     document.getElementById("new_submission").submit()
   }
 }
