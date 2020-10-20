@@ -1,0 +1,7 @@
+-# frozen_string_literal: true
+.toast.fade class="#{@class}" style="min-width: 250px" data-autohide="false"
+  .d-flex.align-items-center.justify-content-between
+    .toast-body
+      = @message
+    button.btn.btn-sm.mr-1 data-dismiss="toast"
+      = octicon "x"

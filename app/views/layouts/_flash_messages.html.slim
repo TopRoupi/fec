@@ -1,0 +1,6 @@
+-# frozen_string_literal: true
+div style="position: fixed; top: 64px; right: 10px; z-index: 999"
+  - if notice
+    = render(FlashMessage::Component.new(message: notice, css_class: 'bg-info text-white'))
+  - if alert
+    = render(FlashMessage::Component.new(message: alert, css_class: 'bg-danger text-white'))
