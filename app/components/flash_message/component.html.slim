@@ -1,7 +1,14 @@
 -# frozen_string_literal: true
-.toast.fade class="#{@class}" style="min-width: 250px" data-autohide="false"
+.toast.fade [
+    class="#{@class}"
+    style="min-width: 250px"
+    data-delay="10000"
+    data-controller="flash-message--component"
+    data-target="flash-message--component.toast"
+    id="toast_#{@message.hash.to_s}"
+  ]
   .d-flex.align-items-center.justify-content-between
     .toast-body
       = @message
-    button.btn.btn-sm.mr-1 data-dismiss="toast"
+    button.btn.btn-sm.mr-1 data-action="click->flash-message--component#destroy"
       = octicon "x"

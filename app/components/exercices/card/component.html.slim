@@ -6,13 +6,12 @@
         - if current_user
           #btn-do-later.d-inline
             - on_do_later_list = current_user.have_on_do_later_list?(@exercice)
-            = @agua
             button.btn.btn-sm.mr-2.rounded-pill [
               class="#{'text-success' if on_do_later_list}"
               id="do_later_button_#{@exercice.id}"
               data-method="#{on_do_later_list ? 'remove' : 'add'}"
               data-exercice="#{@exercice.id}"
-              data-reflex-root="##{dom_id @exercice} #btn-do-later, #notif-dropdown"
+              data-reflex-root="##{dom_id @exercice} #btn-do-later, #notif-dropdown, #flash_messages"
               data-reflex="click->Exercices::Card::ComponentReflex#do_later_list"
               ]
               = octicon 'clock'
