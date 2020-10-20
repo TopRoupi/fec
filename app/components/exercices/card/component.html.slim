@@ -1,5 +1,4 @@
 -# frozen_string_literal: true
-
 .card id="#{dom_id @exercice}"
   .card-body.pt-0
     .float-right.mt-2.d-flex
@@ -10,6 +9,7 @@
             = @agua
             button.btn.btn-sm.mr-2.rounded-pill [
               class="#{'text-success' if on_do_later_list}"
+              id="do_later_button_#{@exercice.id}"
               data-method="#{on_do_later_list ? 'remove' : 'add'}"
               data-exercice="#{@exercice.id}"
               data-reflex-root="##{dom_id @exercice} #btn-do-later, #notif-dropdown"
@@ -47,7 +47,7 @@
           strong Category: 
           = @exercice.category.name
         br
-        - if current_user.have_correct_submission_in?(@exercice)
+        - if current_user and current_user.have_correct_submission_in?(@exercice)
           span.badge.rounded-pill.bg-success Solved
         - else
           span.badge.rounded-pill.bg-dark Unsolved

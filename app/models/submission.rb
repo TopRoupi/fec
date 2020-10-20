@@ -26,7 +26,7 @@ class Submission < ApplicationRecord
   end
 
   def set_result
-    if tests_results.processing.any? or tests_results.unprocessed.any?
+    if tests_results.processing.any? || tests_results.unprocessed.any?
       update(result: nil)
     elsif tests_results.incorrect.any?
       update(result: :incorrect)

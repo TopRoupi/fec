@@ -18,5 +18,5 @@ html lang="en"
   body
     = render "layouts/nav_bar"
     div class="#{'container mt-5 mb-4' unless content_for?(:borderless_page)}" data-controller="bootstrap"
-      = render "layouts/alert_boxes"
+      = render "layouts/flash_messages"
       = yield
