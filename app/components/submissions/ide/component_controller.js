@@ -9,7 +9,7 @@ export default class extends ApplicationController {
     Split(['#top', '#bottom'], {
       sizes: [75, 25],
       direction: 'vertical',
-      minSize: [50,30],
+      minSize: [0,0],
     })
   }
 

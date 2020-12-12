@@ -7,4 +7,6 @@ class Test < ApplicationRecord
   validates :output, presence: true
   validates :input, presence: true
   validates_associated :tests_specification
+  scope :visible, -> { where(visible: true) }
+  scope :hidden, -> { where(visible: false) }
 end
