@@ -2,12 +2,13 @@
   "name": "fec",
   "private": true,
   "dependencies": {
+    "@hotwired/turbo-rails": "^7.0.0-beta.3",
     "@hopsoft/controllers": "^0.0.12",
     "@nathanvda/cocoon": "^1.2.14",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "^4.2.2",
+    "@rails/webpacker": "5.2.1",
     "bootstrap": "^5.0.0-alpha1",
     "cable_ready": "^4.4.0-pre1",
     "codemirror": "^5.50.2",
@@ -19,9 +20,8 @@
     "js-cookie": "^2.2.1",
     "popper.js": "^1.16.1",
     "split.js": "^1.5.11",
-    "stimulus": "^1.1.1",
-    "stimulus_reflex": "3.4.0",
-    "turbolinks": "^5.2.0"
+    "stimulus": "^2.0.0",
+    "stimulus_reflex": "3.4.0"
   },
   "version": "0.1.0",
   "devDependencies": {
