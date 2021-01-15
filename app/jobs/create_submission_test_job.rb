@@ -27,7 +27,7 @@ class CreateSubmissionTestJob < ApplicationJob
   def morph_submission_card(submission)
     cable_ready["application-stream"].outer_html(
       selector: "#submission_#{submission.id}",
-      html: ApplicationController.render(Submissions::ResultCard::Component.new(submission: submission))
+      html: ApplicationController.render(Submissions::ResultCard::Component.new(submission: submission), layout: false)
     )
 
     cable_ready.broadcast
