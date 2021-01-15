@@ -4,7 +4,8 @@ class CreateSubmissionTestJob < ApplicationJob
   include CableReady::Broadcaster
   queue_as :default
 
-  def perform(token, testr)
+  def perform(submission, testr)
+    token = submission.get_test_result_token(testr)
     response = Judge0.wait_response(token)
 
     testr.process_state = :processed

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   after_initialize :set_do_later_list, if: :new_record?
   has_many :notifications, as: :recipient
+  has_many :exercices, through: :submissions
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -23,6 +24,10 @@ class User < ApplicationRecord
 
   def have_on_do_later_list?(exercice)
     do_later_list.exercices.exists? exercice.id
+  end
+
+  def exercices_history
+    exercices.order('"submissions"."created_at" DESC').uniq
   end
 
   private

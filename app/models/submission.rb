@@ -11,15 +11,13 @@ class Submission < ApplicationRecord
 
   def process_tests
     tests_results.unprocessed.each do |testr|
-      token = get_test_result_token(testr)
-      CreateSubmissionTestJob.perform_later(token, testr)
+      CreateSubmissionTestJob.perform_later(self, testr)
     end
   end
 
   def process_tests!
     tests_results.unprocessed.each do |testr|
-      token = get_test_result_token(testr)
-      CreateSubmissionTestJob.perform_now(token, testr)
+      CreateSubmissionTestJob.perform_now(self, testr)
     end
 
     set_result
@@ -35,8 +33,6 @@ class Submission < ApplicationRecord
     end
   end
 
-  private
-
   def get_test_result_token(testr)
     params = {
       "source_code": code,
@@ -49,6 +45,8 @@ class Submission < ApplicationRecord
 
     Judge0.get_token(params)
   end
+
+  private
 
   def set_tests
     exercice.tests_specification.tests.each do |test|

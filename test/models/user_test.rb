@@ -100,4 +100,27 @@ class UserTest < ActiveSupport::TestCase
 
     refute @user.have_on_do_later_list? exercice
   end
+
+  test "#exercices_history should return every exercice that this user have a submission in" do
+    exercice1 = create :exercice
+    exercice2 = create :exercice
+
+    create :submission, exercice: exercice1, user: @user
+    create :submission, exercice: exercice2, user: @user
+
+    assert_includes @user.exercices_history, exercice1
+    assert_includes @user.exercices_history, exercice2
+  end
+
+  test "#exercices_history should order by submission creation" do
+    exercice1 = create :exercice
+    exercice2 = create :exercice
+
+    create :submission, exercice: exercice1, user: @user
+    create :submission, exercice: exercice2, user: @user
+    create :submission, exercice: exercice1, user: @user
+
+    assert_equal @user.exercices_history.first, exercice1
+    assert_equal @user.exercices_history.second, exercice2
+  end
 end

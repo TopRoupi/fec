@@ -7,6 +7,7 @@
     |  Submission 
     span.text-muted
       = time_ago_in_words(@submission.created_at)
+      |  ago
     - if @submission.result
       button.btn.btn-light.btn-sm.float-right.ml-2 data-toggle="collapse" data-target="##{dom_id @submission}_collapse"
         = octicon 'chevron-down', height: 16

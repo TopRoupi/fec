@@ -1,15 +1,12 @@
 -# frozen_string_literal: true
-h1 todo: make the whole page :)
-
-br
-
-= link_to 'New Submission', exercices_path
-
-br
-br
+h1 History
+- current_user.submissions.each do |submission|
+  = submission.exercice.name
 
 h1 Do later list
-
 - current_user.do_later_list.exercices.each do |exercice|
   = exercice.name
-  br
+br
+
+- if current_user.submissions.empty?
+  = link_to 'New Submission', exercices_path
