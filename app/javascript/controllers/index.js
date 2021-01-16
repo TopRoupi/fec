@@ -6,7 +6,6 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from './application_controller'
-import { PrefetchTurbolinksController } from '@hopsoft/controllers'
 import debounced from 'debounced'
 
 debounced.initialize()
@@ -19,4 +18,3 @@ application.load(
   )
 )
 StimulusReflex.initialize(application, { consumer, controller, debug: false })
-application.register('prefetch', PrefetchTurbolinksController)

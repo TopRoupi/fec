@@ -6,7 +6,6 @@ export default class extends ApplicationController {
 
   connect() {
     var toast = new Toast(this.toastTarget)
-    console.log('a')
     toast.show()
   }
 

@@ -6,8 +6,8 @@ class Exercices::Card::ComponentReflex < ApplicationReflex
     exercice = Exercice.find(element.dataset[:exercice])
 
     if method == "add"
-      current_user.do_later_list.exercices << exercice
       @flash = "#{exercice.name} was added to you do later list"
+      current_user.do_later_list.exercices << exercice
     elsif method == "remove"
       @flash = "#{exercice.name} was removed from your do later list"
       current_user.do_later_list.exercices.delete(exercice.id)

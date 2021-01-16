@@ -19,9 +19,6 @@
           = octicon 'plus'
         a.btn.btn-white.btn-sm.rounded-pill [
           href="#{submission_path(@exercice.id)}"
-          data-controller="prefetch"
-          data-prefetch-hover-time="200"
-          data-action="mouseenter->prefetch#prefetch mouseleave->prefetch#cleanup"
         ]
           = octicon 'terminal'
       button.btn.btn-sm data-toggle="collapse" data-target="#exercice#{@exercice.id}options"
@@ -33,7 +30,7 @@
     div style='display: flow-root'
       .float-right.ml-3
         small
-          strong % Solved: 
+          strong Solved: 
           span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
             = @exercice.correct_submissions_percentage.round(2)
             |  %

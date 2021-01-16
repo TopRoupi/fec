@@ -1,11 +1,19 @@
 -# frozen_string_literal: true
-h1 History
-- current_user.submissions.each do |submission|
-  = submission.exercice.name
+.float-right
+  a.bold.text-primary href="#" show more
+h5.mb-3 History
+- current_user.exercices_history.each do |exercice|
+  = render(Exercices::HorizontalCard::Component.new(exercice: exercice))
 
-h1 Do later list
-- current_user.do_later_list.exercices.each do |exercice|
-  = exercice.name
+div id="#{dom_id(current_user.do_later_list)}"
+  .float-right
+    a.bold.text-primary href="#" show more
+  h5.mb-3
+    | Do later list
+    small.text-muted.ml-3
+      = current_user.do_later_list.exercices.count
+  - current_user.do_later_list.exercices.limit(6).each do |exercice|
+    = render(Exercices::HorizontalCard::Component.new(exercice: exercice, list: current_user.do_later_list))
 br
 
 - if current_user.submissions.empty?

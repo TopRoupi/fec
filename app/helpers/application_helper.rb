@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include ExercicesHelper
   def markdown(content)
     return "" if content.blank?
 

@@ -123,4 +123,14 @@ class UserTest < ActiveSupport::TestCase
     assert_equal @user.exercices_history.first, exercice1
     assert_equal @user.exercices_history.second, exercice2
   end
+
+  test "#exercice_history should limit returned results by a param" do
+    exercice1 = create :exercice
+    exercice2 = create :exercice
+
+    create :submission, exercice: exercice1, user: @user
+    create :submission, exercice: exercice2, user: @user
+
+    assert_equal @user.exercices_history(1).length, 1
+  end
 end

@@ -26,8 +26,8 @@ class User < ApplicationRecord
     do_later_list.exercices.exists? exercice.id
   end
 
-  def exercices_history
-    exercices.order('"submissions"."created_at" DESC').uniq
+  def exercices_history(limit=6)
+    exercices.order('"submissions"."created_at" DESC').limit(limit).uniq
   end
 
   private

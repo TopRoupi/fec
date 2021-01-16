@@ -17,6 +17,6 @@ html lang="en"
 
   body
     = render "layouts/nav_bar"
-    div class="#{'container mt-5 mb-4' unless content_for?(:borderless_page)}" data-controller="bootstrap"
+    div class="#{'container mt-4 mb-4' unless content_for?(:borderless_page)}" data-controller="bootstrap"
       = render "layouts/flash_messages"
       = yield
