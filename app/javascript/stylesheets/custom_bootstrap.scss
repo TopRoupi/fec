@@ -142,3 +142,11 @@ input[type=number] {
   width: 0;
   height: auto;
 }
+
+// hr
+
+hr {
+  background-color: transparent !important;
+  opacity: 1 !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}

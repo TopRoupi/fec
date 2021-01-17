@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_many :submissions
   has_one :do_later_list, class_name: "List", foreign_key: :owner_id
+  has_many :lists, foreign_key: :owner_id
   enum role: [:user, :admin]
   after_initialize :set_default_role, if: :new_record?
   after_initialize :set_do_later_list, if: :new_record?

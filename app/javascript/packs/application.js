@@ -1,5 +1,5 @@
 import Rails from "@rails/ujs"
-import "@hotwired/turbo-rails"
+// import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 
 require("channels")
@@ -13,3 +13,4 @@ import 'channels'
 
 Rails.start()
 ActiveStorage.start()
+require("turbolinks").start()
