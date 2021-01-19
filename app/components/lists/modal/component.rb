@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ListsModal::Component < ApplicationComponent
+class Lists::Modal::Component < ApplicationComponent
   def initialize(exercice:, user:)
     @exercice = exercice
     @list = List.new

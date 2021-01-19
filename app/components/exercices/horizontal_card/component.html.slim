@@ -23,20 +23,9 @@ a.card.btn.p-0.text-left.mb-3 href="#" id="#{card_dom_id}"
         | level 
         = @exercice.level
       - if current_user
-        /#btn-do-later.d-inline
-          - on_do_later_list = current_user.have_on_do_later_list?(@exercice)
-          button.btn.btn-sm.mr-2.p-0.ml-2 [
-            class="#{'text-success' if on_do_later_list}"
-            id="do_later_button_#{@exercice.id}"
-            data-method="#{on_do_later_list ? 'remove' : 'add'}"
-            data-exercice="#{@exercice.id}"
-            data-reflex-root="##{card_dom_id} #btn-do-later, #notif-dropdown, #flash_messages, ##{dom_id current_user.do_later_list}"
-            data-reflex="click->Exercices::Card::ComponentReflex#do_later_list"
-            ]
-            = octicon 'clock', class: 'align-text-top'
         button.btn.btn-sm.p-0.ml-2.mr-2 [
               data-exercice="#{@exercice.id}"
               data-reflex-root="#lists_modal"
-              data-reflex="click->ListsModal::ComponentReflex#show_modal"
+              data-reflex="click->Lists::Modal::ComponentReflex#show_modal"
             ]
             = octicon 'plus', class: 'align-text-top'

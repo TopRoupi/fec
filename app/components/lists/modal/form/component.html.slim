@@ -1,0 +1,13 @@
+= simple_form_for @list do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  = f.input :name
+  = f.input :description
+  = f.input :privacy, collection: List.privacies.keys, selected: "private_list"
+  = f.input :owner_id, as: :hidden
+  div.btn.btn-primary.rounded-pill.float-right [
+    data-reflex="click->Lists::Modal::ComponentReflex#create_list"
+    data-exercice="#{@exercice.id}"
+    ]
+    | Create List

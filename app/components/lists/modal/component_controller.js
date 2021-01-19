@@ -1,4 +1,4 @@
-import ApplicationController from '../../javascript/controllers/application_controller'
+import ApplicationController from '../../../javascript/controllers/application_controller'
 import { Modal } from 'bootstrap'
 
 export default class extends ApplicationController {

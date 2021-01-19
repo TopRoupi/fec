@@ -1,0 +1,35 @@
+.modal [
+  tabindex="-1"
+  data-controller="lists--modal--component"
+  data-lists--modal--component-target="modal"
+  ]
+  .modal-dialog.modal-dialog-centered.modal-sm
+    .modal-content
+      .modal-header
+        h5.modal-title Add to list
+        button.btn.btn-sm.mr-1 data-action="click->lists--modal--component#destroy"
+          = octicon "x"
+      .modal-body
+        #lists_modal_checkboxes
+          - current_user.lists.each_with_index do |list, index|
+            - list.reload
+            - checked = list.exercices.any? { |exercice| exercice == @exercice }
+            - method = checked ? "remove_from_list" : "add_to_list"
+            .form-check.mb-2 [
+              data-reflex-root="#lists_modal_checkboxes, #lists"
+              data-reflex="click->Lists::Modal::ComponentReflex##{method}"
+              data-exercice="#{@exercice.id}"
+              data-list="#{list.id}"
+              ]
+              = check_box_tag "checkbox_#{index}", checked, checked, class: "form-check-input"
+              label.form-check-label for="checkbox_#{index}"
+                = list.name
+      .modal-footer.justify-content-center
+        button.btn [
+          data-lists--modal--component-target="create_list_button"
+          data-action="click->lists--modal--component#show_list_form"
+        ]
+          = octicon "plus", class: "mr-2"
+          | Create a new list
+        #list_form.d-none data-lists--modal--component-target="list_form"
+          = render(Lists::Modal::Form::Component.new(list: @list, exercice: @exercice))
