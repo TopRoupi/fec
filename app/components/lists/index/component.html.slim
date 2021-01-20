@@ -1,0 +1,15 @@
+-# frozen_string_literal: true
+div id="#{@history || dom_id(@list)}"
+  .float-right
+    a.bold.text-primary href="#" show more
+  h5.mb-3
+    = @history ? "History" : @list.name
+    - unless @history
+      small.text-muted.ml-3
+        = @list.exercices.count
+  - if @history
+    - @list.each do |exercice|
+      = render(Exercices::HorizontalCard::Component.new(exercice: exercice))
+  - else
+    - @list.exercices.limit(@limit).each do |exercice|
+      = render(Exercices::HorizontalCard::Component.new(exercice: exercice))

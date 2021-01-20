@@ -1,0 +1,14 @@
+-# frozen_string_literal: true
+.card
+  .bd-placeholder-img.card-img-top.text-center.d-flex.align-items-center.justify-content-center [
+    style="width: 100%; height: 90px; background-color: #{count_color(solved_count, exercices_count)}"
+    ]
+    div.text-white
+      span style="font-size: 2rem;" title="Total of exercices in the list"
+        = exercices_count
+      br
+      span style="font-size: 1.325rem;" title="Solved exercices / Exercices total"
+        = "#{solved_count} / #{exercices_count}"
+  .card-body.p-2
+    h5.card-title.mb-0
+      = @list.name

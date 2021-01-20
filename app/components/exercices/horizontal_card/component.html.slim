@@ -1,8 +1,8 @@
+-# frozen_string_literal: true
 - resolved_percentage = @exercice.correct_submissions_percentage.round(2)
 - resolved = @exercice.users_with_correct_submissions.count
-- card_dom_id = dom_id(@exercice, (@list.nil? ? "history" : dom_id(@list)))
 
-a.card.btn.p-0.text-left.mb-3 href="#" id="#{card_dom_id}"
+a.card.btn.p-0.text-left.mb-3 href="#"
   .card-body.p-2
     .d-md-inline.d-sm-block.text-center.text-md-left
       = @exercice.name

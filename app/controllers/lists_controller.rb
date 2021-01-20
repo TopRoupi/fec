@@ -26,14 +26,11 @@ class ListsController < ApplicationController
   # POST /lists
   # POST /lists.json
   def create
-    puts 'aaaaaaaaaaa'
-    puts list_params
     @list = List.new(list_params)
 
     respond_to do |format|
       if @list.save
-        format.html { redirect_back fallback_location: "/", notice: "List was successfully create." }
-        # format.html { redirect_to @list, notice: "List was successfully created." }
+        format.html { redirect_to @list, notice: "List was successfully created." }
         format.json { render :show, status: :created, location: @list }
       else
         format.html { render :new }

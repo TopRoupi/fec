@@ -3,8 +3,11 @@
 class Lists::Modal::Component < ApplicationComponent
   def initialize(exercice:, user:)
     @exercice = exercice
+
     @list = List.new
     @list.owner_id = user.id
     @list.privacy = nil
+
+    @lists = user.all_lists
   end
 end

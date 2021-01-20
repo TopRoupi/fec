@@ -1,36 +1,11 @@
 -# frozen_string_literal: true
 - current_user.reload
 
-.float-right
-  a.bold.text-primary href="#" show more
-h5.mb-3 History
-- current_user.exercices_history.each do |exercice|
-  = render(Exercices::HorizontalCard::Component.new(exercice: exercice))
-
+= render(Lists::Index::Component.new(user: current_user, list: "history"))
 hr
 
-/div id="#{dom_id(current_user.do_later_list)}"
-/  .float-right
-/    a.bold.text-primary href="#" show more
-/  h5.mb-3
-/    | Do later list
-/    small.text-muted.ml-3
-/      = current_user.do_later_list.exercices.count
-/  - current_user.do_later_list.exercices.limit(6).each do |exercice|
-/    = render(Exercices::HorizontalCard::Component.new(exercice: exercice, list: current_user.do_later_list))
-/
-/hr
-
 #lists
-  - current_user.lists.each do |list|
-    div id="#{dom_id(list)}"
-      .float-right
-        a.bold.text-primary href="#" show more
-      h5.mb-3
-        = list.name
-        small.text-muted.ml-3
-          = list.exercices.count
-      - list.exercices.limit(6).each do |exercice|
-        = render(Exercices::HorizontalCard::Component.new(exercice: exercice, list: list))
+  = render(Lists::Index::Component.new(user: current_user, list: current_user.do_later_list))
+  hr
 
-    hr
+  = render(Lists::Grid::Component.new(user: current_user))

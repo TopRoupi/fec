@@ -7,6 +7,7 @@ class List < ApplicationRecord
 
   validates :name, length: {maximum: 60}, presence: true
   validates :privacy, presence: true
+  validates :description, length: {maximum: 255}
 
   enum privacy: [:private_list, :notlisted_list, :public_list]
 

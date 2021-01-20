@@ -3,7 +3,8 @@
 class User < ApplicationRecord
   has_many :submissions
   has_one :do_later_list, class_name: "List", foreign_key: :owner_id
-  has_many :lists, foreign_key: :owner_id
+  has_many :lists, ->(user) { where("id != ?", user.do_later_list.id) }, foreign_key: :owner_id
+  has_many :all_lists, class_name: "List", foreign_key: :owner_id
   enum role: [:user, :admin]
   after_initialize :set_default_role, if: :new_record?
   after_initialize :set_do_later_list, if: :new_record?
@@ -27,8 +28,13 @@ class User < ApplicationRecord
     do_later_list.exercices.exists? exercice.id
   end
 
-  def exercices_history(limit=6)
+  def exercices_history(limit = 6)
     exercices.order('"submissions"."created_at" DESC').limit(limit).uniq
+  end
+
+  def solved_exercices
+    correct_id = Submission.results["correct"]
+    exercices.where('"submissions"."result" = ?', correct_id).uniq
   end
 
   private

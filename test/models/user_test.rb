@@ -133,4 +133,38 @@ class UserTest < ActiveSupport::TestCase
 
     assert_equal @user.exercices_history(1).length, 1
   end
+
+  test "#lists should not list the user's do later list" do
+    list = create :list
+    @user.lists << list
+    @user.save
+    @user.reload
+
+    refute_includes @user.lists, @user.do_later_list
+  end
+
+  test "#all_lists should return all user's lists plus do_later_list" do
+    list = create :list
+    @user.lists << list
+    @user.save
+    @user.reload
+
+    assert_includes @user.all_lists, @user.do_later_list
+  end
+
+  test "#solved_exercices should return solved exercices" do
+    correct_exercice = create :exercice
+
+    create :submission, user: @user, exercice: correct_exercice, result: :correct
+
+    assert_includes @user.solved_exercices, correct_exercice
+  end
+
+  test "#solved_exercices should not return unsolved exercices" do
+    wrong_exercice = create :exercice
+
+    create :wrong_submission, user: @user, exercice: wrong_exercice, result: :incorrect
+
+    refute_includes @user.solved_exercices, wrong_exercice
+  end
 end

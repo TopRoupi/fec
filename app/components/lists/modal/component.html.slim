@@ -1,3 +1,4 @@
+-# frozen_string_literal: true
 .modal [
   tabindex="-1"
   data-controller="lists--modal--component"
@@ -11,7 +12,7 @@
           = octicon "x"
       .modal-body
         #lists_modal_checkboxes
-          - current_user.lists.each_with_index do |list, index|
+          - @lists.each_with_index do |list, index|
             - list.reload
             - checked = list.exercices.any? { |exercice| exercice == @exercice }
             - method = checked ? "remove_from_list" : "add_to_list"
