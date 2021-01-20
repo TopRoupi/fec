@@ -3,7 +3,7 @@
 class Submission < ApplicationRecord
   belongs_to :user
   belongs_to :language
-  belongs_to :exercice
+  belongs_to :exercise
   has_many :tests_results, class_name: :SubmissionsTest, foreign_key: :submission_id, dependent: :destroy
   validates :code, presence: true
   enum result: [:correct, :incorrect]
@@ -49,7 +49,7 @@ class Submission < ApplicationRecord
   private
 
   def set_tests
-    exercice.tests_specification.tests.each do |test|
+    exercise.tests_specification.tests.each do |test|
       tests_results << SubmissionsTest.new(submission: self, test: test, process_state: :unprocessed)
     end
   end

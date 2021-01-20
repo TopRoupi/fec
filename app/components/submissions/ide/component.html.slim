@@ -11,7 +11,7 @@
         button.nav-link.btn class="#{'active' if @page == :results}"  data-toggle="tab" href="#results"
           = octicon "beaker"
       li.nav-item
-        button.nav-link.btn class="#{'active' if @page == :exercice}"  data-toggle="tab" href="#exercice"
+        button.nav-link.btn class="#{'active' if @page == :exercise}"  data-toggle="tab" href="#exercise"
           = octicon "file"
       li.nav-item#submit-button
         button.nav-link.btn data-action="click->submissions--ide--component#submit"
@@ -19,12 +19,12 @@
 
   #content.tab-content
     #editor.tab-pane.fade class="#{'show active' if @page == :editor}"
-      = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercice: @exercice))
+      = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercise: @exercise))
 
     #results.tab-pane.fade class="#{'show active' if @page == :results}"
       .container.mt-4
-        = render(Submissions::Ide::TestsResults::Component.new(exercice: @exercice, user: @user))
+        = render(Submissions::Ide::TestsResults::Component.new(exercise: @exercise, user: @user))
 
-    #exercice.tab-pane.fade class="#{'show active' if @page == :exercice}"
+    #exercise.tab-pane.fade class="#{'show active' if @page == :exercise}"
       .container.mt-4
-        = render(Exercices::Content::Component.new(exercice: @exercice))
+        = render(Exercises::Content::Component.new(exercise: @exercise))

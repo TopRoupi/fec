@@ -6,10 +6,10 @@ div id="#{@history || dom_id(@list)}"
     = @history ? "History" : @list.name
     - unless @history
       small.text-muted.ml-3
-        = @list.exercices.count
+        = @list.exercises.count
   - if @history
-    - @list.each do |exercice|
-      = render(Exercices::HorizontalCard::Component.new(exercice: exercice))
+    - @list.each do |exercise|
+      = render(Exercises::HorizontalCard::Component.new(exercise: exercise))
   - else
-    - @list.exercices.limit(@limit).each do |exercice|
-      = render(Exercices::HorizontalCard::Component.new(exercice: exercice))
+    - @list.exercises.limit(@limit).each do |exercise|
+      = render(Exercises::HorizontalCard::Component.new(exercise: exercise))

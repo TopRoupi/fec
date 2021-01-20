@@ -64,16 +64,16 @@ content = ""\
 "| 10<br>9 | X = 19 |\n"\
 "| -10<br>4 | X = -6 |\n"
 
-exercice = Exercice.create(
+exercise = Exercise.create(
   category: Category.first,
   level: 1,
   name: "Soma Simples",
   content: content
 )
 
-exercice.tests_specification.update(
+exercise.tests_specification.update(
   language: Language.find_by(name: "Python"),
-  exercice: exercice,
+  exercise: exercise,
   limit_time: 1,
   limit_mem: 10,
   code: "a = int(input)\n"\
@@ -83,10 +83,10 @@ exercice.tests_specification.update(
 
 tests.each do |test|
   t = Test.create test
-  exercice.tests_specification.tests << t
+  exercise.tests_specification.tests << t
 end
 
-exercice.tests_specification.save!
+exercise.tests_specification.save!
 
 # will delete later i swear
 

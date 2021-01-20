@@ -17,7 +17,7 @@ class TestsSpecificationsTest < ApplicationSystemTestCase
     click_on "New Tests Specification"
 
     fill_in "Code", with: @tests_specification.code
-    fill_in "Exercice", with: @tests_specification.exercice_id
+    fill_in "Exercise", with: @tests_specification.exercise_id
     fill_in "Limit mem", with: @tests_specification.limit_mem
     fill_in "Limit time", with: @tests_specification.limit_time
     click_on "Create Tests specification"
@@ -31,7 +31,7 @@ class TestsSpecificationsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Code", with: @tests_specification.code
-    fill_in "Exercice", with: @tests_specification.exercice_id
+    fill_in "Exercise", with: @tests_specification.exercise_id
     fill_in "Limit mem", with: @tests_specification.limit_mem
     fill_in "Limit time", with: @tests_specification.limit_time
     click_on "Update Tests specification"

@@ -78,60 +78,60 @@ class UserTest < ActiveSupport::TestCase
     submission.process_tests!
     submission.set_result
 
-    assert @user.have_correct_submission_in?(submission.exercice)
+    assert @user.have_correct_submission_in?(submission.exercise)
   end
 
   test "#have_correct_submission_in? should be false without a correct submission" do
     submission = create :wrong_submission, user: @user
 
-    refute @user.have_correct_submission_in?(submission.exercice)
+    refute @user.have_correct_submission_in?(submission.exercise)
   end
 
-  test "#have_on_do_later_list? should be true if the exercice is on do later list" do
-    exercice = create :exercice
-    @user.do_later_list.exercices << exercice
+  test "#have_on_do_later_list? should be true if the exercise is on do later list" do
+    exercise = create :exercise
+    @user.do_later_list.exercises << exercise
     @user.save!
 
-    assert @user.have_on_do_later_list?(exercice)
+    assert @user.have_on_do_later_list?(exercise)
   end
 
-  test "#have_on_do_later_list? should be false if the exercice is not on do later list" do
-    exercice = create :exercice
+  test "#have_on_do_later_list? should be false if the exercise is not on do later list" do
+    exercise = create :exercise
 
-    refute @user.have_on_do_later_list? exercice
+    refute @user.have_on_do_later_list? exercise
   end
 
-  test "#exercices_history should return every exercice that this user have a submission in" do
-    exercice1 = create :exercice
-    exercice2 = create :exercice
+  test "#exercises_history should return every exercise that this user have a submission in" do
+    exercise1 = create :exercise
+    exercise2 = create :exercise
 
-    create :submission, exercice: exercice1, user: @user
-    create :submission, exercice: exercice2, user: @user
+    create :submission, exercise: exercise1, user: @user
+    create :submission, exercise: exercise2, user: @user
 
-    assert_includes @user.exercices_history, exercice1
-    assert_includes @user.exercices_history, exercice2
+    assert_includes @user.exercises_history, exercise1
+    assert_includes @user.exercises_history, exercise2
   end
 
-  test "#exercices_history should order by submission creation" do
-    exercice1 = create :exercice
-    exercice2 = create :exercice
+  test "#exercises_history should order by submission creation" do
+    exercise1 = create :exercise
+    exercise2 = create :exercise
 
-    create :submission, exercice: exercice1, user: @user
-    create :submission, exercice: exercice2, user: @user
-    create :submission, exercice: exercice1, user: @user
+    create :submission, exercise: exercise1, user: @user
+    create :submission, exercise: exercise2, user: @user
+    create :submission, exercise: exercise1, user: @user
 
-    assert_equal @user.exercices_history.first, exercice1
-    assert_equal @user.exercices_history.second, exercice2
+    assert_equal @user.exercises_history.first, exercise1
+    assert_equal @user.exercises_history.second, exercise2
   end
 
-  test "#exercice_history should limit returned results by a param" do
-    exercice1 = create :exercice
-    exercice2 = create :exercice
+  test "#exercise_history should limit returned results by a param" do
+    exercise1 = create :exercise
+    exercise2 = create :exercise
 
-    create :submission, exercice: exercice1, user: @user
-    create :submission, exercice: exercice2, user: @user
+    create :submission, exercise: exercise1, user: @user
+    create :submission, exercise: exercise2, user: @user
 
-    assert_equal @user.exercices_history(1).length, 1
+    assert_equal @user.exercises_history(1).length, 1
   end
 
   test "#lists should not list the user's do later list" do
@@ -152,19 +152,19 @@ class UserTest < ActiveSupport::TestCase
     assert_includes @user.all_lists, @user.do_later_list
   end
 
-  test "#solved_exercices should return solved exercices" do
-    correct_exercice = create :exercice
+  test "#solved_exercises should return solved exercises" do
+    correct_exercise = create :exercise
 
-    create :submission, user: @user, exercice: correct_exercice, result: :correct
+    create :submission, user: @user, exercise: correct_exercise, result: :correct
 
-    assert_includes @user.solved_exercices, correct_exercice
+    assert_includes @user.solved_exercises, correct_exercise
   end
 
-  test "#solved_exercices should not return unsolved exercices" do
-    wrong_exercice = create :exercice
+  test "#solved_exercises should not return unsolved exercises" do
+    wrong_exercise = create :exercise
 
-    create :wrong_submission, user: @user, exercice: wrong_exercice, result: :incorrect
+    create :wrong_submission, user: @user, exercise: wrong_exercise, result: :incorrect
 
-    refute_includes @user.solved_exercices, wrong_exercice
+    refute_includes @user.solved_exercises, wrong_exercise
   end
 end

@@ -17,7 +17,7 @@ class SubmissionsTest < ApplicationSystemTestCase
     click_on "New Submission"
 
     fill_in "Code", with: @submission.code
-    fill_in "Exercice", with: @submission.exercice_id
+    fill_in "Exercise", with: @submission.exercise_id
     fill_in "Language", with: @submission.language_id
     fill_in "User", with: @submission.user_id
     click_on "Create Submission"
@@ -31,7 +31,7 @@ class SubmissionsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Code", with: @submission.code
-    fill_in "Exercice", with: @submission.exercice_id
+    fill_in "Exercise", with: @submission.exercise_id
     fill_in "Language", with: @submission.language_id
     fill_in "User", with: @submission.user_id
     click_on "Update Submission"

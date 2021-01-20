@@ -6,7 +6,7 @@ class CreateTestsSpecifications < ActiveRecord::Migration[6.0]
       t.text :code
       t.float :limit_time
       t.float :limit_mem
-      t.references :exercice, null: false, foreign_key: true
+      t.references :exercise, null: false, foreign_key: true
       t.references :language, null: false, foreign_key: true
 
       t.timestamps

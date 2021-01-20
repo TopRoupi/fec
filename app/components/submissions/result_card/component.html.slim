@@ -16,7 +16,7 @@
       data-reflex-root="#tests-results" ]
       = octicon 'trash', height: 16
     span.float-right.mr-2
-      = "#{@submission.tests_results.processed.count} of #{@submission.exercice.tests_specification.tests.count} tests processed"
+      = "#{@submission.tests_results.processed.count} of #{@submission.exercise.tests_specification.tests.count} tests processed"
   .card-body.collapse id="#{dom_id @submission}_collapse"
     - if @submission.result
       = render(Submissions::ResultCard::TestsResults::Component.new(tests_results: @submission.tests_results))

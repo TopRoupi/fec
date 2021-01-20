@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -51,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "exercices", force: :cascade do |t|
+  create_table "exercises", force: :cascade do |t|
     t.bigint "category_id", null: false
     t.string "name"
     t.integer "level"
@@ -59,7 +57,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "complete"
-    t.index ["category_id"], name: "index_exercices_on_category_id"
+    t.index ["category_id"], name: "index_exercises_on_category_id"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -70,13 +68,13 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
     t.string "version"
   end
 
-  create_table "list_exercices", force: :cascade do |t|
-    t.bigint "exercice_id", null: false
+  create_table "list_exercises", force: :cascade do |t|
+    t.bigint "exercise_id", null: false
     t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exercice_id"], name: "index_list_exercices_on_exercice_id"
-    t.index ["list_id"], name: "index_list_exercices_on_list_id"
+    t.index ["exercise_id"], name: "index_list_exercises_on_exercise_id"
+    t.index ["list_id"], name: "index_list_exercises_on_list_id"
   end
 
   create_table "lists", force: :cascade do |t|
@@ -104,11 +102,11 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
     t.text "code"
     t.bigint "user_id", null: false
     t.bigint "language_id", null: false
-    t.bigint "exercice_id", null: false
+    t.bigint "exercise_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "result"
-    t.index ["exercice_id"], name: "index_submissions_on_exercice_id"
+    t.index ["exercise_id"], name: "index_submissions_on_exercise_id"
     t.index ["language_id"], name: "index_submissions_on_language_id"
     t.index ["user_id"], name: "index_submissions_on_user_id"
   end
@@ -145,11 +143,11 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
     t.text "code"
     t.float "limit_time"
     t.float "limit_mem"
-    t.bigint "exercice_id", null: false
+    t.bigint "exercise_id", null: false
     t.bigint "language_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["exercice_id"], name: "index_tests_specifications_on_exercice_id"
+    t.index ["exercise_id"], name: "index_tests_specifications_on_exercise_id"
     t.index ["language_id"], name: "index_tests_specifications_on_language_id"
   end
 
@@ -169,15 +167,15 @@ ActiveRecord::Schema.define(version: 2021_01_15_191817) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "exercices", "categories"
-  add_foreign_key "list_exercices", "exercices"
-  add_foreign_key "list_exercices", "lists"
+  add_foreign_key "exercises", "categories"
+  add_foreign_key "list_exercises", "exercises"
+  add_foreign_key "list_exercises", "lists"
   add_foreign_key "lists", "users", column: "owner_id"
-  add_foreign_key "submissions", "exercices"
+  add_foreign_key "submissions", "exercises"
   add_foreign_key "submissions", "languages"
   add_foreign_key "submissions", "users"
   add_foreign_key "submissions_tests", "submissions"
   add_foreign_key "submissions_tests", "tests"
-  add_foreign_key "tests_specifications", "exercices"
+  add_foreign_key "tests_specifications", "exercises"
   add_foreign_key "tests_specifications", "languages"
 end

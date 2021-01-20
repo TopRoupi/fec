@@ -9,7 +9,7 @@ class User < ApplicationRecord
   after_initialize :set_default_role, if: :new_record?
   after_initialize :set_do_later_list, if: :new_record?
   has_many :notifications, as: :recipient
-  has_many :exercices, through: :submissions
+  has_many :exercises, through: :submissions
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -20,21 +20,21 @@ class User < ApplicationRecord
   validates :password, length: {maximum: 50}, presence: true
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP}, presence: true
 
-  def have_correct_submission_in?(exercice)
-    submissions.where(exercice: exercice).correct.any?
+  def have_correct_submission_in?(exercise)
+    submissions.where(exercise: exercise).correct.any?
   end
 
-  def have_on_do_later_list?(exercice)
-    do_later_list.exercices.exists? exercice.id
+  def have_on_do_later_list?(exercise)
+    do_later_list.exercises.exists? exercise.id
   end
 
-  def exercices_history(limit = 6)
-    exercices.order('"submissions"."created_at" DESC').limit(limit).uniq
+  def exercises_history(limit = 6)
+    exercises.order('"submissions"."created_at" DESC').limit(limit).uniq
   end
 
-  def solved_exercices
+  def solved_exercises
     correct_id = Submission.results["correct"]
-    exercices.where('"submissions"."result" = ?', correct_id).uniq
+    exercises.where('"submissions"."result" = ?', correct_id).uniq
   end
 
   private

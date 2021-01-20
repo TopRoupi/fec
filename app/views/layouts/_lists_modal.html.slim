@@ -1,4 +1,4 @@
 -# frozen_string_literal: true
 div#lists_modal
-  - if @exercice_lists_modal
-    = render(Lists::Modal::Component.new(exercice: @exercice_lists_modal, user: current_user))
+  - if @exercise_lists_modal
+    = render(Lists::Modal::Component.new(exercise: @exercise_lists_modal, user: current_user))

@@ -6,7 +6,7 @@ class CreateSubmissions < ActiveRecord::Migration[6.0]
       t.text :code
       t.references :user, null: false, foreign_key: true
       t.references :language, null: false, foreign_key: true
-      t.references :exercice, null: false, foreign_key: true
+      t.references :exercise, null: false, foreign_key: true
 
       t.timestamps
     end

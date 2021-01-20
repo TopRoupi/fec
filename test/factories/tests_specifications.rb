@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :tests_specification do
-    association :exercice
+    association :exercise
     association :language
     tests do
       [build(:test, tests_specification: nil, visible: true),

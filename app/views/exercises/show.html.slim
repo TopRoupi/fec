@@ -1,0 +1,8 @@
+-# frozen_string_literal: true
+div.row.justify-content-md-center
+  div.col.col-md-8.col-lg-7
+    == render partial: "show_exercise_content", locals: {exercise: @exercise}
+
+    => link_to 'Edit', edit_exercise_path(@exercise)
+    '|
+    =< link_to 'Back', exercises_path

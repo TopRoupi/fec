@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Lists::Modal::Component < ApplicationComponent
-  def initialize(exercice:, user:)
-    @exercice = exercice
+  def initialize(exercise:, user:)
+    @exercise = exercise
 
     @list = List.new
     @list.owner_id = user.id

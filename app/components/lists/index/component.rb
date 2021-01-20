@@ -3,7 +3,7 @@
 class Lists::Index::Component < ApplicationComponent
   def initialize(user:, list:, limit: 6)
     @list = if list == "history"
-      user.exercices_history(6)
+      user.exercises_history(6)
     else
       list
     end

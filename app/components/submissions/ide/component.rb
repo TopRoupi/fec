@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Submissions::Ide::Component < ApplicationComponent
-  def initialize(exercice:, user:, page:)
+  def initialize(exercise:, user:, page:)
     @user = user
-    @exercice = exercice
+    @exercise = exercise
     @page = page ? page.to_sym : :editor
-    @last_submission = Submission.where(exercice: exercice, user: user).last
+    @last_submission = Submission.where(exercise: exercise, user: user).last
     @languages = Language.all
   end
 end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Lists::Modal::Form::Component < ApplicationComponent
-  def initialize(exercice:, list:)
+  def initialize(exercise:, list:)
     @list = list
-    @exercice = exercice
+    @exercise = exercise
   end
 end

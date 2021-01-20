@@ -2,8 +2,8 @@
 
 class List < ApplicationRecord
   belongs_to :owner, class_name: "User"
-  has_many :list_exercices
-  has_many :exercices, through: :list_exercices
+  has_many :list_exercises
+  has_many :exercises, through: :list_exercises
 
   validates :name, length: {maximum: 60}, presence: true
   validates :privacy, presence: true

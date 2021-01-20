@@ -22,11 +22,11 @@ class Lists::Grid::Card::Component < ApplicationComponent
   end
 
   def solved_count
-    solved_exercices = @user.solved_exercices
-    @list.exercices.count { |exercice| solved_exercices.any?(exercice) }
+    solved_exercises = @user.solved_exercises
+    @list.exercises.count { |exercise| solved_exercises.any?(exercise) }
   end
 
-  def exercices_count
-    @list.exercices.count
+  def exercises_count
+    @list.exercises.count
   end
 end

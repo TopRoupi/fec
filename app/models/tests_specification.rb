@@ -15,7 +15,7 @@ class TestsSpecificationValidator < ActiveModel::Validator
 end
 
 class TestsSpecification < ApplicationRecord
-  belongs_to :exercice
+  belongs_to :exercise
   belongs_to :language
   has_many :tests, dependent: :delete_all
 

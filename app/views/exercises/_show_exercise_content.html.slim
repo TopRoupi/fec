@@ -1,0 +1,9 @@
+-# frozen_string_literal: true
+#exercise-header
+  small = "Exercise | #{exercise.id}"
+  h1 = exercise.name
+  - if exercise.complete?
+    small.font-weight-bolder = "TimeLimit: #{exercise.tests_specification.limit_time} | MemLimit: #{exercise.tests_specification.limit_mem}"
+
+#exercise-content
+  = markdown exercise.content

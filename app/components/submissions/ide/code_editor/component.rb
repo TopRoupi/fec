@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Submissions::Ide::CodeEditor::Component < ViewComponentReflex::Component
-  def initialize(submission:, exercice:)
-    @exercice = exercice
+  def initialize(submission:, exercise:)
+    @exercise = exercise
     @code = submission.code if submission
     @language = submission.language_id if submission
     @selected_tab = :input

@@ -35,7 +35,7 @@ class TestTest < ActiveSupport::TestCase
     refute_empty @test.errors[:output]
   end
 
-  # exercice validations
+  # exercise validations
 
   test "valid with a valid test specification" do
     tests_specification = build :tests_specification

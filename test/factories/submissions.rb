@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :submission do
     association :user
     association :language
-    association :exercice
+    association :exercise
     code do
       "n1 = int(input())\n"\
       "n2 = int(input())\n"\

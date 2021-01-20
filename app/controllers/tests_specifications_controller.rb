@@ -37,7 +37,7 @@ class TestsSpecificationsController < ApplicationController
         :code,
         :limit_time,
         :limit_mem,
-        :exercice_id,
+        :exercise_id,
         tests_attributes: %I[id
           output
           input

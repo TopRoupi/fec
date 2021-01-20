@@ -1,7 +1,0 @@
--# frozen_string_literal: true
-h1 Listing exercices
-
-.row.row-cols-1.row-cols-lg-2.g-4
-  - @exercices.each do |exercice|
-    .col
-      = render(Exercices::Card::Component.new(exercice: exercice))

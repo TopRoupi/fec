@@ -34,11 +34,11 @@ class SubmissionTest < ActiveSupport::TestCase
     refute_empty @submission.errors[:language]
   end
 
-  # exercice validations
-  test "invalid without exercice" do
-    @submission.exercice = nil
+  # exercise validations
+  test "invalid without exercise" do
+    @submission.exercise = nil
     @submission.valid?
-    refute_empty @submission.errors[:exercice]
+    refute_empty @submission.errors[:exercise]
   end
 
   # methods tests
