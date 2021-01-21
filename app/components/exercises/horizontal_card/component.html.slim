@@ -6,26 +6,30 @@ a.card.btn.p-0.text-left.mb-3 href="#"
   .card-body.p-2
     .d-md-inline.d-sm-block.text-center.text-md-left
       = @exercise.name
-    .d-block.float-md-right.float-sm-none.mt-2.mt-md-0.mt-md-0.text-center.text-md-left
-      small
-        strong Solved: 
-        span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
-          = @exercise.correct_submissions_percentage.round(2)
-          |  %
-      small.ml-2
-        strong Category: 
-        = @exercise.category.name
-      - if current_user and current_user.have_correct_submission_in?(@exercise)
-        span.badge.rounded-pill.bg-success.ml-2 Solved
-      - else
-        span.badge.rounded-pill.bg-dark.ml-2 Unsolved
-      span.badge.rounded-pill.ml-2 class="bg-#{helpers.difficult_color_class(@exercise)}"
-        | level 
-        = @exercise.level
-      - if current_user
-        button.btn.btn-sm.p-0.ml-2.mr-2 [
-              data-exercise="#{@exercise.id}"
-              data-reflex-root="#lists_modal"
-              data-reflex="click->Lists::Modal::ComponentReflex#show_modal"
-            ]
-            = octicon 'plus', class: 'align-text-top'
+    .d-block.d-md-flex.float-md-right.float-sm-none.mt-2.mt-md-0.mt-md-0.text-center.text-md-left
+      .d-block
+        small
+          strong Solved: 
+          span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
+            = @exercise.correct_submissions_percentage.round(2)
+            |  %
+        small.ml-2
+          strong Category: 
+          = @exercise.category.name
+      .d-block
+        - if current_user and current_user.have_correct_submission_in?(@exercise)
+          span.badge.rounded-pill.bg-success.ml-2 Solved
+        - else
+          span.badge.rounded-pill.bg-dark.ml-2 Unsolved
+        span.badge.rounded-pill.ml-2 class="bg-#{helpers.difficult_color_class(@exercise)}"
+          | level 
+          = @exercise.level
+        - if current_user
+          button.btn.btn-sm.p-0.ml-2.mr-2 [
+                data-exercise="#{@exercise.id}"
+                data-reflex-root="#lists_modal"
+                data-reflex="click->Lists::Modal::ComponentReflex#show_modal"
+                style="position: relative"
+              ]
+              = octicon 'list-unordered', class: 'align-text-top'
+

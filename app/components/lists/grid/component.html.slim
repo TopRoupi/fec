@@ -2,7 +2,11 @@
 h5 Lists
 
 .card.bg-light.p-3
-  .row.row-cols-1.row-cols-md-3.g-4
-    - @user.lists.each do |list|
-      .col
-        = render(Lists::Grid::Card::Component.new(list: list, user: @user))
+  - if @user.lists.empty?
+    .card.bg-light.d-flex.justify-content-center style="height: 132px; border-color: transparent"
+      .text-center.text-muted You do not have any lists yet.
+  - else
+    .row.row-cols-1.row-cols-md-3.g-4
+      - @user.lists.each do |list|
+        .col
+          = render(Lists::Grid::Card::Component.new(list: list, user: @user))

@@ -2,6 +2,7 @@
 
 module ApplicationHelper
   include ExercisesHelper
+  include ListsHelper
   def markdown(content)
     return "" if content.blank?
 

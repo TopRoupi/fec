@@ -36,6 +36,8 @@ group :development, :test do
   gem "shoulda-context"
   gem "vcr"
   gem "webmock"
+  gem "uri_miner"
+  gem "kramdown"
 end
 
 group :development do

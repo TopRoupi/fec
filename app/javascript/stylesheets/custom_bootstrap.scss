@@ -106,8 +106,12 @@ input[type=number] {
   text-align: center;
 }
 
-.text-success svg {
-  fill: rgb(37, 134, 59) !important;
+.text-secondary {
+  fill: #6c757d !important;
+}
+
+.text-success {
+  fill: #28a745 !important;
 }
 
 /* hr with text */
@@ -149,4 +153,24 @@ hr {
   background-color: transparent !important;
   opacity: 1 !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+// line_overflow
+
+.line-overflow-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  word-break: break-all;
+}
+
+.line-overflow-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  word-break: break-all;
 }

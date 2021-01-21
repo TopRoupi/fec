@@ -1,20 +1,17 @@
 -# frozen_string_literal: true
-.card id="#{dom_id @exercise}"
+.card.h-100 id="#{dom_id @exercise}"
   .card-body.pt-0
     .float-right.mt-2.d-flex
       .collapse.width.bg-light.d-flex.rounded-pill.mr-2 id="exercise#{@exercise.id}options"
         - if current_user
-          #btn-do-later.d-inline
-            - on_do_later_list = current_user.have_on_do_later_list?(@exercise)
-            button.btn.btn-sm.mr-2.rounded-pill [
-              class="#{'text-success' if on_do_later_list}"
-              id="do_later_button_#{@exercise.id}"
-              data-method="#{on_do_later_list ? 'remove' : 'add'}"
+          .d-inline
+            button.btn.btn-white.btn-sm.rounded-pill [
               data-exercise="#{@exercise.id}"
-              data-reflex-root="##{dom_id @exercise} #btn-do-later, #notif-dropdown, #flash_messages"
-              data-reflex="click->Exercises::Card::ComponentReflex#do_later_list"
-              ]
-              = octicon 'clock'
+              id="add_list_button_#{@exercise.id}"
+              data-reflex-root="#lists_modal"
+              data-reflex="click->Lists::Modal::ComponentReflex#show_modal"
+            ]
+              = octicon 'list-unordered'
         button.btn.btn-white.btn-sm.mr-2 data-toggle="modal" data-target="#exercise#{@exercise.id}"
           = octicon 'plus'
         a.btn.btn-white.btn-sm.rounded-pill [
@@ -27,32 +24,33 @@
       = @exercise.name 
     - resolved_percentage = @exercise.correct_submissions_percentage.round(2)
     - resolved = @exercise.users_with_correct_submissions.count
-    div style='display: flow-root'
-      .float-right.ml-3
-        small
-          strong Solved: 
-          span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
-            = @exercise.correct_submissions_percentage.round(2)
-            |  %
-        br
-        small
-          strong Solved by: 
-          = resolved
-        br
-        small
-          strong Category: 
-          = @exercise.category.name
-        br
-        - if current_user and current_user.have_correct_submission_in?(@exercise)
-          span.badge.rounded-pill.bg-success Solved
-        - else
-          span.badge.rounded-pill.bg-dark Unsolved
-        span.badge.rounded-pill.ml-1 class="bg-#{helpers.difficult_color_class(@exercise)}"
-          | level 
-          = @exercise.level
-      div style='height: 88px; overflow: hidden'
+    .d-flex.justify-content-between
+      div style='height: 104px; overflow: hidden' data-reflex-permanent="true" id="excerpt_#{@exercise.id}"
         small.text-muted style='word-break: break-all'
           = helpers.markdown @exercise.excerpt
+      .ml-2.d-flex.flex-column.align-items-start style="flex-shrink: 0; flex-basis: 150px; height: 114px"
+        div
+          small
+            strong Solved: 
+            span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
+              = @exercise.correct_submissions_percentage.round(2)
+              |  %
+          br
+          small
+            strong Solved by: 
+            = resolved
+          br
+          small.line-overflow-2
+            strong Category: 
+            = @exercise.category.name
+        div.mt-auto
+          - if current_user and current_user.have_correct_submission_in?(@exercise)
+            span.badge.rounded-pill.bg-success Solved
+          - else
+            span.badge.rounded-pill.bg-dark Unsolved
+          span.badge.rounded-pill.ml-1 class="bg-#{helpers.difficult_color_class(@exercise)}"
+            | level 
+            = @exercise.level
 
 .modal.fade id="exercise#{@exercise.id}" tabindex="-1" aria-hidden="true"
   .modal-dialog.modal-xl.modal-dialog-scrollable.modal-fullscreen-md-down

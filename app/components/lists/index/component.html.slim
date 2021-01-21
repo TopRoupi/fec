@@ -7,6 +7,12 @@ div id="#{@history || dom_id(@list)}"
     - unless @history
       small.text-muted.ml-3
         = @list.exercises.count
+
+  - if @history && @list.empty? || @list.exercises.empty?
+    .card.p-0.text-left.mb-3
+      .card-body.p-2.text-center.text-md-left
+        .text-muted This list don't have any exercises yet.
+
   - if @history
     - @list.each do |exercise|
       = render(Exercises::HorizontalCard::Component.new(exercise: exercise))
