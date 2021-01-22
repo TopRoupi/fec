@@ -1,19 +1,3 @@
 -# frozen_string_literal: true
-p#notice = notice
 
-p
-  strong Name:
-  = @list.name
-p
-  strong Description:
-  = @list.description
-p
-  strong Privacy:
-  = @list.privacy
-p
-  strong Owner:
-  = @list.owner
-
-=> link_to 'Edit', edit_list_path(@list)
-'|
-=< link_to 'Back', lists_path
+= render(Lists::Index::Component.new(user: current_user, list: @list, limit: nil))

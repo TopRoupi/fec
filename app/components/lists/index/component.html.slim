@@ -1,7 +1,9 @@
 -# frozen_string_literal: true
 div id="#{@history || dom_id(@list)}"
-  .float-right
-    a.bold.text-primary href="#" show more
+  - unless current_page?(@history && list_path('history') || list_path(@list))
+    .float-right
+      a.bold.text-primary href="#{@history && list_path('history') || list_path(@list)}"
+        | show more
   h5.mb-3
     = @history ? "History" : @list.name
     - unless @history

@@ -5,7 +5,12 @@
 
   = f.input :name
   = f.input :description
-  = f.input :privacy, collection: List.privacies.keys, selected: "private_list"
+  = f.input :privacy,
+            collection: List.privacies.keys.map {|key| [key.split('_').first.capitalize, key]},
+            selected: "private_list",
+            class: "form-select",
+            input_html: { class: 'form-select' }
+
   = f.input :owner_id, as: :hidden
   div.btn.btn-primary.rounded-pill.float-right [
     data-reflex="click->Lists::Modal::ComponentReflex#create_list"

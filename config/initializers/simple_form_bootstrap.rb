@@ -117,7 +117,7 @@ SimpleForm.setup do |config|
     b.optional :readonly
     b.use :label
     b.wrapper tag: "div", class: "d-flex flex-row justify-content-between align-items-center" do |ba|
-      ba.use :input, class: "form-control mx-1", error_class: "is-invalid", valid_class: "is-valid"
+      ba.use :input, class: "form-select form-control mx-1", error_class: "is-invalid", valid_class: "is-valid"
     end
     b.use :full_error, wrap_with: {tag: "div", class: "invalid-feedback d-block"}
     b.use :hint, wrap_with: {tag: "small", class: "form-text text-muted"}
@@ -416,7 +416,9 @@ SimpleForm.setup do |config|
     file: :vertical_file,
     radio_buttons: :vertical_collection,
     range: :vertical_range,
-    time: :vertical_multi_select
+    time: :vertical_multi_select,
+    collection: :vertical_multi_select,
+    association: :vertical_multi_select
   }
 
   # enable custom form wrappers

@@ -2,12 +2,12 @@
 - resolved_percentage = @exercise.correct_submissions_percentage.round(2)
 - resolved = @exercise.users_with_correct_submissions.count
 
-a.card.btn.p-0.text-left.mb-3 href="#"
-  .card-body.p-2
-    .d-md-inline.d-sm-block.text-center.text-md-left
+a.card.btn.p-0.text-left.mb-3 href="#{submission_path(@exercise)}"
+  .card-body.p-2.p-md-0.d-flex.justify-content-between.flex-column.flex-md-row
+    .text-center.text-md-left.mt-auto.mb-auto.ml-md-2.line-overflow-1
       = @exercise.name
-    .d-block.d-md-flex.float-md-right.float-sm-none.mt-2.mt-md-0.mt-md-0.text-center.text-md-left
-      .d-block
+    .d-block.d-md-flex.mt-2.mt-md-0.mt-md-0.text-center.text-md-left
+      .mt-auto.mb-auto.line-overflow-1
         small
           strong Solved: 
           span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
@@ -16,20 +16,22 @@ a.card.btn.p-0.text-left.mb-3 href="#"
         small.ml-2
           strong Category: 
           = @exercise.category.name
-      .d-block
+      .mt-auto.mb-auto style="display: ruby"
         - if current_user and current_user.have_correct_submission_in?(@exercise)
-          span.badge.rounded-pill.bg-success.ml-2 Solved
+          span.badge.rounded-pill.bg-success.ml-2 style="vertical-align: sub"
+            | Solved
         - else
-          span.badge.rounded-pill.bg-dark.ml-2 Unsolved
-        span.badge.rounded-pill.ml-2 class="bg-#{helpers.difficult_color_class(@exercise)}"
+          span.badge.rounded-pill.bg-dark.ml-2 style="vertical-align: sub"
+            | Unsolved
+        span.badge.rounded-pill.ml-2 class="bg-#{helpers.difficult_color_class(@exercise)}" style="vertical-align: sub"
           | level 
           = @exercise.level
         - if current_user
-          button.btn.btn-sm.p-0.ml-2.mr-2 [
+          button.btn.btn-sm.p-2.ml-2.mr-2 [
                 data-exercise="#{@exercise.id}"
                 data-reflex-root="#lists_modal"
                 data-reflex="click->Lists::Modal::ComponentReflex#show_modal"
                 style="position: relative"
               ]
-              = octicon 'list-unordered', class: 'align-text-top'
+              = octicon 'list-unordered'
 
