@@ -8,7 +8,7 @@ class ExercisesController < ApplicationController
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises = Exercise.all
+    @exercises ||= Exercise.all.limit(6)
   end
 
   # GET /exercises/1

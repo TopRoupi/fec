@@ -4,11 +4,17 @@ div id="#{@history || dom_id(@list)}"
     .float-right
       a.bold.text-primary href="#{@history && list_path('history') || list_path(@list)}"
         | show more
+
   h5.mb-3
     = @history ? "History" : @list.name
     - unless @history
       small.text-muted.ml-3
         = @list.exercises.count
+  - unless @history || @list.description.empty?
+    .card.card-light
+      .card-body.text-muted
+        = @list.description
+    br
 
   - if @history && @list.empty? || @list.exercises.empty?
     .card.p-0.text-left.mb-3

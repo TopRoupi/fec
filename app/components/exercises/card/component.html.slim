@@ -27,7 +27,8 @@
     .d-flex.justify-content-between
       div style='height: 104px; overflow: hidden' data-reflex-permanent="true" id="excerpt_#{@exercise.id}"
         small.text-muted style='word-break: break-all'
-          = helpers.markdown @exercise.excerpt
+          div
+            = helpers.markdown @exercise.excerpt
       .ml-2.d-flex.flex-column.align-items-start style="flex-shrink: 0; flex-basis: 150px; height: 114px"
         div
           small

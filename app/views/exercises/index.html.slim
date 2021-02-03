@@ -2,7 +2,9 @@
 - current_user.reload
 h1 Listing exercises
 
-.row.row-cols-1.row-cols-lg-2.g-4
+= render(Exercises::SearchCard::Component.new)
+
+.row.row-cols-1.row-cols-lg-2.g-4 id="search_results"
   - @exercises.each do |exercise|
     .col
       = render(Exercises::Card::Component.new(exercise: exercise))
