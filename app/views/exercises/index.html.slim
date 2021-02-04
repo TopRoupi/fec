@@ -1,10 +1,19 @@
 -# frozen_string_literal: true
-- current_user.reload
+- current_user.reload if current_user
 h1 Listing exercises
 
-= render(Exercises::SearchCard::Component.new)
+/ need to fix stimulus reflex not working without current_user
+- if current_user
+  = render(Exercises::SearchCard::Component.new)
 
-.row.row-cols-1.row-cols-lg-2.g-4 id="search_results"
-  - @exercises.each do |exercise|
-    .col
-      = render(Exercises::Card::Component.new(exercise: exercise))
+#search_results
+  - if @exercises.blank?
+    .card
+      .card-body.text-center
+        .text-muted.bold No search results.
+  - else
+    .row.row-cols-1.row-cols-lg-2.g-4
+
+      - @exercises.each do |exercise|
+        .col
+          = render(Exercises::Card::Component.new(exercise: exercise))

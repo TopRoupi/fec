@@ -37,6 +37,11 @@ class User < ApplicationRecord
     exercises.where('"submissions"."result" = ?', correct_id).uniq
   end
 
+  def unsolved_exercises
+    incorrect_id = Submission.results["incorrect"]
+    exercises.where('"submissions"."result" = ?', incorrect_id).uniq
+  end
+
   private
 
   def set_do_later_list

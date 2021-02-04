@@ -1,29 +1,25 @@
 -# frozen_string_literal: true
-div id="#{@history || dom_id(@list)}"
-  - unless current_page?(@history && list_path('history') || list_path(@list))
+div id="#{component_id}"
+  - unless active_url?
     .float-right
-      a.bold.text-primary href="#{@history && list_path('history') || list_path(@list)}"
+      a.bold.text-primary href="#{component_url}"
         | show more
 
   h5.mb-3
-    = @history ? "History" : @list.name
+    = @list.name
     - unless @history
       small.text-muted.ml-3
         = @list.exercises.count
-  - unless @history || @list.description.empty?
+  - unless @list.description.empty? || !active_url?
     .card.card-light
       .card-body.text-muted
         = @list.description
     br
 
-  - if @history && @list.empty? || @list.exercises.empty?
+  - if @exercises.empty?
     .card.p-0.text-left.mb-3
       .card-body.p-2.text-center.text-md-left
         .text-muted This list don't have any exercises yet.
 
-  - if @history
-    - @list.each do |exercise|
-      = render(Exercises::HorizontalCard::Component.new(exercise: exercise))
-  - else
-    - @list.exercises.limit(@limit).each do |exercise|
-      = render(Exercises::HorizontalCard::Component.new(exercise: exercise))
+  - @exercises.each do |exercise|
+    = render(Exercises::HorizontalCard::Component.new(exercise: exercise))

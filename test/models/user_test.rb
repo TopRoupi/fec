@@ -167,4 +167,20 @@ class UserTest < ActiveSupport::TestCase
 
     refute_includes @user.solved_exercises, wrong_exercise
   end
+
+  test "#unsolved_exercises should return unsolved exercises" do
+    wrong_exercise = create :exercise
+
+    create :wrong_submission, user: @user, exercise: wrong_exercise, result: :incorrect
+
+    assert_includes @user.unsolved_exercises, wrong_exercise
+  end
+
+  test "#unsolved_exercises should not return solved exercises" do
+    correct_exercise = create :exercise
+
+    create :submission, user: @user, exercise: correct_exercise, result: :correct
+
+    refute_includes @user.unsolved_exercises, correct_exercise
+  end
 end
