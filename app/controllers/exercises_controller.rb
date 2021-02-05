@@ -2,13 +2,13 @@
 
 class ExercisesController < ApplicationController
   before_action :set_exercise, only: [:show, :edit, :update, :destroy]
+  before_action :set_exercises_with_search, only: [:index]
   before_action :authenticate_user!, except: [:index, :show]
   before_action :ensure_admin!, except: [:index, :show]
 
   # GET /exercises
   # GET /exercises.json
   def index
-    @exercises ||= Exercise.all.limit(6)
   end
 
   # GET /exercises/1
@@ -76,6 +76,40 @@ class ExercisesController < ApplicationController
   end
 
   private
+
+  def set_exercises_with_search
+    search = params[:search]
+
+    unless search
+      @exercises = Exercise.all.limit(6)
+      return
+    end
+
+    @exercises = if search["name"].blank?
+      Exercise.all.limit(6)
+    else
+      Exercise.fuzzy_search(name: search["name"])
+    end
+
+    if search["result"]
+      @exercises = @exercises.where(id: current_user.solved_exercises) if search["result"] == "Solved"
+      @exercises = @exercises.where.not(id: current_user.solved_exercises) if search["result"] == "Unsolved"
+    end
+    @exercises.where!(level: search["level"]) unless search["level"].blank?
+    @exercises.where!(category_id: search["category_id"]) unless search["category_id"].blank?
+
+    sort_exercises
+  end
+
+  def sort_exercises
+    return unless params[:search]
+    return if params[:search]["sort_by"].blank?
+
+    param, option = params[:search]["sort_by"].split(" ")
+    @exercises = @exercises.joins(:category).order([[param, option]].to_h)
+    # @exercises = @exercises.sort_by { |exercise| exercise.send(param) }
+    # @exercises = @exercises.reverse if option == "DESC"
+  end
 
   def set_exercise
     @exercise = Exercise.find(params[:id])

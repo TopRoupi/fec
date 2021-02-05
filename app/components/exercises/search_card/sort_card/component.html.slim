@@ -1,0 +1,43 @@
+.card.text-left.mb-3 id="sort" data-controller="exercises--search-card--sort-card--component" data-reflex-permanent="true"
+  = hidden_field_tag("search[sort_by]",
+    "",
+    data: { reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search",
+            exercises__search_card__sort_card__component_target: "input"})
+  .card-body.p-2.d-flex.justify-content-between
+    .d-flex.justify-content-start
+      button.btn.btn-light.border.btn-sm.rounded-pill [
+        data-action="click->exercises--search-card--sort-card--component#sort"
+        data-param="name"
+        type="button"
+        data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
+      ]
+        | name
+    .d-flex.justify-content-end
+      button.btn.btn-light.border.btn-sm.rounded-pill [
+        data-action="click->exercises--search-card--sort-card--component#sort"
+        data-param="correct_submissions_percentage"
+        type="button"
+        data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
+      ]
+        | solved_percentage
+      button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
+        data-action="click->exercises--search-card--sort-card--component#sort"
+        data-param='"categories"."name"'
+        type="button"
+        data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
+      ]
+        | category
+      button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
+        data-action="click->exercises--search-card--sort-card--component#sort"
+        data-param="result"
+        type="button"
+        data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
+      ]
+        | result
+      button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
+        data-action="click->exercises--search-card--sort-card--component#sort"
+        data-param="level"
+        type="button"
+        data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
+      ]
+        | level

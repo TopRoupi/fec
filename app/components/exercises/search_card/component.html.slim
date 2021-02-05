@@ -1,34 +1,35 @@
-form.card.btn.p-0.text-left.mb-3 id="search" action="/" method="post"
-  .card-body.p-2.d-flex.flex-column.flex-md-row
-    div
-      = text_field_tag("search[name]",
-        "",
-        placeholder: "Exercise name",
-        class: "form-control",
-        data: { reflex_root: "#search_results", reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search"})
-    .d-flex.flex-column.flex-md-row.ml-md-auto
-      .ml-md-2.mt-2.mt-md-0
-        = collection_select(:search,
-          :category_id,
-          Category.all,
-          :id,
-          :name,
-          { prompt: "Any category" },
-          data: {reflex_root: "#search_results", reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search"})
-      - if current_user
+form id="search" action="#"
+  .card.text-left.mb-3 data-reflex-permanent="true"
+    .card-body.p-2.d-flex.flex-column.flex-md-row
+      div
+        = text_field_tag("search[name]",
+          "",
+          placeholder: "Exercise name",
+          class: "form-control",
+          data: { reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search" })
+      .d-flex.flex-column.flex-md-row.ml-md-auto
         .ml-md-2.mt-2.mt-md-0
           = collection_select(:search,
-            :result,
-            ["Solved", "Unsolved"],
+            :category_id,
+            Category.all,
+            :id,
+            :name,
+            { prompt: "Any category" },
+            data: { reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search" })
+        - if current_user
+          .ml-md-2.mt-2.mt-md-0
+            = collection_select(:search,
+              :result,
+              ["Solved", "Unsolved"],
+              :to_s,
+              :to_s,
+              { prompt: "Any result" },
+              data: { reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search" })
+        .ml-md-2.mt-2.mt-md-0
+          = collection_select(:search,
+            :level, (0..5),
             :to_s,
             :to_s,
-            { prompt: "Any result" },
-            data: {reflex_root: "#search_results", reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search"})
-      .ml-md-2.mt-2.mt-md-0
-        = collection_select(:search,
-          :level, (0..5),
-          :to_s,
-          :to_s,
-          { prompt: "Any level" },
-          data: {reflex_root: "#search_results", reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search"})
-
+            { prompt: "Any level" },
+            data: { reflex: "debounced:input->Exercises::SearchCard::ComponentReflex#search" })
+  = render(Exercises::SearchCard::SortCard::Component.new)
