@@ -22,11 +22,12 @@ class Exercise < ApplicationRecord
   end
 
   def users_with_correct_submissions
-    users.filter { |user| user.have_correct_submission_in?(self) }.uniq
+    correct_id = Submission.results["correct"]
+    users.joins(:submissions).where('"submissions_users"."result" = ? ', correct_id)
   end
 
   def users_without_correct_submissions
-    users.reject { |user| user.have_correct_submission_in?(self) }.uniq
+    users - users_with_correct_submissions
   end
 
   def submissions_by_unique_users

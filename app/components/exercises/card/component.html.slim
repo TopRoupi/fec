@@ -32,7 +32,7 @@
       .ml-2.d-flex.flex-column.align-items-start style="flex-shrink: 0; flex-basis: 150px; height: 114px"
         div
           small
-            strong Solved: 
+            strong Solved %: 
             span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
               = @exercise.correct_submissions_percentage.round(2)
               |  %

@@ -13,6 +13,6 @@ h1 Listing exercises
         .text-muted.bold No search results.
   - else
     .row.row-cols-1.row-cols-lg-2.g-4
-      - @exercises.each do |exercise|
+      - @exercises.limit(6).each do |exercise|
         .col
           = render(Exercises::Card::Component.new(exercise: exercise))

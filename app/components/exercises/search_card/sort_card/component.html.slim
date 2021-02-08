@@ -13,12 +13,12 @@
       ]
         | name
     .d-flex.justify-content-end
-      button.btn.btn-light.border.btn-sm.rounded-pill [
+      /button.btn.btn-light.border.btn-sm.rounded-pill [
         data-action="click->exercises--search-card--sort-card--component#sort"
         data-param="correct_submissions_percentage"
         type="button"
         data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
-      ]
+        ]
         | solved_percentage
       button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
         data-action="click->exercises--search-card--sort-card--component#sort"
@@ -27,12 +27,12 @@
         data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
       ]
         | category
-      button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
+      /button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
         data-action="click->exercises--search-card--sort-card--component#sort"
-        data-param="result"
+        data-param="solved"
         type="button"
         data-reflex= "click->Exercises::SearchCard::ComponentReflex#search"
-      ]
+        ]
         | result
       button.btn.btn-light.border.btn-sm.rounded-pill.ml-2 [
         data-action="click->exercises--search-card--sort-card--component#sort"

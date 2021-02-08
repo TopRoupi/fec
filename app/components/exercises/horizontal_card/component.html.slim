@@ -9,7 +9,7 @@ a.card.btn.p-0.text-left.mb-3 href="#{submission_path(@exercise)}"
     .d-block.d-md-flex.mt-2.mt-md-0.mt-md-0.text-center.text-md-left
       .mt-auto.mb-auto.line-overflow-1
         small
-          strong Solved: 
+          strong Solved %: 
           span class="text-#{helpers.resolved_percentage_color(resolved_percentage)}"
             = @exercise.correct_submissions_percentage.round(2)
             |  %

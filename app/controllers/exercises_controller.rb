@@ -80,16 +80,11 @@ class ExercisesController < ApplicationController
   def set_exercises_with_search
     search = params[:search]
 
-    unless search
-      @exercises = Exercise.all.limit(6)
-      return
-    end
+    @exercises = Exercise.all.includes(:category).references(:category)
 
-    @exercises = if search["name"].blank?
-      Exercise.all.limit(6)
-    else
-      Exercise.fuzzy_search(name: search["name"])
-    end
+    return unless search
+
+    @exercises = @exercises.fuzzy_search(name: search["name"]) unless search["name"].blank?
 
     if search["result"]
       @exercises = @exercises.where(id: current_user.solved_exercises) if search["result"] == "Solved"
@@ -106,9 +101,7 @@ class ExercisesController < ApplicationController
     return if params[:search]["sort_by"].blank?
 
     param, option = params[:search]["sort_by"].split(" ")
-    @exercises = @exercises.joins(:category).order([[param, option]].to_h)
-    # @exercises = @exercises.sort_by { |exercise| exercise.send(param) }
-    # @exercises = @exercises.reverse if option == "DESC"
+    @exercises = @exercises.order([[param, option]].to_h)
   end
 
   def set_exercise
