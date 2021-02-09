@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Lists::Index::Component < ApplicationComponent
-  def initialize(user:, list:, limit: 6)
+  def initialize(user:, list:, limit: 6, editing: nil)
     if list == "history"
       @exercises = user.exercises_history(limit)
       @list = List.new(name: "History", description: "Submissions history")
@@ -12,6 +12,7 @@ class Lists::Index::Component < ApplicationComponent
     @history = "history" if list == "history"
     @user = user
     @limit = limit
+    @editing = editing
   end
 
   def component_id
@@ -23,7 +24,12 @@ class Lists::Index::Component < ApplicationComponent
   end
 
   def active_url?
-    helpers.current_page?(component_url)
+    url = if @editing
+      helpers.edit_list_path(@list)
+    else
+      component_url
+    end
+    helpers.current_page?(url)
   end
 
   def component_url

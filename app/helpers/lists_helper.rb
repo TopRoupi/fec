@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 module ListsHelper
-  def privacy_icon(privacy)
+  def privacy_icon(privacy, options = {})
     case privacy
     when "public_list"
-      octicon("globe", class: "align-baseline")
+      octicon("globe", options)
     when "notlisted_list"
-      octicon("link", class: "align-baseline")
+      octicon("link", options)
     when "private_list"
-      octicon("lock", class: "align-baseline")
+      octicon("lock", options)
     end
   end
 end

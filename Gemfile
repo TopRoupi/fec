@@ -24,7 +24,8 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.7"
 gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
 gem "hiredis"
-gem 'textacular', '~> 5.0'
+gem "textacular", "~> 5.0"
+gem "will_paginate", "~> 3.1.0"
 
 gem "bootsnap", ">= 1.4.2", require: false
 

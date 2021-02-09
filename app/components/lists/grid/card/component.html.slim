@@ -13,4 +13,4 @@ a.card.btn.p-0.text-left href="#{list_path(@list)}"
     h5.card-title.mb-0
       = @list.name
       .float-right
-        = privacy_icon(@list.privacy)
+        = privacy_icon(@list.privacy, {class: 'align-baseline'})

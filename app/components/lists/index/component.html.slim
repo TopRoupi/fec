@@ -1,25 +1,47 @@
 -# frozen_string_literal: true
 div id="#{component_id}"
-  - unless active_url?
-    .float-right
-      a.bold.text-primary href="#{component_url}"
-        | show more
+  = simple_form_for(@list) do |f|
+      .float-right.d-flex
+        - unless active_url? or @editing
+          a.bold.text-primary href="#{component_url}"
+            | show more 
+        - if active_url? and @editing.nil?
+          a href="#{edit_list_path(@list)}"
+            | edit
+        - if @editing
+          = link_to 'Cancel', list_path(@list), class: 'btn btn-danger rounded-pill mr-2'
+          = f.button :submit, class: 'btn-primary rounded-pill'
+        span.ml-3.text-secondary
+          - if @editing
+            = f.input :privacy,
+              collection: List.privacies.keys.map {|key| [key.split('_').first.capitalize, key]},
+              class: "form-select",
+              input_html: { class: 'form-select d-inline' },
+              wrapper: :inline_form
+          - else
+            = privacy_icon(@list.privacy)
 
-  h5.mb-3
-    = @list.name
-    - unless @history
-      small.text-muted.ml-3
-        = @list.exercises.count
-  - unless @list.description.empty? || !active_url?
-    .card.card-light
-      .card-body.text-muted
-        = @list.description
-    br
+      h5.mb-3
+        - if @editing
+          = f.input :name, error: false, wrapper: :inline_form, input_html: { style: 'display: inline; width: auto' }, placeholder: 'Name'
+        - else
+          = @list.name
+        - unless @history
+          small.text-muted.ml-3
+            = @list.exercises.count
+      - if !@list.description.empty? && active_url? || @editing
+        .card.card-light
+          .card-body.text-muted
+            - if @editing
+              = f.input :description, as: :text, wrapper: :inline_form, input_html: { class: 'd-inline' }, placeholder: 'Description'
+            - else
+              = @list.description
+        br
 
-  - if @exercises.empty?
-    .card.p-0.text-left.mb-3
-      .card-body.p-2.text-center.text-md-left
-        .text-muted This list don't have any exercises yet.
+      - if @exercises.empty?
+        .card.p-0.text-left.mb-3
+          .card-body.p-2.text-center.text-md-left
+            .text-muted This list don't have any exercises yet.
 
-  - @exercises.each do |exercise|
-    = render(Exercises::HorizontalCard::Component.new(exercise: exercise))
+      - @exercises.each do |exercise|
+        = render(Exercises::HorizontalCard::Component.new(exercise: exercise))

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Exercise < ApplicationRecord
+  self.per_page = 10
   include ActiveModel::Validations
   belongs_to :category
   has_one :tests_specification, dependent: :delete

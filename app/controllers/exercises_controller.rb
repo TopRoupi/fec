@@ -80,7 +80,7 @@ class ExercisesController < ApplicationController
   def set_exercises_with_search
     search = params[:search]
 
-    @exercises = Exercise.all.includes(:category).references(:category)
+    @exercises = Exercise.paginate(page: params[:page]).includes(:category).references(:category)
 
     return unless search
 

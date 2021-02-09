@@ -1,9 +1,11 @@
 -# frozen_string_literal: true
-h1 Editing list
+= render(Lists::Index::Component.new(user: current_user, list: @list, limit: nil, editing: true))
 
-== render 'form'
-
-=> link_to 'Show', @list
-'|
-=< link_to 'Back', lists_path
+/h1 Editing list
+/
+/== render 'form'
+/
+/=> link_to 'Show', @list
+/'|
+/=< link_to 'Back', lists_path
 

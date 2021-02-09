@@ -47,7 +47,7 @@ class User < ApplicationRecord
   def set_do_later_list
     self.do_later_list = List.new(
       name: "Do later list",
-      description: "Exercises added in this list will be automaticaly removed after solved, and you can't add solved exercises to this list.",
+      description: "Exercises added in this list will be automaticaly removed after solved, and you can't add solved exercises in this list.",
       privacy: :private_list,
       owner: self
     )
