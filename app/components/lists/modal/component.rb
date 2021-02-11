@@ -8,6 +8,10 @@ class Lists::Modal::Component < ApplicationComponent
     @list.owner_id = user.id
     @list.privacy = nil
 
-    @lists = user.all_lists
+    @lists = if user.have_correct_submission_in? @exercise
+      user.lists
+    else
+      user.all_lists
+    end
   end
 end

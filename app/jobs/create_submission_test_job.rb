@@ -22,6 +22,8 @@ class CreateSubmissionTestJob < ApplicationJob
     testr.submission.set_result
 
     morph_submission_card(testr.submission)
+
+    update_do_later_list(response, submission)
   end
 
   def morph_submission_card(submission)
@@ -31,5 +33,11 @@ class CreateSubmissionTestJob < ApplicationJob
     )
 
     cable_ready.broadcast
+  end
+
+  def update_do_later_list(response, submission)
+    if response["status"]["description"] == "Accepted"
+      submission.user.do_later_list.exercises.delete(submission.exercise)
+    end
   end
 end
