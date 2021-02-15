@@ -5,29 +5,26 @@
   nav#sidebar
     ul#side-tab.nav.nav-tabs
       li.nav-item
-        a.nav-link.btn class="#{'active' if @page == :editor}" href="/submissions/#{@exercise.id}/editor"
+        button.nav-link.btn class="#{'active' if @page == :editor}" data-toggle="tab" href="#editor"
           = octicon "code"
       li.nav-item
-        a.nav-link.btn class="#{'active' if @page == :results}" href="/submissions/#{@exercise.id}/results"
+        button.nav-link.btn class="#{'active' if @page == :results}"  data-toggle="tab" href="#results"
           = octicon "beaker"
       li.nav-item
-        a.nav-link.btn class="#{'active' if @page == :exercise}" href="/submissions/#{@exercise.id}/exercise"
+        button.nav-link.btn class="#{'active' if @page == :exercise}"  data-toggle="tab" href="#exercise"
           = octicon "file"
       li.nav-item#submit-button
         button.nav-link.btn data-action="click->submissions--ide--component#submit"
           = octicon "rocket"
 
   #content.tab-content
-    -  if @page == :editor
-      #editor style="display: contents !important"
-        = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercise: @exercise))
+    #editor.tab-pane.fade class="#{'show active' if @page == :editor}"
+      = render(Submissions::Ide::CodeEditor::Component.new(submission: @last_submission, exercise: @exercise))
 
-    - if @page == :results
-      #results style="display: contents !important"
-        .container.mt-4
-          = render(Submissions::Ide::TestsResults::Component.new(exercise: @exercise, user: @user))
+    #results.tab-pane.fade class="#{'show active' if @page == :results}"
+      .container.mt-4
+        = render(Submissions::Ide::TestsResults::Component.new(exercise: @exercise, user: @user))
 
-    - if @page == :exercise
-      #exercise style="displat: contents !important"
-        .container.mt-4
-          = render(Exercises::Content::Component.new(exercise: @exercise))
+    #exercise.tab-pane.fade class="#{'show active' if @page == :exercise}"
+      .container.mt-4
+        = render(Exercises::Content::Component.new(exercise: @exercise))
