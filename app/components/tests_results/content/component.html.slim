@@ -1,4 +1,12 @@
 -# frozen_string_literal: true
+
+.text-center.mb-2
+  strong Input
+.card.bg-dark.mb-2
+  .card-body
+    code style="color: #fff"
+      = simple_format(@testr.test.input)
+
 .row
   .col-md-6
     .text-center.mb-2
@@ -6,14 +14,14 @@
     .card.bg-dark.mb-2
       .card-body
         code style="color: #fff"
-          = @testr.test.output
+          = simple_format(@testr.test.output)
   .col-md-6
     .text-center.mb-2
       strong Output
     .card.bg-dark.mb-2
       .card-body
         code style="color: #fff"
-          = @testr.output
+          = simple_format(@testr.output)
 
 .row
   .col-sm-6

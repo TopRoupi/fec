@@ -11,7 +11,7 @@
           li.nav-item
             span.nav-link.btn class="#{'active' if @selected_tab == tab}" data-toggle="tab" href="##{tab}"
               = tab.to_s.split('_').join(' ').capitalize
-        li.nav-item
+        li.nav-item  data-reflex-permanent="true"
           = f.collection_select :language_id, Language.all, :id, :name, {selected: @language}, {class: "nav-link btn w-100", style: "-moz-appearance: none"}
         li.nav-item.ml-auto
           = reflex_tag :run, :span, class: 'nav-link btn', id: 'run-button' do
@@ -21,7 +21,7 @@
 
       #ide-bottom-content.tab-content
         #input.tab-pane.fade class="#{'show active' if @selected_tab == :input}"
-          textarea.full-textarea name="input"
+          textarea.full-textarea name="input" data-reflex-permanent="true"
         #output.tab-pane.fade class="#{'show active' if @selected_tab == :output}"
           textarea.full-textarea readonly=true
             = @output
