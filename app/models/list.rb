@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class List < ApplicationRecord
+  include Friendlyable
+
   belongs_to :owner, class_name: "User"
   has_many :list_exercises
   has_many :exercises, through: :list_exercises

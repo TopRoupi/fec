@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ListsController < ApplicationController
-  before_action :set_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_list, only: [:show, :edit, :destroy]
+  before_action :authenticate_user!, only: [:update]
 
   # GET /lists
   # GET /lists.json
@@ -42,6 +43,7 @@ class ListsController < ApplicationController
   # PATCH/PUT /lists/1
   # PATCH/PUT /lists/1.json
   def update
+    @list = current_user.lists.friendly.find(params[:id])
     respond_to do |format|
       if @list.update(list_params)
         format.html { redirect_to @list, notice: "List was successfully updated." }
@@ -70,7 +72,7 @@ class ListsController < ApplicationController
     @list = if params[:id] == "history"
       "history"
     else
-      List.find(params[:id])
+      List.friendly.find(params[:id])
     end
   end
 

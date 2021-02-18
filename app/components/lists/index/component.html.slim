@@ -5,7 +5,7 @@ div id="#{component_id}"
         - unless active_url? or @editing
           a.bold.text-primary href="#{component_url}"
             | show more 
-        - if active_url? and @editing.nil? and !@list.id.nil?
+        - if current_user and active_url? and @editing.nil? and !@list.id.nil? and current_user.lists.include?(@list)
           a href="#{edit_list_path(@list)}"
             | edit
         - if @editing

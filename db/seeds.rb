@@ -78,7 +78,7 @@ UriMiner.config(name: "oxn67043",
 
 UriMiner.login
 
-(1000..1120).each do |i|
+(1000..1020).each do |i|
   uri_problem = UriMiner.exercise(i)
 
   exercise = Exercise.new(
