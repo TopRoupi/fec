@@ -6,6 +6,11 @@ ul.dropdown-menu.notification-menu.dropdown-menu-right role="menu"
     li.dropdown-header.text-center
       = current_user.name
     li.dropdown-item
+      = link_to "Lists", user_lists_path, class: "nav-link"
+    li.dropdown-item
+      = link_to "Exercises", user_exercises_path, class: "nav-link"
+    .dropdown-divider
+    li.dropdown-item
       = link_to "Log_out", destroy_user_session_path, method: "delete", class: "nav-link #{active_class(destroy_user_session_path)}"
   - else
     li.dropdown-item

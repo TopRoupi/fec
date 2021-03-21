@@ -6,6 +6,12 @@ class UsersController < ApplicationController
   def show
   end
 
+  def lists
+  end
+
+  def exercises
+  end
+
   private
 
   def set_user

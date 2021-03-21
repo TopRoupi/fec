@@ -1,11 +1,3 @@
 -# frozen_string_literal: true
-- current_user.reload
 
-= render(Lists::Index::Component.new(user: current_user, list: "history"))
-hr
-
-#lists
-  = render(Lists::Index::Component.new(user: current_user, list: current_user.do_later_list))
-  hr
-
-  = render(Lists::Grid::Component.new(user: current_user))
+h1 ..
