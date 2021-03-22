@@ -1,5 +1,20 @@
 # frozen_string_literal: true
 
+# will delete later i swear
+
+User.create(
+  name: "user",
+  email: "user@user",
+  password: "12345678"
+)
+
+User.create(
+  name: "admin",
+  email: "admin@admin",
+  role: "admin",
+  password: "12345678"
+)
+
 Category.create(name: "Beginner")
 Category.create(name: "Strings")
 Category.create(name: "Mathematics")
@@ -82,6 +97,7 @@ UriMiner.login
   uri_problem = UriMiner.exercise(i)
 
   exercise = Exercise.new(
+    author: User.last,
     name: uri_problem[:name],
     category: Category.all.sample,
     level: (uri_problem[:level].to_i / 2.0).floor,
@@ -110,17 +126,3 @@ UriMiner.login
   exercise.tests_specification.save!
 end
 
-# will delete later i swear
-
-User.create(
-  name: "user",
-  email: "user@user",
-  password: "12345678"
-)
-
-User.create(
-  name: "admin",
-  email: "admin@admin",
-  role: "admin",
-  password: "12345678"
-)

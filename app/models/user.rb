@@ -3,6 +3,7 @@
 class User < ApplicationRecord
   has_many :submissions
   has_one :do_later_list, class_name: "List", foreign_key: :owner_id
+  has_many :posted_exercises, class_name: "Exercise", foreign_key: "author_id"
   has_many :lists, ->(user) { where("id != ?", user.do_later_list.id) }, foreign_key: :owner_id
   has_many :all_lists, class_name: "List", foreign_key: :owner_id
   enum role: [:user, :admin]

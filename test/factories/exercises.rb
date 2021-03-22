@@ -3,6 +3,7 @@
 FactoryBot.define do
   factory :exercise do
     association :category
+    association :author, factory: :admin
     tests_specification { build(:tests_specification, exercise: nil) }
     name { "Soma Simples" }
     level { 1 }

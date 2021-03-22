@@ -4,6 +4,7 @@ class Exercise < ApplicationRecord
   self.per_page = 10
   include ActiveModel::Validations
   belongs_to :category
+  belongs_to :author, class_name: "User"
   has_one :tests_specification, dependent: :delete
   has_many :submissions
   has_many :users, -> { distinct }, through: :submissions

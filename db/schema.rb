@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_17_175702) do
+ActiveRecord::Schema.define(version: 2021_03_21_153107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_02_17_175702) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "complete"
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_exercises_on_author_id"
     t.index ["category_id"], name: "index_exercises_on_category_id"
   end
 
@@ -170,6 +172,7 @@ ActiveRecord::Schema.define(version: 2021_02_17_175702) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "exercises", "categories"
+  add_foreign_key "exercises", "users", column: "author_id"
   add_foreign_key "list_exercises", "exercises"
   add_foreign_key "list_exercises", "lists"
   add_foreign_key "lists", "users", column: "owner_id"
