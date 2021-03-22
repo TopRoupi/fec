@@ -1,4 +1,4 @@
-var base_url = 'http://judge0-api.roupi.xyz'
+var base_url = 'http://roupi.xyz'
 
 function result(token, callback) {
   $.ajax({

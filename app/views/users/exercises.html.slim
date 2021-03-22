@@ -1,1 +1,7 @@
-h1 a
+= link_to "New Exercise", new_exercise_path
+
+.text-center.mb-4
+  h1 Posted Exercises
+
+- current_user.posted_exercises.each do |exercise|
+  = render(Exercises::HorizontalCard::Component.new(exercise: exercise, attributes: [:category, :solved_percentage, :level, :test_specification]))
