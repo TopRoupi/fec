@@ -29,7 +29,7 @@ gem "will_paginate", "~> 3.1.0"
 gem "friendly_id", "~> 5.1.0"
 gem "rack-mini-profiler"
 
-gem "bootsnap", ">= 1.4.2", require: false
+gem "bootsnap", "~> 1.6.0", require: false
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
@@ -49,6 +49,7 @@ group :development do
   gem "listen", ">= 3.0.5", "< 3.2"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+  gem "solargraph"
   gem "guard"
   gem "rack-livereload"
   gem "guard-livereload", require: false

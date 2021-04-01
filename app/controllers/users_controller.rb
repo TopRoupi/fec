@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   end
 
   def exercises
+    @exercises = current_user.posted_exercises.paginate(page: params[:page])
   end
 
   private

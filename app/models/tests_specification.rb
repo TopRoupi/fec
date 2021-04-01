@@ -18,6 +18,7 @@ class TestsSpecification < ApplicationRecord
   belongs_to :exercise
   belongs_to :language
   has_many :tests, dependent: :delete_all
+  after_commit :update_exercise_state, only: [:create, :update]
 
   validates_with TestsSpecificationValidator
   validates :limit_mem,
@@ -33,4 +34,9 @@ class TestsSpecification < ApplicationRecord
   accepts_nested_attributes_for :tests,
     reject_if: :all_blank,
     allow_destroy: true
+
+  def update_exercise_state
+    exercise.complete = valid?
+    exercise.save!
+  end
 end

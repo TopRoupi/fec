@@ -81,11 +81,11 @@ class ExercisesController < ApplicationController
   def set_exercises_with_search
     search = params[:search]
 
-    @exercises = Exercise.paginate(page: params[:page]).includes(:category).references(:category)
+    @exercises = Exercise.complete.paginate(page: params[:page]).includes(:category).references(:category)
 
     return unless search
 
-    @exercises = @exercises.fuzzy_search(name: search["name"]) unless search["name"].blank?
+    @exercises = @exercises.complete.fuzzy_search(name: search["name"]) unless search["name"].blank?
 
     if search["result"]
       @exercises = @exercises.where(id: current_user.solved_exercises) if search["result"] == "Solved"

@@ -134,4 +134,12 @@ class ExerciseTest < ActiveSupport::TestCase
 
     assert_equal @exercise.excerpt, "some text"
   end
+
+  test "#valid scope should return only exercises with valid tests_specification" do
+    complete_e = create :exercise, complete: true
+    incomplete_e = create :exercise, complete: false
+
+    assert_includes Exercise.complete, complete_e
+    refute_includes Exercise.complete, incomplete_e
+  end
 end

@@ -8,6 +8,7 @@ class Exercise < ApplicationRecord
   has_one :tests_specification, dependent: :delete
   has_many :submissions
   has_many :users, -> { distinct }, through: :submissions
+  scope :complete, -> { where("complete = true") }
 
   validates :level,
     presence: true,

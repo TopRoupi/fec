@@ -120,4 +120,12 @@ class TestsSpecificationTest < ActiveSupport::TestCase
     @tests_specification.valid?
     assert_empty @tests_specification.errors[:tests]
   end
+
+  test "after create or update tests_specification should update its exercise complete attribute to true if it is valid" do
+    @tests_specification.save!
+    assert @tests_specification.exercise.complete
+    @tests_specification.tests << build(:test)
+    @tests_specification.save!
+    assert @tests_specification.exercise.complete
+  end
 end

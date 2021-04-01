@@ -3,5 +3,7 @@
 .text-center.mb-4
   h1 Posted Exercises
 
-- current_user.posted_exercises.each do |exercise|
+- @exercises.each do |exercise|
   = render(Exercises::HorizontalCard::Component.new(exercise: exercise, attributes: [:category, :solved_percentage, :level, :test_specification]))
+
+= will_paginate @exercises, class: 'apple_pagination'
