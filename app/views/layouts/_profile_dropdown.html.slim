@@ -19,7 +19,7 @@ ul.dropdown-menu.notification-menu.dropdown-menu-right role="menu"
       = link_to "Sing_up", new_user_registration_path, class: "nav-link #{active_class(new_user_registration_path)}"
   .dropdown-divider
   li.dropdown-item
-    span.switch.nav-link.switch-sm data-controller="darkmode"
+    span.switch.nav-link.switch-sm 
       input.switch#switch-id type="checkbox" data-darkmode-target="darkswitch" data-action="click->darkmode#switch"
       label for="switch-id" style="font-size: 17px; margin: 0px;" Dark mode
 

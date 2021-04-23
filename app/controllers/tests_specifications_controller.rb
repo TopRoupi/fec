@@ -17,7 +17,7 @@ class TestsSpecificationsController < ApplicationController
         format.html { redirect_to edit_tests_specification_path(@tests_specification), notice: "Tests specification was successfully updated." }
         format.json { render :show, status: :ok, location: @tests_specification }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @tests_specification.errors, status: :unprocessable_entity }
       end
     end
