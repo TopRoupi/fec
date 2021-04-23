@@ -7,7 +7,7 @@ ruby "~> 2.7.2"
 
 gem "rails", "~> 6.1.1"
 
-gem "devise"
+gem "devise", "~> 4.7", ">= 4.7.1"
 gem "redcarpet"
 gem "simple_form"
 gem "slim-rails"

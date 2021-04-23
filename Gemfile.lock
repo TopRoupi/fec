@@ -436,7 +436,7 @@ DEPENDENCIES
   byebug
   capybara (>= 2.15)
   cocoon
-  devise
+  devise (~> 4.7, >= 4.7.1)
   factory_bot_rails
   faker!
   friendly_id (~> 5.1.0)
